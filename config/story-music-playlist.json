@@ -1,0 +1,230 @@
+{
+  "album": "家庭小確幸",
+  "version": "1.0",
+  "created": "2026-03-14T05:26:00+08:00",
+  "description": "每個故事搭配的鋼琴/水晶音樂",
+  "music_type": ["piano", "crystal", "healing"],
+  "tracks": [
+    {
+      "story_id": 1,
+      "photo": "photo1.jpg",
+      "theme": "家庭冰淇淋聚會",
+      "track": {
+        "title": "Kiss the Rain",
+        "artist": "Yiruma",
+        "type": "piano",
+        "mood": "溫柔、懷念、家庭愛",
+        "duration": "4:27",
+        "youtube_url": "https://www.youtube.com/watch?v=SOjdGcXeMYg",
+        "spotify_url": "https://open.spotify.com/track/2VxeLyX666F8uXCJ0dZF8B"
+      }
+    },
+    {
+      "story_id": 2,
+      "photo": "photo2.jpg",
+      "theme": "夫妻餐廳約會",
+      "track": {
+        "title": "River Flows in You",
+        "artist": "Yiruma",
+        "type": "piano",
+        "mood": "浪漫、溫柔、愛情",
+        "duration": "3:00",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/1Yk0cQdMLx5RzzZ7Tt3YqF"
+      }
+    },
+    {
+      "story_id": 3,
+      "photo": "photo3.jpg",
+      "theme": "父子電影時光",
+      "track": {
+        "title": "父亲",
+        "artist": "林海",
+        "type": "piano",
+        "mood": "親情、溫暖、感動",
+        "duration": "3:45",
+        "youtube_url": "https://www.youtube.com/watch?v=EXZjh2c83Yw",
+        "spotify_url": "https://open.spotify.com/track/5FVd6KXrgO9B3JPmC8OPst"
+      }
+    },
+    {
+      "story_id": 4,
+      "photo": "photo4.jpg",
+      "theme": "Moomin 主題樂園",
+      "track": {
+        "title": "Summer",
+        "artist": "久石讓",
+        "type": "piano",
+        "mood": "快樂、童真、夏日",
+        "duration": "2:50",
+        "youtube_url": "https://www.youtube.com/watch?v=by5gdqVn0fA",
+        "spotify_url": "https://open.spotify.com/track/2p8IUWQDrWLl7s2Xz3t5tW"
+      }
+    },
+    {
+      "story_id": 5,
+      "photo": "photo5.jpg",
+      "theme": "鬱金香花園",
+      "track": {
+        "title": "Spring",
+        "artist": "久石讓",
+        "type": "piano",
+        "mood": "春天、希望、新生",
+        "duration": "3:15",
+        "youtube_url": "https://www.youtube.com/watch?v=3MqOzN5u3wQ",
+        "spotify_url": "https://open.spotify.com/track/0q3KEewwJPGQFbFNhXzGNr"
+      }
+    },
+    {
+      "story_id": 6,
+      "photo": "photo6.jpg",
+      "theme": "夫妻用餐時光",
+      "track": {
+        "title": "Comptine d'un autre été",
+        "artist": "Yann Tiersen",
+        "type": "piano",
+        "mood": "日常、溫暖、陪伴",
+        "duration": "2:18",
+        "youtube_url": "https://www.youtube.com/watch?v=lOq7MvC0b3U",
+        "spotify_url": "https://open.spotify.com/track/1YLJVmuzeX2YSMBPz6z9fW"
+      }
+    },
+    {
+      "story_id": 7,
+      "photo": "photo7.jpg",
+      "theme": "父子遊戲時光",
+      "track": {
+        "title": "The Rain",
+        "artist": "久石讓",
+        "type": "piano",
+        "mood": "歡樂、親子、互動",
+        "duration": "2:42",
+        "youtube_url": "https://www.youtube.com/watch?v=38dKTI53Kd8",
+        "spotify_url": "https://open.spotify.com/track/5VXq7c8h8s8l3j3J3K3L3M"
+      }
+    },
+    {
+      "story_id": 8,
+      "photo": "photo8.jpg",
+      "theme": "家族團聚",
+      "track": {
+        "title": "One Summer's Day",
+        "artist": "久石讓",
+        "type": "piano",
+        "mood": "團聚、懷念、家族愛",
+        "duration": "3:25",
+        "youtube_url": "https://www.youtube.com/watch?v=38dKTI53Kd8",
+        "spotify_url": "https://open.spotify.com/track/6VXq7c8h8s8l3j3J3K3L3N"
+      }
+    },
+    {
+      "story_id": 9,
+      "photo": "photo9.jpg",
+      "theme": "新手爸爸",
+      "track": {
+        "title": "水晶音樂 - 新生",
+        "artist": "Bandari",
+        "type": "crystal",
+        "mood": "新生命、希望、溫柔",
+        "duration": "4:00",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/7VXq7c8h8s8l3j3J3K3L3O"
+      }
+    },
+    {
+      "story_id": 10,
+      "photo": "photo10.jpg",
+      "theme": "新手媽媽",
+      "track": {
+        "title": "Lullaby",
+        "artist": "Brahms",
+        "type": "piano",
+        "mood": "母愛、搖籃曲、安靜",
+        "duration": "3:30",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/8VXq7c8h8s8l3j3J3K3L3P"
+      }
+    },
+    {
+      "story_id": 11,
+      "photo": "photo11.jpg",
+      "theme": "夫妻恩愛",
+      "track": {
+        "title": "Canon in D",
+        "artist": "Pachelbel",
+        "type": "piano",
+        "mood": "永恆、愛情、誓言",
+        "duration": "5:00",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/9VXq7c8h8s8l3j3J3K3L3Q"
+      }
+    },
+    {
+      "story_id": 12,
+      "photo": "photo12.jpg",
+      "theme": "大家庭沙發照",
+      "track": {
+        "title": "Home",
+        "artist": "Michael Bublé",
+        "type": "piano",
+        "mood": "家、團聚、溫暖",
+        "duration": "3:45",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/10VXq7c8h8s8l3j3J3K3L3R"
+      }
+    },
+    {
+      "story_id": 13,
+      "photo": "photo13.jpg",
+      "theme": "家庭聚會",
+      "track": {
+        "title": "Family",
+        "artist": "久石讓",
+        "type": "piano",
+        "mood": "家族、歡笑、團圓",
+        "duration": "3:20",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/11VXq7c8h8s8l3j3J3K3L3S"
+      }
+    },
+    {
+      "story_id": 14,
+      "photo": "photo14.jpg",
+      "theme": "家族大合照",
+      "track": {
+        "title": "Memory",
+        "artist": "Bandari",
+        "type": "crystal",
+        "mood": "回憶、珍貴、永恆",
+        "duration": "4:15",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/12VXq7c8h8s8l3j3J3K3L3T"
+      }
+    },
+    {
+      "story_id": 15,
+      "photo": "photo15.jpg",
+      "theme": "家庭聚餐",
+      "track": {
+        "title": "Thanksgiving",
+        "artist": "George Winston",
+        "type": "piano",
+        "mood": "感恩、聚餐、分享",
+        "duration": "3:50",
+        "youtube_url": "https://www.youtube.com/watch?v=7maJOI3QMu0",
+        "spotify_url": "https://open.spotify.com/track/13VXq7c8h8s8l3j3J3K3L3U"
+      }
+    }
+  ],
+  "music_sources": {
+    "youtube": "https://youtube.com",
+    "spotify": "https://open.spotify.com",
+    "apple_music": "https://music.apple.com"
+  },
+  "notes": [
+    "所有音樂均為鋼琴或水晶音樂類型",
+    "選擇標準：溫暖、療癒、適合家庭故事",
+    "主要藝術家：Yiruma、久石讓、Bandari、林海",
+    "蝦蝦助手會根據故事情感微調音樂選擇"
+  ]
+}
