@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>角色畫廊 - 家庭小確幸</title>
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .character-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .character-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .character-info {
+            padding: 1.5rem;
+        }
+        
+        .character-info h3 {
+            color: #556B2F;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .character-meta {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .meta-label {
+            color: #888;
+        }
+        
+        .meta-value {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #8FBC8F;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.1) 0%, rgba(221, 160, 221, 0.1) 100%);
+            border-radius: 15px;
+        }
+        
+        .stat-card {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8FBC8F;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #8FBC8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .links a:hover {
+            background: #556B2F;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👨‍👩‍👧‍👦 角色畫廊</h1>
+        <p class="subtitle">6 個核心角色 · 宮崎駿動畫風格 AI 生成</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">核心角色</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2K</div>
+                <div class="stat-label">高解析度</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">AI</div>
+                <div class="stat-label">Gemini 生成</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Ghibli</div>
+                <div class="stat-label">宮崎駿風格</div>
+            </div>
+        </div>
+        
+        <div class="characters-grid">
+            <!-- 爸爸 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/dad-portrait.jpg" alt="爸爸標準照">
+                <div class="character-info">
+                    <h3>👨 爸爸</h3>
+                    <p>戴眼鏡、溫暖笑容、灰色外套 + 紅色內搭</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">中年（40-45 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">沉穩、負責任</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">灰色、紅色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2816×1536</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 媽媽 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/mom-portrait.jpg" alt="媽媽標準照">
+                <div class="character-info">
+                    <h3>👩 媽媽</h3>
+                    <p>戴眼鏡、溫柔笑容、紫色上衣</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">中年（38-43 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">溫柔、細心</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">紫色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2816×1536</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 哥哥 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/older-son-portrait.jpg" alt="哥哥標準照">
+                <div class="character-info">
+                    <h3>👦 哥哥</h3>
+                    <p>戴圓框眼鏡、條紋毛衣/牛仔外套</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">青少年（15-18 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">沉穩、照顧弟弟</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">藍色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2816×1536</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 二兒子 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/younger-son-portrait.jpg" alt="二兒子標準照">
+                <div class="character-info">
+                    <h3>👦 二兒子</h3>
+                    <p>活潑開朗、愛比手勢、紅色/藍色上衣</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">兒童（8-12 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">活潑、愛吃、愛旅遊</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">紅色、藍色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2048×2048</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 爺爺 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/grandpa-portrait.jpg" alt="爺爺標準照">
+                <div class="character-info">
+                    <h3>👴 爺爺</h3>
+                    <p>白髮、慈祥、深灰色上衣</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">老年（65-75 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">慈祥、家族支柱</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">深灰色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2816×1536</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 奶奶 -->
+            <div class="character-card">
+                <img src="assets/ai-images/characters/grandma-portrait.jpg" alt="奶奶標準照">
+                <div class="character-info">
+                    <h3>👵 奶奶</h3>
+                    <p>白髮、溫暖笑容、米色外套</p>
+                    <div class="character-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">年齡：</span>
+                            <span class="meta-value">老年（65-75 歲）</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">個性：</span>
+                            <span class="meta-value">溫暖、說故事</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">代表色：</span>
+                            <span class="meta-value">米色</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">鏡頭：</span>
+                            <span class="meta-value">近景（Close-up）</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">🎨 宮崎駿風格</span>
+                        <span class="badge">📸 2400×1792</span>
+                        <span class="badge">✅ AI 生成</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="links">
+            <a href="prologue-gallery.html">📖 序章畫廊</a>
+            <a href="index.html">🏠 返回首頁</a>
+            <a href="https://github.com/abujilongxia-commits/family-stories/tree/main/assets/ai-images/characters" target="_blank">🐙 GitHub 倉庫</a>
+        </div>
+        
+        <p style="text-align: center; margin-top: 2rem; color: #888; font-size: 0.9rem;">
+            🎨 使用 Gemini 3 Pro Image API 生成 · 真正的 AI 創作<br>
+            生成時間：2026-03-14 06:42 AM<br>
+            <strong>角色標準照，確保後續 AI 生成的一致性！</strong>
+        </p>
+    </div>
+</body>
+</html>
