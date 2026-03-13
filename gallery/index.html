@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事專輯 - 家庭小確幸</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--background-color) 100%);
+        }
+        
+        .gallery-header h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-header p {
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+        
+        .gallery-nav {
+            padding: 2rem;
+            background: white;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-nav a {
+            display: inline-block;
+            margin: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--background-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-nav a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .photo-info {
+            padding: 1.5rem;
+        }
+        
+        .photo-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-info p {
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        .photo-tags {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--background-color);
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">🏠 家庭小確幸</div>
+        <ul class="nav-menu">
+            <li><a href="../index.html">首頁</a></li>
+            <li><a href="../index.html#about">關於我們</a></li>
+            <li><a href="index.html">故事專輯</a></li>
+            <li><a href="../ai-art/index.html">AI 藝術畫廊</a></li>
+            <li><a href="../timeline/index.html">時光軸</a></li>
+        </ul>
+    </nav>
+
+    <header class="gallery-header">
+        <h1>📚 故事專輯</h1>
+        <p>53 張珍貴照片，15 個溫暖主題，記錄我們的小確幸</p>
+    </header>
+
+    <div class="gallery-nav">
+        <a href="#family-gathering">家庭聚會</a>
+        <a href="#couple-love">夫妻情誼</a>
+        <a href="#parent-child">親子出遊</a>
+        <a href="#cny-tradition">春節傳統</a>
+        <a href="#family-game">家庭遊戲</a>
+        <a href="#family-reunion">家族團聚</a>
+        <a href="#shopping">逛街購物</a>
+        <a href="#market-festival">節慶市場</a>
+        <a href="#food-dessert">美食甜品</a>
+        <a href="#sports-leisure">休閒運動</a>
+    </div>
+
+    <section class="photo-grid">
+        <!-- 照片卡片範例 -->
+        <div class="photo-card">
+            <img src="../assets/photos/placeholder.jpg" alt="家庭冰淇淋聚會">
+            <div class="photo-info">
+                <h3>家庭冰淇淋聚會 🍦</h3>
+                <p>紅色木沙發上，全家圍坐一起享用杜老爺冰淇淋，孩子們比著 YA 手勢，茶幾上滿滿零食，溫暖的歡笑聲充滿客廳。</p>
+                <div class="photo-tags">
+                    <span class="tag">家庭聚會</span>
+                    <span class="tag">冰淇淋</span>
+                    <span class="tag">溫馨</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="../assets/photos/placeholder.jpg" alt="夫妻用餐時光">
+            <div class="photo-info">
+                <h3>夫妻用餐時光 🍜</h3>
+                <p>餐廳裡兩碗熱騰騰的麵，媽媽穿彩色條紋毛衣，爸爸穿灰色 Abercrombie 衛衣，兩人都比大拇指，溫暖笑容，夫妻恩愛。</p>
+                <div class="photo-tags">
+                    <span class="tag">夫妻情誼</span>
+                    <span class="tag">美食</span>
+                    <span class="tag">溫馨</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="../assets/photos/placeholder.jpg" alt="親子電影時光">
+            <div class="photo-info">
+                <h3>親子電影時光 🎬</h3>
+                <p>電影院候位區，媽媽穿黃色連帽卫衣，孩子穿紅色長袖，兩人手持電影票，木紋牆面背景，期待的笑容。</p>
+                <div class="photo-tags">
+                    <span class="tag">親子出遊</span>
+                    <span class="tag">電影</span>
+                    <span class="tag">期待</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 更多照片卡片... -->
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>🏠 家庭小確幸 - 記錄台灣大家庭的溫暖日常</p>
+            <p>❤️ 用愛與溫暖，記錄每一個珍貴時刻</p>
+            <p class="copyright">© 2026 阿布吉的家庭故事 | Made with ❤️ and AI</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
