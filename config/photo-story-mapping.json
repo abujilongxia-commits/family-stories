@@ -1,0 +1,190 @@
+{
+  "version": "1.0",
+  "created": "2026-03-14T04:45:00+08:00",
+  "author": "main agent + 蝦蝦助手",
+  "total_photos": 53,
+  "mapped": 15,
+  "pending": 38,
+  "mappings": [
+    {
+      "photo": "photo1.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 1,
+      "theme": "家庭冰淇淋聚會",
+      "location": "客廳",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo2.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 2,
+      "theme": "夫妻餐廳約會",
+      "location": "餐廳",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo3.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 3,
+      "theme": "父子電影時光",
+      "location": "電影院",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo4.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 4,
+      "theme": "Moomin 主題樂園",
+      "location": "主題樂園",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo5.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 5,
+      "theme": "鬱金香花園",
+      "location": "花園",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo6.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 6,
+      "theme": "夫妻用餐時光",
+      "location": "餐廳",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo7.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 7,
+      "theme": "父子遊戲時光",
+      "location": "客廳",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo8.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 8,
+      "theme": "家族團聚",
+      "location": "餐廳",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo9.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 9,
+      "theme": "新手爸爸",
+      "location": "室內",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo10.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 10,
+      "theme": "新手媽媽",
+      "location": "室內",
+      "verified": true,
+      "status": "✅ 完成"
+    },
+    {
+      "photo": "photo11.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 11,
+      "theme": "待定",
+      "location": "待定",
+      "verified": false,
+      "status": "⏳ 待蝦蝦助手編寫"
+    },
+    {
+      "photo": "photo12.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 12,
+      "theme": "待定",
+      "location": "待定",
+      "verified": false,
+      "status": "⏳ 待蝦蝦助手編寫"
+    },
+    {
+      "photo": "photo13.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 13,
+      "theme": "待定",
+      "location": "待定",
+      "verified": false,
+      "status": "⏳ 待蝦蝦助手編寫"
+    },
+    {
+      "photo": "photo14.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 14,
+      "theme": "待定",
+      "location": "待定",
+      "verified": false,
+      "status": "⏳ 待蝦蝦助手編寫"
+    },
+    {
+      "photo": "photo15.jpg",
+      "story_file": "stories-part1.json",
+      "story_id": 15,
+      "theme": "待定",
+      "location": "待定",
+      "verified": false,
+      "status": "⏳ 待蝦蝦助手編寫"
+    }
+  ],
+  "pending_photos": [
+    "photo16.jpg",
+    "photo17.jpg",
+    "photo18.jpg",
+    "photo19.jpg",
+    "photo20.jpg",
+    "photo21.jpg",
+    "photo22.jpg",
+    "photo23.jpg",
+    "photo24.jpg",
+    "photo25.jpg",
+    "photo26.jpg",
+    "photo27.jpg",
+    "photo28.jpg",
+    "photo29.jpg",
+    "photo30.jpg",
+    "photo31.jpg",
+    "photo32.jpg",
+    "photo33.jpg",
+    "photo34.jpg",
+    "photo35.jpg",
+    "photo36.jpg",
+    "photo37.jpg",
+    "photo38.jpg",
+    "photo39.jpg",
+    "photo40.jpg",
+    "photo41.jpg",
+    "photo42.jpg",
+    "photo43.jpg",
+    "photo44.jpg",
+    "photo45.jpg",
+    "photo46.jpg",
+    "photo47.jpg",
+    "photo48.jpg",
+    "photo49.jpg",
+    "photo50.jpg",
+    "photo51.jpg",
+    "photo52.jpg",
+    "photo53.jpg"
+  ],
+  "notes": [
+    "photo1-10: 故事已完成並整合到畫廊頁面 ✅",
+    "photo11-15: 故事在 JSON 中，待驗證 ⏳",
+    "photo16-53: 等待蝦蝦助手編寫故事 📝"
+  ]
+}

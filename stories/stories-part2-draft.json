@@ -1,0 +1,32 @@
+{
+  "album": "家庭小確幸",
+  "version": "1.0",
+  "created": "2026-03-14T05:00:00+08:00",
+  "author": "蝦蝦助手",
+  "status": "編寫中",
+  "stories": [
+    {
+      "id": 16,
+      "filename": "photo16.jpg",
+      "theme": "待定",
+      "location": "待定",
+      "story": "待編寫",
+      "tags": [],
+      "date": "2026-01-XX",
+      "season": "冬",
+      "status": "⏳ 等待蝦蝦助手編寫"
+    },
+    {
+      "id": 17,
+      "filename": "photo17.jpg",
+      "theme": "待定",
+      "location": "待定",
+      "story": "待編寫",
+      "tags": [],
+      "date": "2026-01-XX",
+      "season": "冬",
+      "status": "⏳ 等待蝦蝦助手編寫"
+    }
+  ],
+  "note": "此文件預留給蝦蝦助手編寫 photo16-53 的故事"
+}

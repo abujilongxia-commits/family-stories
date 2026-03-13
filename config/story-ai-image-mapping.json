@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "created": "2026-03-14T05:10:00+08:00",
+  "description": "故事與 AI 圖像對應配置",
+  "total_stories": 53,
+  "ai_images_target": 280,
+  "ai_images_current": 87,
+  "mappings": [
+    {
+      "story_id": 1,
+      "photo": "photo1.jpg",
+      "theme": "家庭冰淇淋聚會",
+      "ai_images": {
+        "count": 5,
+        "style": "宮崎駿動畫風格",
+        "prompt_base": "宮崎駿動畫風格，台灣家庭客廳聚會，紅色木製沙發，多個家庭成員，大家拿著冰淇淋甜筒，快樂笑容，溫暖手繪質感，柔和色彩，自然光線",
+        "folder": "quick/miyazaki/2026-03-13/scene_1_家庭冰淇淋聚會",
+        "status": "✅ 已完成"
+      }
+    },
+    {
+      "story_id": 2,
+      "photo": "photo2.jpg",
+      "theme": "夫妻餐廳約會",
+      "ai_images": {
+        "count": 5,
+        "style": "宮崎駿動畫風格",
+        "prompt_base": "宮崎駿動畫風格，夫妻餐廳約會，燭光搖曳，浪漫氛圍，美食香檳，溫暖手繪質感，柔和色彩",
+        "folder": "quick/miyazaki/2026-03-13/scene_2_夫妻用餐時光",
+        "status": "✅ 已完成"
+      }
+    },
+    {
+      "story_id": 3,
+      "photo": "photo3.jpg",
+      "theme": "父子電影時光",
+      "ai_images": {
+        "count": 5,
+        "style": "宮崎駿動畫風格",
+        "prompt_base": "宮崎駿動畫風格，父子電影院，大螢幕 Avengers，男孩眼睛閃爍光芒，爸爸摟著肩膀，溫暖手繪質感",
+        "folder": "quick/miyazaki/2026-03-13/scene_3_親子電影時光",
+        "status": "✅ 已完成"
+      }
+    },
+    {
+      "story_id": 4,
+      "photo": "photo4.jpg",
+      "theme": "Moomin 主題樂園",
+      "ai_images": {
+        "count": 5,
+        "style": "宮崎駿動畫風格",
+        "prompt_base": "宮崎駿動畫風格，Moomin 主題樂園，彩色城堡，可愛角色，家庭出遊，童真年代，溫暖手繪質感",
+        "folder": "quick/miyazaki/2026-03-13/scene_4_Moomin 主題公園",
+        "status": "🔄 生成中"
+      }
+    },
+    {
+      "story_id": 5,
+      "photo": "photo5.jpg",
+      "theme": "鬱金香花園",
+      "ai_images": {
+        "count": 5,
+        "style": "宮崎駿動畫風格",
+        "prompt_base": "宮崎駿動畫風格，鬱金香花園，春天花朵綻放，爸爸抱著寶寶，媽媽幸福笑著，溫暖手繪質感",
+        "folder": "quick/miyazaki/2026-03-13/scene_5_鬱金香花園",
+        "status": "⏳ 等待中"
+      }
+    }
+  ],
+  "pending_mappings": {
+    "description": "photo6-53 的 AI 圖像對應（待生成）",
+    "count": 48,
+    "estimated_images": 240
+  },
+  "generation_plan": {
+    "phase_1": {
+      "name": "快速模板",
+      "target": 140,
+      "current": 87,
+      "status": "🔄 進行中"
+    },
+    "phase_2": {
+      "name": "高品質故事",
+      "target": 140,
+      "current": 0,
+      "status": "⏳ 等待中"
+    }
+  }
+}

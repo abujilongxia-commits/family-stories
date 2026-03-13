@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事專輯 - 家庭小確幸</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--background-color) 100%);
+        }
+        
+        .gallery-header h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-header p {
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+        
+        .ai-note {
+            background: linear-gradient(135deg, #ffe6f2 0%, #e6f3ff 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .ai-note h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .real-photo-section {
+            position: relative;
+        }
+        
+        .real-photo-section img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .photo-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .story-info {
+            padding: 2rem;
+        }
+        
+        .story-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .story-info p {
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .story-quote {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .ai-gallery-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+        }
+        
+        .ai-gallery-section h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .ai-grid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .ai-grid img:hover {
+            transform: scale(1.1);
+        }
+        
+        .ai-note-text {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+        }
+        
+        .photo-tags {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--background-color);
+            color: var(--text-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .photo-meta {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .ai-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-brand">🏠 家庭小確幸</div>
+        <ul class="nav-menu">
+            <li><a href="../index.html">首頁</a></li>
+            <li><a href="../index.html#about">關於我們</a></li>
+            <li><a href="index.html">故事專輯</a></li>
+            <li><a href="../ai-art/index.html">AI 藝術畫廊</a></li>
+            <li><a href="../timeline/index.html">時光軸</a></li>
+        </ul>
+    </nav>
+
+    <!-- 畫廊標題 -->
+    <header class="gallery-header">
+        <h1>📚 故事專輯</h1>
+        <p>53 張珍貴照片 × 53 個溫暖故事 × 280 張 AI 藝術</p>
+        <p>真實與藝術的完美結合</p>
+    </header>
+
+    <!-- AI 圖像說明 -->
+    <div class="ai-note">
+        <h3>🎨 關於 AI 藝術重現</h3>
+        <p>每個故事都搭配了 5-6 張宮崎駿動畫風格的 AI 生成圖像</p>
+        <p>AI 圖像根據故事內容創作，重現場景、情感和氛圍</p>
+        <p>真實照片記錄當下，AI 藝術賦予想像，兩者交織出更豐富的故事層次</p>
+    </div>
+
+    <!-- 照片網格 -->
+    <div class="photo-grid" id="all">
+        <!-- 範例：photo1 -->
+        <div class="story-card">
+            <div class="real-photo-section">
+                <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/photos/photo1.jpg" alt="家庭冰淇淋聚會">
+                <span class="photo-label">📸 真實照片</span>
+            </div>
+            <div class="story-info">
+                <h3>家庭冰淇淋聚會 🍦</h3>
+                <p>一個溫暖的週末下午，陽光灑進客廳，家人們圍坐在一起，每個人手裡拿著冰淇淋甜筒。孩子們的笑容像彩虹一樣燦爛，父母眼中充滿了愛意。這一刻，沒有任何煩惱，只有滿滿的幸福與甜蜜。</p>
+                <div class="story-quote">
+                    「家，就是可以一起分享冰淇淋的地方。」🍦💕
+                </div>
+                <div class="photo-tags">
+                    <span class="tag">家庭聚會</span>
+                    <span class="tag">冰淇淋</span>
+                    <span class="tag">溫馨</span>
+                    <span class="tag">客廳</span>
+                </div>
+            </div>
+            <div class="ai-gallery-section">
+                <h4>🎨 AI 藝術重現 <span style="font-size: 0.8rem; color: #666;">(5 張)</span></h4>
+                <div class="ai-grid">
+                    <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/ai-images/scene1-1.jpg" alt="AI 版本 1" title="點擊放大">
+                    <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/ai-images/scene1-2.jpg" alt="AI 版本 2" title="點擊放大">
+                    <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/ai-images/scene1-3.jpg" alt="AI 版本 3" title="點擊放大">
+                    <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/ai-images/scene1-4.jpg" alt="AI 版本 4" title="點擊放大">
+                    <img src="https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/assets/ai-images/scene1-5.jpg" alt="AI 版本 5" title="點擊放大">
+                </div>
+                <p class="ai-note-text">宮崎駿動畫風格 AI 生成</p>
+            </div>
+        </div>
+        
+        <!-- 更多故事卡片將由腳本自動生成 -->
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <p>🏠 家庭小確幸 · 記錄我們的溫暖日常</p>
+        <p>真實照片 × AI 藝術 · Made with ❤️ by 蝦蝦助手</p>
+    </footer>
+
+    <script>
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // AI 圖像點擊放大（未來功能）
+        document.querySelectorAll('.ai-grid img').forEach(img => {
+            img.addEventListener('click', function() {
+                // TODO: 實現放大燈箱效果
+                console.log('放大:', this.src);
+            });
+        });
+    </script>
+</body>
+</html>
