@@ -29,17 +29,21 @@
             background: white;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .gallery-nav a {
             display: inline-block;
-            margin: 0.5rem 1rem;
-            padding: 0.8rem 1.5rem;
+            margin: 0.5rem 0.3rem;
+            padding: 0.6rem 1.2rem;
             background: var(--background-color);
             color: var(--text-color);
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .gallery-nav a:hover {
@@ -81,11 +85,13 @@
         .photo-info h3 {
             color: var(--secondary-color);
             margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .photo-info p {
             color: var(--text-color);
             line-height: 1.8;
+            font-size: 0.95rem;
         }
         
         .photo-tags {
@@ -100,7 +106,20 @@
             color: var(--secondary-color);
             padding: 0.3rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+        }
+
+        .theme-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .theme-section h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -134,48 +153,332 @@
         <a href="#sports-leisure">休閒運動</a>
     </div>
 
-    <section class="photo-grid">
-        <!-- 照片卡片範例 -->
-        <div class="photo-card">
-            <img src="../assets/photos/placeholder.jpg" alt="家庭冰淇淋聚會">
-            <div class="photo-info">
-                <h3>家庭冰淇淋聚會 🍦</h3>
-                <p>紅色木沙發上，全家圍坐一起享用杜老爺冰淇淋，孩子們比著 YA 手勢，茶幾上滿滿零食，溫暖的歡笑聲充滿客廳。</p>
-                <div class="photo-tags">
-                    <span class="tag">家庭聚會</span>
-                    <span class="tag">冰淇淋</span>
-                    <span class="tag">溫馨</span>
+    <!-- 主題 1: 家庭聚會 -->
+    <section id="family-gathering" class="theme-section">
+        <h2>🏠 家庭聚會</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo1.jpg" alt="家庭冰淇淋聚會">
+                <div class="photo-info">
+                    <h3>家庭冰淇淋聚會 🍦</h3>
+                    <p>紅色木沙發上，全家圍坐一起享用杜老爺冰淇淋，孩子們比著 YA 手勢，茶幾上滿滿零食，溫暖的歡笑聲充滿客廳。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家庭聚會</span>
+                        <span class="tag">冰淇淋</span>
+                        <span class="tag">溫馨</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo2.jpg" alt="客廳溫馨時光">
+                <div class="photo-info">
+                    <h3>客廳溫馨時光 🛋️</h3>
+                    <p>一家人在客廳放鬆聊天，溫暖的燈光，舒適的氛圍，平凡卻珍貴的日常時刻。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家庭聚會</span>
+                        <span class="tag">日常</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo3.jpg" alt="週末家庭時光">
+                <div class="photo-info">
+                    <h3>週末家庭時光 ☀️</h3>
+                    <p>週末午後，全家人聚在一起，享受難得的休閒時光，笑聲不斷。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家庭聚會</span>
+                        <span class="tag">週末</span>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="photo-card">
-            <img src="../assets/photos/placeholder.jpg" alt="夫妻用餐時光">
-            <div class="photo-info">
-                <h3>夫妻用餐時光 🍜</h3>
-                <p>餐廳裡兩碗熱騰騰的麵，媽媽穿彩色條紋毛衣，爸爸穿灰色 Abercrombie 衛衣，兩人都比大拇指，溫暖笑容，夫妻恩愛。</p>
-                <div class="photo-tags">
-                    <span class="tag">夫妻情誼</span>
-                    <span class="tag">美食</span>
-                    <span class="tag">溫馨</span>
+    </section>
+
+    <!-- 主題 2: 夫妻情誼 -->
+    <section id="couple-love" class="theme-section">
+        <h2>💕 夫妻情誼</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo4.jpg" alt="夫妻用餐時光">
+                <div class="photo-info">
+                    <h3>夫妻用餐時光 🍜</h3>
+                    <p>餐廳裡兩碗熱騰騰的麵，媽媽穿彩色條紋毛衣，爸爸穿灰色 Abercrombie 衛衣，兩人都比大拇指，溫暖笑容，夫妻恩愛。</p>
+                    <div class="photo-tags">
+                        <span class="tag">夫妻情誼</span>
+                        <span class="tag">美食</span>
+                        <span class="tag">恩愛</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo5.jpg" alt="甜蜜日常">
+                <div class="photo-info">
+                    <h3>甜蜜日常 💑</h3>
+                    <p>平凡日子裡的甜蜜互動，一個眼神、一個微笑，都是愛的證明。</p>
+                    <div class="photo-tags">
+                        <span class="tag">夫妻情誼</span>
+                        <span class="tag">日常</span>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="photo-card">
-            <img src="../assets/photos/placeholder.jpg" alt="親子電影時光">
-            <div class="photo-info">
-                <h3>親子電影時光 🎬</h3>
-                <p>電影院候位區，媽媽穿黃色連帽卫衣，孩子穿紅色長袖，兩人手持電影票，木紋牆面背景，期待的笑容。</p>
-                <div class="photo-tags">
-                    <span class="tag">親子出遊</span>
-                    <span class="tag">電影</span>
-                    <span class="tag">期待</span>
+    </section>
+
+    <!-- 主題 3: 親子出遊 -->
+    <section id="parent-child" class="theme-section">
+        <h2>👨‍👩‍ 親子出遊</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo6.jpg" alt="親子電影時光">
+                <div class="photo-info">
+                    <h3>親子電影時光 🎬</h3>
+                    <p>電影院候位區，媽媽穿黃色連帽卫衣，孩子穿紅色長袖，兩人手持電影票，木紋牆面背景，期待的笑容。</p>
+                    <div class="photo-tags">
+                        <span class="tag">親子出遊</span>
+                        <span class="tag">電影</span>
+                        <span class="tag">期待</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo7.jpg" alt="快樂出遊日">
+                <div class="photo-info">
+                    <h3>快樂出遊日 🚗</h3>
+                    <p>一家人開車出遊，孩子們在後座興奮地聊天，窗外風景飛逝，充滿歡笑旅程。</p>
+                    <div class="photo-tags">
+                        <span class="tag">親子出遊</span>
+                        <span class="tag">旅行</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo8.jpg" alt="公園野餐">
+                <div class="photo-info">
+                    <h3>公園野餐 🧺</h3>
+                    <p>陽光明媚的午後，在公園草地上鋪上野餐墊，享受美食與親子時光。</p>
+                    <div class="photo-tags">
+                        <span class="tag">親子出遊</span>
+                        <span class="tag">野餐</span>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!-- 更多照片卡片... -->
+    </section>
+
+    <!-- 主題 4: 春節傳統 -->
+    <section id="cny-tradition" class="theme-section">
+        <h2>🧧 春節傳統</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo9.jpg" alt="紅包交換">
+                <div class="photo-info">
+                    <h3>紅包交換 🧧</h3>
+                    <p>春節期間，長輩給孩子們發紅包，傳統的儀式，滿滿的祝福。</p>
+                    <div class="photo-tags">
+                        <span class="tag">春節傳統</span>
+                        <span class="tag">紅包</span>
+                        <span class="tag">祝福</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo10.jpg" alt="春聯貼紙">
+                <div class="photo-info">
+                    <h3>春聯貼紙 🏮</h3>
+                    <p>全家一起貼春聯，紅色的喜慶，傳統的年味。</p>
+                    <div class="photo-tags">
+                        <span class="tag">春節傳統</span>
+                        <span class="tag">春聯</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo11.jpg" alt="家族合照">
+                <div class="photo-info">
+                    <h3>家族合照 📸</h3>
+                    <p>春節全家福，四代同堂，難得的團聚時刻。</p>
+                    <div class="photo-tags">
+                        <span class="tag">春節傳統</span>
+                        <span class="tag">合照</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 5: 家庭遊戲 -->
+    <section id="family-game" class="theme-section">
+        <h2>🎴 家庭遊戲</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo12.jpg" alt="撲克牌遊戲">
+                <div class="photo-info">
+                    <h3>撲克牌遊戲 🃏</h3>
+                    <p>週末晚上，全家人圍坐一起玩撲克牌，笑聲不斷，其樂融融。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家庭遊戲</span>
+                        <span class="tag">撲克牌</span>
+                        <span class="tag">歡樂</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo13.jpg" alt="桌遊時光">
+                <div class="photo-info">
+                    <h3>桌遊時光 🎲</h3>
+                    <p>難得的週末夜晚，一起玩桌遊，孩子們興奮地擲骰子。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家庭遊戲</span>
+                        <span class="tag">桌遊</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 6: 家族團聚 -->
+    <section id="family-reunion" class="theme-section">
+        <h2>🏡 家族團聚</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo14.jpg" alt="四代同堂">
+                <div class="photo-info">
+                    <h3>四代同堂 👨‍‍👧👦</h3>
+                    <p>從曾祖父母到孫子輩，四代人齊聚一堂，珍貴的家族時刻。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家族團聚</span>
+                        <span class="tag">四代同堂</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo15.jpg" alt="門口合照">
+                <div class="photo-info">
+                    <h3>門口合照 🚪</h3>
+                    <p>在老家門口拍下這張珍貴合照，記錄家族團聚的美好。</p>
+                    <div class="photo-tags">
+                        <span class="tag">家族團聚</span>
+                        <span class="tag">合照</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 7: 逛街購物 -->
+    <section id="shopping" class="theme-section">
+        <h2>🛒 逛街購物</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo16.jpg" alt="西市場購物">
+                <div class="photo-info">
+                    <h3>西市場購物 🏪</h3>
+                    <p>一家人在西市場逛街，孩子們興奮地看著各種商品。</p>
+                    <div class="photo-tags">
+                        <span class="tag">逛街購物</span>
+                        <span class="tag">市場</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo17.jpg" alt="彩繪襯衫">
+                <div class="photo-info">
+                    <h3>彩繪襯衫 👕</h3>
+                    <p>孩子們體驗彩繪襯衫，發揮創意，畫出獨一無二的作品。</p>
+                    <div class="photo-tags">
+                        <span class="tag">逛街購物</span>
+                        <span class="tag">DIY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 8: 節慶市場 -->
+    <section id="market-festival" class="theme-section">
+        <h2>🏮 節慶市場</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo18.jpg" alt="紅燈籠市場">
+                <div class="photo-info">
+                    <h3>紅燈籠市場 🏮</h3>
+                    <p>節慶期間的市場，掛滿紅燈籠，熱鬧非凡。</p>
+                    <div class="photo-tags">
+                        <span class="tag">節慶市場</span>
+                        <span class="tag">燈籠</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo19.jpg" alt="招牌牆">
+                <div class="photo-info">
+                    <h3>招牌牆 📷</h3>
+                    <p>復古風格的招牌牆，一家人在此留下美好回憶。</p>
+                    <div class="photo-tags">
+                        <span class="tag">節慶市場</span>
+                        <span class="tag">打卡</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 9: 美食甜品 -->
+    <section id="food-dessert" class="theme-section">
+        <h2>🍧 美食甜品</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo20.jpg" alt="湯圓刨冰">
+                <div class="photo-info">
+                    <h3>湯圓刨冰 🍧</h3>
+                    <p>夏日午後的湯圓刨冰，清涼消暑，孩子們吃得開心。</p>
+                    <div class="photo-tags">
+                        <span class="tag">美食甜品</span>
+                        <span class="tag">刨冰</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo21.jpg" alt="餐廳美食">
+                <div class="photo-info">
+                    <h3>餐廳美食 🍽️</h3>
+                    <p>家庭聚餐，滿滿一桌美食，大家吃得津津有味。</p>
+                    <div class="photo-tags">
+                        <span class="tag">美食甜品</span>
+                        <span class="tag">聚餐</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主題 10: 休閒運動 -->
+    <section id="sports-leisure" class="theme-section">
+        <h2>⛳ 休閒運動</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="../assets/photos/photo22.jpg" alt="高爾夫球場">
+                <div class="photo-info">
+                    <h3>高爾夫球場 ⛳</h3>
+                    <p>週末的高爾夫球場，一家人享受運動與自然的樂趣。</p>
+                    <div class="photo-tags">
+                        <span class="tag">休閒運動</span>
+                        <span class="tag">高爾夫</span>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="../assets/photos/photo23.jpg" alt="大草坪">
+                <div class="photo-info">
+                    <h3>大草坪 🌳</h3>
+                    <p>在寬闊的草坪上奔跑嬉戲，享受戶外的清新空氣。</p>
+                    <div class="photo-tags">
+                        <span class="tag">休閒運動</span>
+                        <span class="tag">戶外</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
