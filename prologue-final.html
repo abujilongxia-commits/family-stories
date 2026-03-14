@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>序章：家的模樣 - 家庭小確幸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #FFF8E7 0%, #F0F8FF 100%);
+            line-height: 2;
+            color: #333;
+        }
+        
+        /* 背景動畫 */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 30s infinite linear;
+        }
+        
+        .cloud1 {
+            width: 300px;
+            height: 100px;
+            top: 10%;
+            left: -300px;
+            animation-duration: 40s;
+        }
+        
+        .cloud2 {
+            width: 400px;
+            height: 120px;
+            top: 30%;
+            left: -400px;
+            animation-duration: 50s;
+            animation-delay: 10s;
+        }
+        
+        .cloud3 {
+            width: 350px;
+            height: 110px;
+            top: 60%;
+            left: -350px;
+            animation-duration: 45s;
+            animation-delay: 20s;
+        }
+        
+        @keyframes float {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 400px)); }
+        }
+        
+        /* 主內容區 */
+        .prologue-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 標題區 */
+        .prologue-header {
+            text-align: center;
+            padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.15) 0%, rgba(221, 160, 221, 0.15) 100%);
+            border-radius: 25px;
+            margin-bottom: 4rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .prologue-title {
+            font-size: 3.5rem;
+            color: #556B2F;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .prologue-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .prologue-dedication {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(143, 188, 143, 0.3);
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        /* 故事段落 */
+        .story-section {
+            margin-bottom: 5rem;
+        }
+        
+        .story-section h2 {
+            color: #556B2F;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #DDA0DD;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .story-section h2 .emoji {
+            font-size: 2.5rem;
+        }
+        
+        .story-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #333;
+            text-indent: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* AI 圖片展示 */
+        .ai-image-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .ai-image-frame {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .ai-image-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .ai-image-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .ai-image-caption {
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.9) 0%, rgba(221, 160, 221, 0.9) 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* 引用語錄 */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.1) 0%, rgba(221, 160, 221, 0.1) 100%);
+            border-left: 5px solid #DDA0DD;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            color: #556B2F;
+            font-size: 1.2rem;
+        }
+        
+        .quote-box::before {
+            content: """;
+            font-size: 4rem;
+            color: #DDA0DD;
+            line-height: 1;
+            display: block;
+            margin-bottom: -1rem;
+        }
+        
+        /* 金句總結 */
+        .final-quotes {
+            background: linear-gradient(135deg, rgba(143, 188, 143, 0.15) 0%, rgba(221, 160, 221, 0.15) 100%);
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            margin: 5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .final-quote {
+            font-size: 1.5rem;
+            color: #556B2F;
+            margin: 2rem 0;
+            line-height: 1.8;
+            font-weight: 600;
+        }
+        
+        .final-quote:first-child {
+            margin-top: 0;
+        }
+        
+        /* 溫馨語錄 */
+        .warm-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .warm-quote {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .warm-quote:hover {
+            transform: translateY(-5px);
+        }
+        
+        .warm-quote-text {
+            font-size: 1.1rem;
+            color: #556B2F;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .warm-quote-emoji {
+            font-size: 2rem;
+        }
+        
+        /* 導覽按鈕 */
+        .navigation {
+            text-align: center;
+            margin: 5rem 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #8FBC8F 0%, #556B2F 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(143, 188, 143, 0.4);
+        }
+        
+        .nav-button:hover {
+            background: linear-gradient(135deg, #556B2F 0%, #8FBC8F 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(85, 107, 47, 0.4);
+        }
+        
+        /* 頁尾 */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+            font-size: 0.95rem;
+            border-top: 2px solid rgba(143, 188, 143, 0.3);
+            margin-top: 3rem;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .prologue-title {
+                font-size: 2.5rem;
+            }
+            
+            .story-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .story-text {
+                font-size: 1.05rem;
+            }
+            
+            .final-quote {
+                font-size: 1.2rem;
+            }
+            
+            .ai-image-frame {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景動畫 -->
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+    
+    <!-- 主內容區 -->
+    <div class="prologue-container">
+        <!-- 標題區 -->
+        <header class="prologue-header">
+            <h1 class="prologue-title">🏠 序章：家的模樣</h1>
+            <p class="prologue-subtitle">Prologue: The Shape of Home</p>
+            <div class="prologue-dedication">
+                獻給 每一個珍視家庭的你<br>
+                2026 年 · 台灣
+            </div>
+        </header>
+        
+        <!-- 開場提問 -->
+        <section class="story-section">
+            <div class="story-text">
+                <p>家，是什麼模樣？</p>
+                <p>是春節清晨，老家門口那副紅艷艷的春聯嗎？<br>
+                是週末午後，客廳裡瀰漫的冰淇淋甜味嗎？<br>
+                是深夜廚房，媽媽為你留的那盞燈嗎？</p>
+                <p><strong>這個專輯裡，收藏了 53 個答案。</strong></p>
+            </div>
+        </section>
+        
+        <!-- 一、關於團聚 -->
+        <section class="story-section">
+            <h2><span class="emoji">👨‍👩‍👧‍👦</span> 一、關於團聚</h2>
+            <div class="story-text">
+                <p>爺爺說，家就是過年時，門楣上那副「人壽年豐福長存」。</p>
+                <p>九個人，四代同堂，在貼著春聯的門口擠成一排。小姪子興奮地比著 YA，媽媽們笑著整理孩子的衣領，曾祖父的拐杖靠在牆邊，靜靜地見證著這一刻。</p>
+                <p>喀嚓一聲，鏡頭定格。</p>
+                <p>春聯會褪色，但那份血脈相連的溫暖，會一代一代傳承下去。</p>
+            </div>
+            
+            <!-- AI 圖片 1 -->
+            <div class="ai-image-section">
+                <div class="ai-image-frame">
+                    <img src="assets/ai-images/prologue/prologue-1-reunion.jpg" alt="關於團聚 - 春節門口全家福">
+                    <div class="ai-image-caption">🧨 關於團聚 - 春節門口全家福</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 二、關於日常 -->
+        <section class="story-section">
+            <h2><span class="emoji">🍲</span> 二、關於日常</h2>
+            <div class="story-text">
+                <p>媽媽說，家就是週末清晨，廚房裡飄來的粥香。</p>
+                <p>天剛亮，她就輕手輕腳地起床。電鍋噗嗤噗嗤地冒著蒸氣，煎蛋在鍋裡滋滋作響。孩子們揉著惺忪的睡眼走到餐桌旁，爸爸已經盛好了一碗熱騰騰的粥。</p>
+                <div class="quote-box">
+                    「小心燙。」她輕聲提醒。
+                </div>
+                <p>這就是家——不需要轟轟烈烈，只要每天都有人為妳留一碗粥。</p>
+            </div>
+            
+            <!-- AI 圖片 2 -->
+            <div class="ai-image-section">
+                <div class="ai-image-frame">
+                    <img src="assets/ai-images/prologue/prologue-2-daily.jpg" alt="關於日常 - 週末清晨廚房">
+                    <div class="ai-image-caption">🍳 關於日常 - 週末清晨廚房</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 三、關於成長 -->
+        <section class="story-section">
+            <h2><span class="emoji">📸</span> 三、關於成長</h2>
+            <div class="story-text">
+                <p>爸爸說，家就是看著孩子，一天一天長大的模樣。</p>
+                <p>第一次翻身、第一次爬行、第一次喊爸爸媽媽。第一次背起書包、第一次領回考卷、第一次說「我長大了」。</p>
+                <p>鏡頭裡的他們，從懷裡的小小嬰兒，變成比自己還高的少年。時光走得太快，快到來不及好好記住每一個瞬間。</p>
+                <p><strong>幸好，還有照片。幸好，還有回憶。</strong></p>
+            </div>
+            
+            <!-- AI 圖片 3 -->
+            <div class="ai-image-section">
+                <div class="ai-image-frame">
+                    <img src="assets/ai-images/prologue/prologue-3-growth.jpg" alt="關於成長 - 孩子成長記錄">
+                    <div class="ai-image-caption">👶 關於成長 - 孩子成長記錄</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 四、關於愛情 -->
+        <section class="story-section">
+            <h2><span class="emoji">💕</span> 四、關於愛情</h2>
+            <div class="story-text">
+                <p>他們說，家就是結婚多年後，依然牽著的手。</p>
+                <p>燭光餐廳裡，他記得她不吃香菜。超市賣場中，她記得他愛喝哪款啤酒。深夜加班時，客廳總有一盞燈為他留著。清晨出門前，玄關總有一雙拖鞋為她擺好。</p>
+                <p>沒有驚天動地的誓言，只有細水長流的陪伴。</p>
+                <p><strong>這就是嫁給愛情最美的樣子。</strong></p>
+            </div>
+            
+            <!-- AI 圖片 4 -->
+            <div class="ai-image-section">
+                <div class="ai-image-frame">
+                    <img src="assets/ai-images/prologue/prologue-4-love.jpg" alt="關於愛情 - 夫妻相守">
+                    <div class="ai-image-caption">💕 關於愛情 - 夫妻相守</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 五、關於傳承 -->
+        <section class="story-section">
+            <h2><span class="emoji">📖</span> 五、關於傳承</h2>
+            <div class="story-text">
+                <p>奶奶說，家就是把老故事，說給新一代聽。</p>
+                <div class="quote-box">
+                    「那時候啊，你爺爺還年輕……」
+                </div>
+                <p>孩子們圍在她身邊，聽著那些聽了無數遍的故事。雖然已經會背了，但他們還是愛聽。因為故事裡，有他們的根。</p>
+                <p>老照片泛黃了，但記憶不會。<br>
+                老房子舊了，但愛不會。</p>
+            </div>
+            
+            <!-- AI 圖片 5 -->
+            <div class="ai-image-section">
+                <div class="ai-image-frame">
+                    <img src="assets/ai-images/prologue/prologue-5-heritage.jpg" alt="關於傳承 - 奶奶說故事">
+                    <div class="ai-image-caption">👵 關於傳承 - 奶奶說故事</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 金句總結 -->
+        <div class="final-quotes">
+            <div class="final-quote">
+                因為——
+            </div>
+            <div class="final-quote">
+                家，不是完美無缺的地方，<br>
+                而是接納你所有不完美的地方。
+            </div>
+            <div class="final-quote">
+                家，不是永遠歡笑的地方，<br>
+                而是允許你流淚的地方。
+            </div>
+            <div class="final-quote">
+                家，不是富麗堂皇的宮殿，<br>
+                而是有愛、有溫暖、有等待的港灣。
+            </div>
+        </div>
+        
+        <!-- 溫馨語錄 -->
+        <div class="warm-quotes">
+            <div class="warm-quote">
+                <div class="warm-quote-text">「家的模樣，就是愛的模樣。」</div>
+                <div class="warm-quote-emoji">❤️</div>
+            </div>
+            <div class="warm-quote">
+                <div class="warm-quote-text">「我們記錄的不是照片，是時光。」</div>
+                <div class="warm-quote-emoji">📸</div>
+            </div>
+            <div class="warm-quote">
+                <div class="warm-quote-text">「因為家在，愛就在。」</div>
+                <div class="warm-quote-emoji">🏠</div>
+            </div>
+        </div>
+        
+        <!-- 導覽按鈕 -->
+        <div class="navigation">
+            <a href="characters-gallery-v2.html" class="nav-button">📖 翻開下一頁，開始探索我們的小確幸 →</a>
+        </div>
+        
+        <!-- 頁尾 -->
+        <footer class="footer">
+            <p>🎨 使用 Gemini 3 Pro Image API 生成 · 真正的 AI 創作</p>
+            <p>生成時間：2026-03-14 06:13 AM · 5 張序章場景照片</p>
+            <p><strong>家的模樣，就是愛的模樣。</strong></p>
+        </footer>
+    </div>
+    
+    <script>
+        // 圖片加載動畫
+        document.querySelectorAll('.ai-image-frame img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.parentElement.style.opacity = '0';
+                setTimeout(() => {
+                    this.parentElement.style.transition = 'opacity 1s ease';
+                    this.parentElement.style.opacity = '1';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
