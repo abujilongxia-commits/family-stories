@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專案進度儀表板 - 家庭小確幸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .last-update {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .progress-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            color: #556B2F;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #8FBC8F;
+        }
+        
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress-card h3 {
+            color: #556B2F;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .progress-bar-container {
+            margin: 1.5rem 0;
+        }
+        
+        .progress-bar-bg {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #8FBC8F 0%, #556B2F 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #556B2F;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.25rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        
+        .status-complete {
+            background: #8FBC8F;
+            color: white;
+        }
+        
+        .status-progress {
+            background: #DDA0DD;
+            color: white;
+        }
+        
+        .status-pending {
+            background: #e0e0e0;
+            color: #666;
+        }
+        
+        .timeline {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .timeline-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .icon-complete {
+            background: #8FBC8F;
+        }
+        
+        .icon-progress {
+            background: #DDA0DD;
+        }
+        
+        .icon-pending {
+            background: #e0e0e0;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-title {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-time {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .quick-link {
+            display: block;
+            padding: 1rem;
+            background: #8FBC8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-link:hover {
+            background: #556B2F;
+            transform: translateY(-2px);
+        }
+        
+        .quick-link h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .quick-link p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>📊 專案進度儀表板</h1>
+        <p class="subtitle">家庭小確幸 - AI 圖像與故事創作專案</p>
+        
+        <div class="last-update">
+            🕐 最後更新：2026-03-14 11:41 AM
+        </div>
+        
+        <!-- 總體進度 -->
+        <div class="progress-section">
+            <h2 class="section-title">🎯 總體進度</h2>
+            <div class="progress-grid">
+                <!-- AI 圖像進度 -->
+                <div class="progress-card">
+                    <h3>🎨 AI 圖像生成 <span class="status-badge status-progress">進行中</span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 68%;">
+                                68%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">191</div>
+                            <div class="stat-label">已完成</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">280</div>
+                            <div class="stat-label">總目標</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">89</div>
+                            <div class="stat-label">待完成</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故事編寫進度 -->
+                <div class="progress-card">
+                    <h3>📖 故事編寫 <span class="status-badge status-progress">進行中</span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 21%;">
+                                21%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">已完成</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">53</div>
+                            <div class="stat-label">總目標</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">待完成</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 照片上傳進度 -->
+                <div class="progress-card">
+                    <h3>📸 照片上傳 <span class="status-badge status-complete">完成</span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;">
+                                100%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">53</div>
+                            <div class="stat-label">已完成</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">53</div>
+                            <div class="stat-label">總目標</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">待完成</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 序章照片進度 -->
+                <div class="progress-card">
+                    <h3>🎬 序章場景照片 <span class="status-badge status-progress">進行中</span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 0%;">
+                                0%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">已完成</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">總目標</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">待完成</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: #888;">
+                        🕐 預計完成：12:30 PM
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 時間軸 -->
+        <div class="progress-section">
+            <h2 class="section-title">📅 專案時間軸</h2>
+            <div class="timeline">
+                <!-- 已完成 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-complete">✅</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">照片上傳完成</div>
+                        <div class="timeline-time">2026-03-14 06:00 AM</div>
+                        <div class="timeline-desc">53 張真實家庭照片已全部上傳完成</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-complete">✅</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">角色標準照 v2 完成</div>
+                        <div class="timeline-time">2026-03-14 07:22 AM</div>
+                        <div class="timeline-desc">基於真實照片分析的 6 個核心角色標準照完成（爸爸、媽媽、哥哥、弟弟、爺爺、奶奶）</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-complete">✅</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">世界觀指南完成</div>
+                        <div class="timeline-time">2026-03-14 07:45 AM</div>
+                        <div class="timeline-desc">18 個主要場景指南完成（22,217 字），包含旅遊/交通元素、生活帶入感指南</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-complete">✅</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI 圖像生成（快速模板）</div>
+                        <div class="timeline-time">2026-03-14 08:00 AM - 持續中</div>
+                        <div class="timeline-desc">已生成 191/280 張 AI 圖像（68%），預計今日 22:00 前完成 140 張快速模板</div>
+                    </div>
+                </div>
+                
+                <!-- 進行中 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-progress">🔄</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">序章場景照片生成</div>
+                        <div class="timeline-time">2026-03-14 11:21 AM - 12:30 PM</div>
+                        <div class="timeline-desc">生成序章 5 個場景的 25 張對應照片（春節門口、廚房、成長記錄、夫妻愛情、奶奶說故事）</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-progress">🔄</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">故事編寫</div>
+                        <div class="timeline-time">2026-03-14 07:48 AM - 持續中</div>
+                        <div class="timeline-desc">已完成 11/53 篇故事（21%），15 大主題分類已確認</div>
+                    </div>
+                </div>
+                
+                <!-- 待完成 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-pending">⏳</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">場景圖片生成（18 個場景）</div>
+                        <div class="timeline-time">預計 2026-03-14 下午</div>
+                        <div class="timeline-desc">使用世界觀指南生成 18 個主要場景的 AI 圖片</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon icon-pending">⏳</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">網站整合與部署</div>
+                        <div class="timeline-time">預計 2026-03-14 晚上</div>
+                        <div class="timeline-desc">整合所有 AI 圖片、故事到網站，部署到 GitHub Pages</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 快速連結 -->
+        <div class="progress-section">
+            <h2 class="section-title">🔗 快速連結</h2>
+            <div class="quick-links">
+                <a href="index.html" class="quick-link">
+                    <h4>🏠 首頁</h4>
+                    <p>返回專案首頁</p>
+                </a>
+                <a href="prologue-gallery.html" class="quick-link">
+                    <h4>📖 序章畫廊</h4>
+                    <p>查看序章 AI 圖片</p>
+                </a>
+                <a href="characters-gallery-v2.html" class="quick-link">
+                    <h4>👨‍👩‍👧‍👦 角色畫廊</h4>
+                    <p>查看 6 個核心角色</p>
+                </a>
+                <a href="gallery/index.html" class="quick-link">
+                    <h4>📚 故事畫廊</h4>
+                    <p>查看已完成故事</p>
+                </a>
+                <a href="https://github.com/abujilongxia-commits/family-stories" target="_blank" class="quick-link">
+                    <h4>🐙 GitHub 倉庫</h4>
+                    <p>查看原始碼</p>
+                </a>
+                <a href="dashboard.html" class="quick-link">
+                    <h4>📊 儀表板</h4>
+                    <p>當前頁面</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 自動重新整理（每 5 分鐘）
+        setTimeout(() => {
+            location.reload();
+        }, 300000);
+    </script>
+</body>
+</html>
