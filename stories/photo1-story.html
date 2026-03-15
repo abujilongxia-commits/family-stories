@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭冰淇淋聚會 - 家庭小確幸</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #FFF8E7 0%, #F0F8FF 100%);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+        
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .story-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .story-title {
+            font-size: 2.5rem;
+            color: #556B2F;
+            margin-bottom: 1rem;
+        }
+        
+        .story-meta {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .photo-label {
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .label-real {
+            background: #8FBC8F;
+        }
+        
+        .label-ai {
+            background: #DDA0DD;
+        }
+        
+        .story-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        
+        .story-quote {
+            border-left: 4px solid #DDA0DD;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .story-tags {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #F0F8FF;
+            color: #556B2F;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #8FBC8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: #556B2F;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="story-container">
+        <!-- 標題 -->
+        <div class="story-header">
+            <h1 class="story-title">家庭冰淇淋聚會 🍦</h1>
+            <p style="color: #666; font-size: 1.1rem;">家庭小確幸 · 溫暖日常記錄</p>
+        </div>
+        
+        <!-- 照片對比 -->
+        <div class="photo-grid">
+            <!-- 真實照片 -->
+            <div class="photo-card">
+                <img src="https://abujilongxia-commits.github.io/family-stories/assets/photos/photo1.jpg" alt="家庭冰淇淋聚會 真實照片" onerror="this.src='https://via.placeholder.com/400x300/8FBC8F/ffffff?text=Photo1+Coming+Soon'">
+                <div class="photo-label label-real">📸 真實照片</div>
+            </div>
+            
+            <!-- AI 圖像 -->
+            <div class="photo-card">
+                <img src="https://abujilongxia-commits.github.io/family-stories/assets/ai-images/1766621146581-Child_excited_choosing_ice_cream_flavor_family_mo_6.jpg" alt="家庭冰淇淋聚會 AI 版">
+                <div class="photo-label label-ai">🎨 AI 藝術（宮崎駿風格）</div>
+            </div>
+        </div>
+        
+        <!-- 故事內容 -->
+        <div class="story-content">
+            <h2 style="color: #556B2F; margin-bottom: 1.5rem;">📖 故事</h2>
+            
+            <div class="story-text">
+                <p>週六的午後，陽光透過窗戶灑進客廳。孩子們興奮地拿著冰淇淋甜筒，臉上洋溢著純真的笑容。爸爸坐在紅色木製沙發上，媽媽剛從廚房端出更多甜點。</p>
+                
+                <p>「我要巧克力口味的！」小弟大聲宣布，鼻尖已經沾了一點冰淇淋。</p>
+                
+                <p>全家人圍坐在一起，分享著這個平凡卻珍貴的時刻。沒有特別的節日，沒有精心安排的活動，只有最純粹的家庭溫暖。</p>
+                
+                <p>這一刻，時間彷彿靜止了。</p>
+            </div>
+            
+            <!-- 溫馨語錄 -->
+            <div class="story-quote">
+                💬 「家，就是可以一起分享冰淇淋的地方。」❤️
+            </div>
+            
+            <!-- 標籤 -->
+            <div class="story-tags">
+                <span class="tag">#家庭聚會</span>
+                <span class="tag">#冰淇淋時光</span>
+                <span class="tag">#客廳回憶</span>
+                <span class="tag">#週末日常</span>
+                <span class="tag">#親子時光</span>
+            </div>
+        </div>
+        
+        <!-- 導覽連結 -->
+        <div class="nav-links">
+            <a href="../index.html">🏠 返回首頁</a>
+            <a href="index.html">📚 故事專輯</a>
+            <a href="../characters-gallery-v2.html">👨‍👩‍👧‍👦 角色畫廊</a>
+            <a href="photo2-story.html">下一篇 →</a>
+        </div>
+    </div>
+</body>
+</html>
