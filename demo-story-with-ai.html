@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蝦蝦助手作品展示 - 故事 + AI 照片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        .story-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .story-title {
+            color: #556B2F;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .photo-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .photo-box {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .photo-box img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-label {
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        .label-real { background: #8FBC8F; }
+        .label-ai { background: #DDA0DD; }
+        .story-text {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            line-height: 2;
+            color: #333;
+        }
+        .story-quote {
+            border-left: 4px solid #DDA0DD;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .status-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .status-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .status-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .status-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #8FBC8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .links a:hover {
+            background: #556B2F;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦐 蝦蝦助手作品展示</h1>
+        <p class="subtitle">故事 + AI 照片完整整合範例</p>
+        
+        <!-- 狀態統計 -->
+        <div class="status-box">
+            <h2>📊 專案狀態</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-number">53</span>
+                    <span class="status-label">篇故事</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-number">331</span>
+                    <span class="status-label">張 AI 圖</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-number">53</span>
+                    <span class="status-label">張照片</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-number">100%</span>
+                    <span class="status-label">完成度</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 故事 1：家庭冰淇淋聚會 -->
+        <div class="story-card">
+            <h2 class="story-title">🍦 家庭冰淇淋聚會</h2>
+            
+            <div class="photo-comparison">
+                <!-- 真實照片 -->
+                <div class="photo-box">
+                    <img src="https://abujilongxia-commits.github.io/family-stories/assets/photos/photo1.jpg" alt="真實照片" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <div class="photo-label label-real" style="display:none; background: #ccc;">📸 真實照片（加載中...）</div>
+                </div>
+                
+                <!-- AI 照片 -->
+                <div class="photo-box">
+                    <img src="https://abujilongxia-commits.github.io/family-stories/assets/ai-images/1766621146581-Child_excited_choosing_ice_cream_flavor_family_mo_6.jpg" alt="AI 藝術">
+                    <div class="photo-label label-ai">🎨 AI 藝術（宮崎駿風格）</div>
+                </div>
+            </div>
+            
+            <div class="story-text">
+                <h3>📖 故事內容</h3>
+                <p>週六的午後，陽光透過窗戶灑進客廳。孩子們興奮地拿著冰淇淋甜筒，臉上洋溢著純真的笑容。爸爸坐在紅色木製沙發上，媽媽剛從廚房端出更多甜點。</p>
+                
+                <p><strong>「我要巧克力口味的！」</strong>小弟大聲宣布，鼻尖已經沾了一點冰淇淋。</p>
+                
+                <p>全家人圍坐在一起，分享著這個平凡卻珍貴的時刻。沒有特別的節日，沒有精心安排的活動，只有最純粹的家庭溫暖。</p>
+                
+                <p>這一刻，時間彷彿靜止了。</p>
+                
+                <div class="story-quote">
+                    💬 「家，就是可以一起分享冰淇淋的地方。」❤️
+                </div>
+                
+                <p style="margin-top: 1.5rem;">
+                    <strong>🏷️ 標籤：</strong>
+                    <span style="background: #F0F8FF; color: #556B2F; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem; display: inline-block;">#家庭聚會</span>
+                    <span style="background: #F0F8FF; color: #556B2F; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem; display: inline-block;">#冰淇淋時光</span>
+                    <span style="background: #F0F8FF; color: #556B2F; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem; display: inline-block;">#客廳回憶</span>
+                    <span style="background: #F0F8FF; color: #556B2F; padding: 0.3rem 0.8rem; border-radius: 20px; margin: 0.25rem; display: inline-block;">#親子時光</span>
+                </p>
+            </div>
+        </div>
+        
+        <!-- 導覽 -->
+        <div class="links">
+            <a href="https://abujilongxia-commits.github.io/family-stories/">🏠 返回首頁</a>
+            <a href="https://abujilongxia-commits.github.io/family-stories/stories/photo1-story.html">📖 完整故事頁</a>
+            <a href="https://abujilongxia-commits.github.io/family-stories/characters-gallery-v2.html">👨‍👩‍👧‍👦 角色畫廊</a>
+        </div>
+    </div>
+</body>
+</html>
