@@ -1,6 +1,8 @@
 # 家庭遊戲 
 
-**照片：** photo28.jpg  
+**照片：** photo28.jpg
+**AI 圖像：**
+![照片28 AI 版](../assets/ai-images/1766621148956-Child_excited_choosing_ice_cream_flavor_family_mo_3.jpg)  
 **地點：** 遊戲室  
 **時間：** 2026 年 3 月  
 **主題：** 家庭遊戲

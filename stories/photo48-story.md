@@ -1,6 +1,8 @@
 # 休閒運動 
 
-**照片：** photo48.jpg  
+**照片：** photo48.jpg
+**AI 圖像：**
+![照片48 AI 版](../assets/ai-images/1766630269315-Popcorn_and_movie_ticket_cinema_snack_movie_night_3.jpg)  
 **地點：** 河濱  
 **時間：** 2026 年 3 月  
 **主題：** 休閒運動

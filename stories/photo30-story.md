@@ -1,6 +1,8 @@
 # 逛街購物 
 
-**照片：** photo30.jpg  
+**照片：** photo30.jpg
+**AI 圖像：**
+![照片30 AI 版](../assets/ai-images/1766621148985-Child_excited_choosing_ice_cream_flavor_family_mo_0.jpg)  
 **地點：** 商圈  
 **時間：** 2026 年 3 月  
 **主題：** 逛街購物

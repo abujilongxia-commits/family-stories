@@ -1,6 +1,8 @@
 # 家族團聚 
 
-**照片：** photo13.jpg  
+**照片：** photo13.jpg
+**AI 圖像：**
+![照片13 AI 版](../assets/ai-images/1766533431061-Professional_photograph_of_family_at_amusement_pa_2.jpg)  
 **地點：** 爺爺奶奶家  
 **時間：** 2026 年 3 月  
 **主題：** 家族團聚

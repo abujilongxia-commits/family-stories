@@ -1,6 +1,8 @@
 # 親子出遊 
 
-**照片：** photo41.jpg  
+**照片：** photo41.jpg
+**AI 圖像：**
+![照片41 AI 版](../assets/ai-images/1766629535675-Mother_and_daughter_bonding_parent_child_moment_l_0.jpg)  
 **地點：** 公園  
 **時間：** 2026 年 3 月  
 **主題：** 親子出遊

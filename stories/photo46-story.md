@@ -1,6 +1,8 @@
 # 節慶市場 
 
-**照片：** photo46.jpg  
+**照片：** photo46.jpg
+**AI 圖像：**
+![照片46 AI 版](../assets/ai-images/1766630267325-Popcorn_and_movie_ticket_cinema_snack_movie_night_7.jpg)  
 **地點：** 夜市  
 **時間：** 2026 年 3 月  
 **主題：** 節慶市場

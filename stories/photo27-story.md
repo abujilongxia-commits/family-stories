@@ -1,6 +1,8 @@
 # 春節傳統 
 
-**照片：** photo27.jpg  
+**照片：** photo27.jpg
+**AI 圖像：**
+![照片27 AI 版](../assets/ai-images/1766621148939-Child_excited_choosing_ice_cream_flavor_family_mo_4.jpg)  
 **地點：** 廚房  
 **時間：** 2026 年 3 月  
 **主題：** 春節傳統

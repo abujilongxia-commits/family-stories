@@ -1,6 +1,8 @@
 # 多代同堂 
 
-**照片：** photo53.jpg  
+**照片：** photo53.jpg
+**AI 圖像：**
+![照片53 AI 版](../assets/ai-images/1766641429381-Fresh_spring_garden_with_tulips_and_daffodils_blo_1.jpg)  
 **地點：** 家中  
 **時間：** 2026 年 3 月  
 **主題：** 多代同堂

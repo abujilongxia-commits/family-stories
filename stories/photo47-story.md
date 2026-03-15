@@ -1,6 +1,8 @@
 # 美食甜品 
 
-**照片：** photo47.jpg  
+**照片：** photo47.jpg
+**AI 圖像：**
+![照片47 AI 版](../assets/ai-images/1766630269289-Popcorn_and_movie_ticket_cinema_snack_movie_night_4.jpg)  
 **地點：** 甜品店  
 **時間：** 2026 年 3 月  
 **主題：** 美食甜品

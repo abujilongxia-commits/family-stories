@@ -1,6 +1,8 @@
 # 景點打卡 
 
-**照片：** photo35.jpg  
+**照片：** photo35.jpg
+**AI 圖像：**
+![照片35 AI 版](../assets/ai-images/1766628643529-Tulip_garden_colorful_spring_tulips_Dutch_flowers_6.jpg)  
 **地點：** 公園  
 **時間：** 2026 年 3 月  
 **主題：** 景點打卡

@@ -1,6 +1,8 @@
 # 花園漫步 
 
-**照片：** photo36.jpg  
+**照片：** photo36.jpg
+**AI 圖像：**
+![照片36 AI 版](../assets/ai-images/1766628643863-Tulip_garden_colorful_spring_tulips_Dutch_flowers_3.jpg)  
 **地點：** 陽台  
 **時間：** 2026 年 3 月  
 **主題：** 花園漫步

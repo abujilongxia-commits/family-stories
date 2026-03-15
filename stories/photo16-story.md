@@ -1,6 +1,8 @@
 # 大家庭門口合照 🏠
 
-**照片：** photo16.jpg  
+**照片：** photo16.jpg
+**AI 圖像：**
+![照片16 AI 版](../assets/ai-images/1766618224182-Young_Hispanic_mother_with_child_selecting_overth_5.jpg)  
 **地點：** 老家門口  
 **時間：** 2026 年春節  
 **主題：** 家族團聚

@@ -1,6 +1,8 @@
 # 逛街購物日 🛍️
 
-**照片：** photo9.jpg  
+**照片：** photo9.jpg
+**AI 圖像：**
+![照片9 AI 版](../assets/ai-images/1766462773432-Movie_theater_ticket_counter_with_digital_display_1.jpg)  
 **地點：** 百貨公司  
 **時間：** 2026 年 3 月  
 **主題：** 家庭出遊

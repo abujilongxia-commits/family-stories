@@ -1,6 +1,8 @@
 # 景點打卡 
 
-**照片：** photo50.jpg  
+**照片：** photo50.jpg
+**AI 圖像：**
+![照片50 AI 版](../assets/ai-images/1766630269626-Popcorn_and_movie_ticket_cinema_snack_movie_night_0.jpg)  
 **地點：** 景點  
 **時間：** 2026 年 3 月  
 **主題：** 景點打卡

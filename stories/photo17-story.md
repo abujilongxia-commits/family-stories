@@ -1,6 +1,8 @@
 # 美食甜品 
 
-**照片：** photo17.jpg  
+**照片：** photo17.jpg
+**AI 圖像：**
+![照片17 AI 版](../assets/ai-images/1766618224199-Young_Hispanic_mother_with_child_selecting_overth_6.jpg)  
 **地點：** 餐廳  
 **時間：** 2026 年 3 月  
 **主題：** 美食甜品

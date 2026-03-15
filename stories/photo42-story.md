@@ -1,6 +1,8 @@
 # 春節傳統 
 
-**照片：** photo42.jpg  
+**照片：** photo42.jpg
+**AI 圖像：**
+![照片42 AI 版](../assets/ai-images/1766629535675-Mother_and_daughter_bonding_parent_child_moment_l_2.jpg)  
 **地點：** 餐廳  
 **時間：** 2026 年 3 月  
 **主題：** 春節傳統

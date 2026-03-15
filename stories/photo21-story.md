@@ -1,6 +1,8 @@
 # 花園漫步 
 
-**照片：** photo21.jpg  
+**照片：** photo21.jpg
+**AI 圖像：**
+![照片21 AI 版](../assets/ai-images/1766618226343-Young_Hispanic_mother_with_child_selecting_overth_2.jpg)  
 **地點：** 花園  
 **時間：** 2026 年 3 月  
 **主題：** 花園漫步

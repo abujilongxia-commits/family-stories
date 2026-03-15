@@ -1,6 +1,8 @@
 # 夜市美食探險 🏮
 
-**照片：** photo10.jpg  
+**照片：** photo10.jpg
+**AI 圖像：**
+![照片10 AI 版](../assets/ai-images/1766462773432-Movie_theater_ticket_counter_with_digital_display_2.jpg)  
 **地點：** 傳統夜市  
 **時間：** 2026 年 3 月  
 **主題：** 家庭美食

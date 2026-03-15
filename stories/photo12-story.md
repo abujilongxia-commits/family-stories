@@ -1,6 +1,8 @@
 # 家庭遊戲 
 
-**照片：** photo12.jpg  
+**照片：** photo12.jpg
+**AI 圖像：**
+![照片12 AI 版](../assets/ai-images/1766533430709-Professional_photograph_of_family_at_amusement_pa_6.jpg)  
 **地點：** 遊戲室  
 **時間：** 2026 年 3 月  
 **主題：** 家庭遊戲

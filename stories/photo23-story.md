@@ -1,6 +1,8 @@
 # 多代同堂 
 
-**照片：** photo23.jpg  
+**照片：** photo23.jpg
+**AI 圖像：**
+![照片23 AI 版](../assets/ai-images/1766618226401-Young_Hispanic_mother_with_child_selecting_overth_1.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 多代同堂

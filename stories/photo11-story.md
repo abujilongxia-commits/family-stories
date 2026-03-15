@@ -1,6 +1,8 @@
 # 春節傳統 
 
-**照片：** photo11.jpg  
+**照片：** photo11.jpg
+**AI 圖像：**
+![照片11 AI 版](../assets/ai-images/1766462775101-Movie_theater_ticket_counter_with_digital_display_0.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 春節傳統

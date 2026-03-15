@@ -1,6 +1,8 @@
 # 逛街購物 
 
-**照片：** photo14.jpg  
+**照片：** photo14.jpg
+**AI 圖像：**
+![照片14 AI 版](../assets/ai-images/1766533432766-Professional_photograph_of_family_at_amusement_pa_1.jpg)  
 **地點：** 百貨公司  
 **時間：** 2026 年 3 月  
 **主題：** 逛街購物

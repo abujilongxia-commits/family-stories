@@ -1,6 +1,8 @@
 # 家族團聚 
 
-**照片：** photo29.jpg  
+**照片：** photo29.jpg
+**AI 圖像：**
+![照片29 AI 版](../assets/ai-images/1766621148970-Child_excited_choosing_ice_cream_flavor_family_mo_1.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 家族團聚

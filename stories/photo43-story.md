@@ -1,6 +1,8 @@
 # 家庭遊戲 
 
-**照片：** photo43.jpg  
+**照片：** photo43.jpg
+**AI 圖像：**
+![照片43 AI 版](../assets/ai-images/1766629535726-Mother_and_daughter_bonding_parent_child_moment_l_1.jpg)  
 **地點：** 遊戲室  
 **時間：** 2026 年 3 月  
 **主題：** 家庭遊戲

@@ -1,6 +1,8 @@
 # 兒童運動 
 
-**照片：** photo34.jpg  
+**照片：** photo34.jpg
+**AI 圖像：**
+![照片34 AI 版](../assets/ai-images/1766628643478-Tulip_garden_colorful_spring_tulips_Dutch_flowers_4.jpg)  
 **地點：** 學校  
 **時間：** 2026 年 3 月  
 **主題：** 兒童運動

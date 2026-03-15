@@ -1,6 +1,8 @@
 # 爺爺奶奶的家訪 👴👵
 
-**照片：** photo8.jpg  
+**照片：** photo8.jpg
+**AI 圖像：**
+![照片8 AI 版](../assets/ai-images/1766462773417-Movie_theater_ticket_counter_with_digital_display_3.jpg)  
 **地點：** 爺爺奶奶家  
 **時間：** 2026 年 3 月  
 **主題：** 家族團聚

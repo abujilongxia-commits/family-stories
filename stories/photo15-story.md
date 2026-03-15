@@ -1,6 +1,8 @@
 # 節慶市場 
 
-**照片：** photo15.jpg  
+**照片：** photo15.jpg
+**AI 圖像：**
+![照片15 AI 版](../assets/ai-images/1766533432863-Professional_photograph_of_family_at_amusement_pa_0.jpg)  
 **地點：** 夜市  
 **時間：** 2026 年 3 月  
 **主題：** 節慶市場

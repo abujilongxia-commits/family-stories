@@ -1,6 +1,8 @@
 # 休閒運動 
 
-**照片：** photo18.jpg  
+**照片：** photo18.jpg
+**AI 圖像：**
+![照片18 AI 版](../assets/ai-images/1766618224228-Young_Hispanic_mother_with_child_selecting_overth_4.jpg)  
 **地點：** 公園  
 **時間：** 2026 年 3 月  
 **主題：** 休閒運動

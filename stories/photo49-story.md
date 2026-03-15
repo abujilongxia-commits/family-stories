@@ -1,6 +1,8 @@
 # 兒童運動 
 
-**照片：** photo49.jpg  
+**照片：** photo49.jpg
+**AI 圖像：**
+![照片49 AI 版](../assets/ai-images/1766630269331-Popcorn_and_movie_ticket_cinema_snack_movie_night_1.jpg)  
 **地點：** 球場  
 **時間：** 2026 年 3 月  
 **主題：** 兒童運動

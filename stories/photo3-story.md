@@ -1,6 +1,8 @@
 # 親子電影時光 🎬
 
 **照片：** photo3.jpg  
+**AI 圖像：** 
+![親子電影時光 AI 版](../assets/ai-images/1766462769861-Movie_theater_ticket_counter_with_digital_display_7.jpg)
 **地點：** 電影院  
 **時間：** 2026 年 3 月  
 **主題：** 親子出遊

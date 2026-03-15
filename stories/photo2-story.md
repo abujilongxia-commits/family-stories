@@ -1,6 +1,8 @@
 # 夫妻用餐時光 🍜
 
 **照片：** photo2.jpg  
+**AI 圖像：** 
+![夫妻用餐時光 AI 版](../assets/ai-images/1766629535637-Mother_and_daughter_bonding_parent_child_moment_l_3.jpg)
 **地點：** 餐廳  
 **時間：** 2026 年 3 月  
 **主題：** 夫妻情誼

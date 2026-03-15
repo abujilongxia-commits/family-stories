@@ -1,6 +1,8 @@
 # 家庭遊戲之夜 🎲
 
-**照片：** photo7.jpg  
+**照片：** photo7.jpg
+**AI 圖像：**
+![照片7 AI 版](../assets/ai-images/1766462771491-Movie_theater_ticket_counter_with_digital_display_5.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 家庭遊戲

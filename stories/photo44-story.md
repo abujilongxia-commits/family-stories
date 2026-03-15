@@ -1,6 +1,8 @@
 # 家族團聚 
 
-**照片：** photo44.jpg  
+**照片：** photo44.jpg
+**AI 圖像：**
+![照片44 AI 版](../assets/ai-images/1766630267251-Popcorn_and_movie_ticket_cinema_snack_movie_night_6.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 家族團聚

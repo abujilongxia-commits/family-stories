@@ -1,6 +1,8 @@
 # 鬱金香花園散步 🌷
 
-**照片：** photo5.jpg  
+**照片：** photo5.jpg
+**AI 圖像：**
+![scene_5_鬱金香花園 AI 版](../assets/ai-images/1766628646461-Tulip_garden_colorful_spring_tulips_Dutch_flowers_2.jpg)  
 **地點：** 鬱金香花園  
 **時間：** 2026 年 3 月  
 **主題：** 自然與家庭

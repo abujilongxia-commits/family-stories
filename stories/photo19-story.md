@@ -1,6 +1,8 @@
 # 兒童運動 
 
-**照片：** photo19.jpg  
+**照片：** photo19.jpg
+**AI 圖像：**
+![照片19 AI 版](../assets/ai-images/1766618224245-Young_Hispanic_mother_with_child_selecting_overth_3.jpg)  
 **地點：** 操場  
 **時間：** 2026 年 3 月  
 **主題：** 兒童運動

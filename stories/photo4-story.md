@@ -1,6 +1,8 @@
 # Moomin 主題公園遊記 🎢
 
-**照片：** photo4.jpg  
+**照片：** photo4.jpg
+**AI 圖像：**
+![scene_4_Moomin 主題公園 AI 版](../assets/ai-images/1769667152814-Cherished_family_gathering_featuring_family_at_am_2.jpg)  
 **地點：** Moomin 主題公園  
 **時間：** 2026 年 3 月  
 **主題：** 親子出遊

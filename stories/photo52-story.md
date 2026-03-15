@@ -1,6 +1,8 @@
 # 成長記錄 
 
-**照片：** photo52.jpg  
+**照片：** photo52.jpg
+**AI 圖像：**
+![照片52 AI 版](../assets/ai-images/1766641429330-Fresh_spring_garden_with_tulips_and_daffodils_blo_2.jpg)  
 **地點：** 學校  
 **時間：** 2026 年 3 月  
 **主題：** 成長記錄

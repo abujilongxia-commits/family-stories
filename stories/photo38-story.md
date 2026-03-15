@@ -1,6 +1,8 @@
 # 多代同堂 
 
-**照片：** photo38.jpg  
+**照片：** photo38.jpg
+**AI 圖像：**
+![照片38 AI 版](../assets/ai-images/1766628646489-Tulip_garden_colorful_spring_tulips_Dutch_flowers_0.jpg)  
 **地點：** 客廳  
 **時間：** 2026 年 3 月  
 **主題：** 多代同堂
