@@ -1,0 +1,89 @@
+{
+  "version": "2.0",
+  "created": "2026-03-15T16:52:00+08:00",
+  "description": "53 個故事場景的 Seed 配置 - 確保場景一致性",
+  "seed_strategy": {
+    "characters": {
+      "range": "1001-1006",
+      "description": "6 個核心角色的專屬 Seed，確保臉部一致性"
+    },
+    "scenes": {
+      "range": "2001-2053",
+      "description": "53 個場景的專屬 Seed，確保背景一致性"
+    }
+  },
+  "characters": [
+    {"id": 1, "name": "爸爸", "seed": 1001, "age": "40-45 歲", "features": "金屬細框眼鏡、灰色毛衣、開朗笑容"},
+    {"id": 2, "name": "媽媽", "seed": 1002, "age": "32-37 歲", "features": "棕色中長髮、白色花卉上衣、可愛溫柔"},
+    {"id": 3, "name": "哥哥", "seed": 1003, "age": "12-15 歲", "features": "細框圓眼鏡、灰色 V 領毛衣、活潑"},
+    {"id": 4, "name": "弟弟", "seed": 1004, "age": "10-12 歲", "features": "金屬圓框眼鏡、黃色 Levi's T 恤、可愛帥"},
+    {"id": 5, "name": "爺爺", "seed": 1005, "age": "65-75 歲", "features": "瘦長臉、灰綠色外套、樸實沉穩"},
+    {"id": 6, "name": "奶奶", "seed": 1006, "age": "65-75 歲", "features": "圓臉、寶藍色亮片上衣、活潑可愛"}
+  ],
+  "scenes": [
+    {"photo": 1, "theme": "家庭冰淇淋聚會", "location": "客廳", "seed": 2001, "key_elements": "紅色木製沙發、窗戶陽光、冰淇淋甜筒", "characters": ["爸爸", "媽媽", "哥哥", "弟弟"]},
+    {"photo": 2, "theme": "夫妻用餐時光", "location": "餐廳", "seed": 2002, "key_elements": "餐桌、燭光、簡單麵食", "characters": ["爸爸", "媽媽"]},
+    {"photo": 3, "theme": "親子電影時光", "location": "電影院", "seed": 2003, "key_elements": "大螢幕、爆米花、電影座椅", "characters": ["爸爸", "哥哥", "弟弟"]},
+    {"photo": 4, "theme": "Moomin 主題樂園", "location": "主題公園", "seed": 2004, "key_elements": "姆明雕像、遊樂設施、湖水", "characters": ["爸爸", "媽媽", "哥哥", "弟弟"]},
+    {"photo": 5, "theme": "鬱金香花園", "location": "花園", "seed": 2005, "key_elements": "鬱金香花海、春天花朵、相機", "characters": ["爸爸", "媽媽", "哥哥", "弟弟"]},
+    {"photo": 6, "theme": "春節團圓飯", "location": "餐廳/家裡", "seed": 2006, "key_elements": "年夜飯、紅包、春聯", "characters": ["全家"]},
+    {"photo": 7, "theme": "家庭遊戲之夜", "location": "客廳", "seed": 2007, "key_elements": "桌遊、笑聲、紅色沙發", "characters": ["爸爸", "媽媽", "哥哥", "弟弟"]},
+    {"photo": 8, "theme": "爺爺奶奶的家訪", "location": "爺爺奶奶家", "seed": 2008, "key_elements": "老房子、老照片、溫暖燈光", "characters": ["爺爺", "奶奶", "爸爸", "媽媽", "哥哥", "弟弟"]},
+    {"photo": 9, "theme": "逛街購物日", "location": "商場/街道", "seed": 2009, "key_elements": "商店、購物袋、櫥窗", "characters": ["媽媽", "哥哥", "弟弟"]},
+    {"photo": 10, "theme": "夜市美食探險", "location": "夜市", "seed": 2010, "key_elements": "夜市攤位、燈籠、美食", "characters": ["全家"]},
+    {"photo": 11, "theme": "春節傳統", "location": "家裡", "seed": 2011, "key_elements": "春聯、紅包、傳統裝飾", "characters": ["全家"]},
+    {"photo": 12, "theme": "家庭遊戲", "location": "客廳", "seed": 2012, "key_elements": "遊戲、紅色沙發、歡笑", "characters": ["全家"]},
+    {"photo": 13, "theme": "家族團聚", "location": "家裡/餐廳", "seed": 2013, "key_elements": "大家族、聚餐、歡樂", "characters": ["全家"]},
+    {"photo": 14, "theme": "逛街購物", "location": "商場", "seed": 2014, "key_elements": "購物、商店、快樂", "characters": ["全家"]},
+    {"photo": 15, "theme": "節慶市場", "location": "市場", "seed": 2015, "key_elements": "節慶裝飾、市場、熱鬧", "characters": ["全家"]},
+    {"photo": 16, "theme": "大家庭門口合照", "location": "住宅門口", "seed": 2016, "key_elements": "春聯、門口、全家福", "characters": ["四代同堂"]},
+    {"photo": 17, "theme": "美食甜品", "location": "甜品店/家裡", "seed": 2017, "key_elements": "甜品、美食、享受", "characters": ["全家"]},
+    {"photo": 18, "theme": "休閒運動", "location": "公園/運動場", "seed": 2018, "key_elements": "運動、健康、活力", "characters": ["全家"]},
+    {"photo": 19, "theme": "兒童運動", "location": "公園/學校", "seed": 2019, "key_elements": "兒童遊樂、運動、快樂", "characters": ["哥哥", "弟弟"]},
+    {"photo": 20, "theme": "景點打卡", "location": "旅遊景點", "seed": 2020, "key_elements": "景點、拍照、回憶", "characters": ["全家"]},
+    {"photo": 21, "theme": "待確認", "location": "待確認", "seed": 2021, "key_elements": "待確認", "characters": []},
+    {"photo": 22, "theme": "待確認", "location": "待確認", "seed": 2022, "key_elements": "待確認", "characters": []},
+    {"photo": 23, "theme": "待確認", "location": "待確認", "seed": 2023, "key_elements": "待確認", "characters": []},
+    {"photo": 24, "theme": "待確認", "location": "待確認", "seed": 2024, "key_elements": "待確認", "characters": []},
+    {"photo": 25, "theme": "待確認", "location": "待確認", "seed": 2025, "key_elements": "待確認", "characters": []},
+    {"photo": 26, "theme": "待確認", "location": "待確認", "seed": 2026, "key_elements": "待確認", "characters": []},
+    {"photo": 27, "theme": "待確認", "location": "待確認", "seed": 2027, "key_elements": "待確認", "characters": []},
+    {"photo": 28, "theme": "待確認", "location": "待確認", "seed": 2028, "key_elements": "待確認", "characters": []},
+    {"photo": 29, "theme": "待確認", "location": "待確認", "seed": 2029, "key_elements": "待確認", "characters": []},
+    {"photo": 30, "theme": "待確認", "location": "待確認", "seed": 2030, "key_elements": "待確認", "characters": []},
+    {"photo": 31, "theme": "待確認", "location": "待確認", "seed": 2031, "key_elements": "待確認", "characters": []},
+    {"photo": 32, "theme": "待確認", "location": "待確認", "seed": 2032, "key_elements": "待確認", "characters": []},
+    {"photo": 33, "theme": "待確認", "location": "待確認", "seed": 2033, "key_elements": "待確認", "characters": []},
+    {"photo": 34, "theme": "待確認", "location": "待確認", "seed": 2034, "key_elements": "待確認", "characters": []},
+    {"photo": 35, "theme": "待確認", "location": "待確認", "seed": 2035, "key_elements": "待確認", "characters": []},
+    {"photo": 36, "theme": "待確認", "location": "待確認", "seed": 2036, "key_elements": "待確認", "characters": []},
+    {"photo": 37, "theme": "待確認", "location": "待確認", "seed": 2037, "key_elements": "待確認", "characters": []},
+    {"photo": 38, "theme": "待確認", "location": "待確認", "seed": 2038, "key_elements": "待確認", "characters": []},
+    {"photo": 39, "theme": "待確認", "location": "待確認", "seed": 2039, "key_elements": "待確認", "characters": []},
+    {"photo": 40, "theme": "待確認", "location": "待確認", "seed": 2040, "key_elements": "待確認", "characters": []},
+    {"photo": 41, "theme": "待確認", "location": "待確認", "seed": 2041, "key_elements": "待確認", "characters": []},
+    {"photo": 42, "theme": "待確認", "location": "待確認", "seed": 2042, "key_elements": "待確認", "characters": []},
+    {"photo": 43, "theme": "待確認", "location": "待確認", "seed": 2043, "key_elements": "待確認", "characters": []},
+    {"photo": 44, "theme": "待確認", "location": "待確認", "seed": 2044, "key_elements": "待確認", "characters": []},
+    {"photo": 45, "theme": "待確認", "location": "待確認", "seed": 2045, "key_elements": "待確認", "characters": []},
+    {"photo": 46, "theme": "待確認", "location": "待確認", "seed": 2046, "key_elements": "待確認", "characters": []},
+    {"photo": 47, "theme": "待確認", "location": "待確認", "seed": 2047, "key_elements": "待確認", "characters": []},
+    {"photo": 48, "theme": "待確認", "location": "待確認", "seed": 2048, "key_elements": "待確認", "characters": []},
+    {"photo": 49, "theme": "待確認", "location": "待確認", "seed": 2049, "key_elements": "待確認", "characters": []},
+    {"photo": 50, "theme": "待確認", "location": "待確認", "seed": 2050, "key_elements": "待確認", "characters": []},
+    {"photo": 51, "theme": "待確認", "location": "待確認", "seed": 2051, "key_elements": "待確認", "characters": []},
+    {"photo": 52, "theme": "待確認", "location": "待確認", "seed": 2052, "key_elements": "待確認", "characters": []},
+    {"photo": 53, "theme": "待確認", "location": "待確認", "seed": 2053, "key_elements": "待確認", "characters": []}
+  ],
+  "usage_guide": {
+    "single_character_scene": "使用 角色 Seed + 場景 Seed",
+    "multi_character_scene": "使用 主要角色 Seed + 場景 Seed，提示詞中包含所有角色描述",
+    "example": {
+      "photo1": {
+        "characters": ["爸爸 (1001)", "媽媽 (1002)", "哥哥 (1003)", "弟弟 (1004)"],
+        "scene": "客廳 (2001)",
+        "prompt": "Studio Ghibli style, family living room scene with red wooden sofa, father (gray sweater, glasses) + mother (brown hair, floral blouse) + two sons, holding ice cream cones, warm sunlight through window"
+      }
+    }
+  }
+}

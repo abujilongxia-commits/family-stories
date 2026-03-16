@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一集：說走就走？先問媽媽！ - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .episode-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .episode-info h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .character-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .character-card h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+        
+        .character-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .scene-section {
+            padding: 30px 20px;
+        }
+        
+        .scene-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .scene-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .scene-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scene-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .scene-card .scene-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.9em;
+            display: inline-block;
+        }
+        
+        .scene-card .scene-title {
+            padding: 15px;
+        }
+        
+        .scene-card .scene-title h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+        
+        .scene-card .scene-title p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #667eea;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 家庭故事</h1>
+            <div class="subtitle">第一集：說走就走？先問媽媽！</div>
+        </div>
+        
+        <div class="episode-info">
+            <h2>📖 故事簡介</h2>
+            <p>一個普通的週六上午，南部透天厝的客廳裡，媽媽凱莉正在織毛衣，哥哥阿布吉戴著耳機窩在沙發上，弟弟棉花糖癱在懶骨頭上打手機。電視播放著大甲媽遶境的節目，勾起了一家人的美好回憶...</p>
+            
+            <h3 style="margin-top: 20px; color: #764ba2;">👨‍👩‍👦 角色介紹</h3>
+            <div class="characters">
+                <div class="character-card">
+                    <h3>👩 媽媽凱莉</h3>
+                    <p><strong>年齡：</strong>50 多歲</p>
+                    <p><strong>外觀：</strong>短髮，戴眼鏡</p>
+                    <p><strong>服裝：</strong>藍色針織衫</p>
+                    <p><strong>特徵：</strong>坐沙發織毛衣，溫柔賢慧</p>
+                </div>
+                <div class="character-card">
+                    <h3>👦 哥哥阿布吉</h3>
+                    <p><strong>年齡：</strong>20 歲（大學生）</p>
+                    <p><strong>外觀：</strong>黑色頭髮</p>
+                    <p><strong>服裝：</strong>灰色大學 T</p>
+                    <p><strong>特徵：</strong>戴耳機，酷酷的但關心弟弟</p>
+                </div>
+                <div class="character-card">
+                    <h3>👦 弟弟棉花糖</h3>
+                    <p><strong>年齡：</strong>15 歲（高中生）</p>
+                    <p><strong>外觀：</strong>活力充沛</p>
+                    <p><strong>服裝：</strong>紅色 Hoodie + 牛仔褲</p>
+                    <p><strong>特徵：</strong>愛笑愛講話，興奮時比手畫腳</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scene-section">
+            <h2>🎬 第一部分：開場 (1-8)</h2>
+            <div class="scene-grid">
+                <div class="scene-card">
+                    <img src="01_scene.jpg" alt="客廳全景">
+                    <div class="scene-number">場景 01</div>
+                    <div class="scene-title">
+                        <h3>🏠 客廳全景</h3>
+                        <p>週六上午客廳，陽光從窗簾縫隙灑入，三個角色各在定位</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="02_mom.jpg" alt="媽媽織毛衣">
+                    <div class="scene-number">場景 02</div>
+                    <div class="scene-title">
+                        <h3>👩 媽媽凱莉</h3>
+                        <p>凱莉坐在沙發中央織毛衣，抬頭看電視</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="03_brother.jpg" alt="弟弟癱懶骨頭">
+                    <div class="scene-number">場景 03</div>
+                    <div class="scene-title">
+                        <h3>📱 弟弟棉花糖</h3>
+                        <p>棉花糖癱在懶骨頭上打手機</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="04_brother.jpg" alt="哥哥戴耳機">
+                    <div class="scene-number">場景 04</div>
+                    <div class="scene-title">
+                        <h3>🎧 哥哥阿布吉</h3>
+                        <p>阿布吉窩單人沙發戴耳機</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="05_tv.jpg" alt="電視播放媽祖">
+                    <div class="scene-number">場景 05</div>
+                    <div class="scene-title">
+                        <h3>📺 電視特寫</h3>
+                        <p>旅遊節目播放大甲媽遶境畫面</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="06_mom_look.jpg" alt="媽媽看兒子">
+                    <div class="scene-number">場景 06</div>
+                    <div class="scene-title">
+                        <h3>👀 媽媽視角</h3>
+                        <p>凱莉抬頭看兩個兒子</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="07_brother_look.jpg" alt="弟弟抬頭">
+                    <div class="scene-number">場景 07</div>
+                    <div class="scene-title">
+                        <h3>❓ 弟弟抬頭</h3>
+                        <p>听到电视声好奇抬头</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="08_brother_earphone.jpg" alt="哥哥摘耳機">
+                    <div class="scene-number">場景 08</div>
+                    <div class="scene-title">
+                        <h3>🎧 哥哥摘耳機</h3>
+                        <p>被電視聲吸引</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scene-section">
+            <h2>🎬 第二部分：爸爸的電話 (9-14)</h2>
+            <div class="scene-grid">
+                <div class="scene-card">
+                    <img src="09_phone.jpg" alt="手機響起">
+                    <div class="scene-number">場景 09</div>
+                    <div class="scene-title">
+                        <h3>📱 手機響</h3>
+                        <p>凱莉的手機螢幕亮起</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="10_mom_speaking.jpg" alt="媽媽接電話">
+                    <div class="scene-number">場景 10</div>
+                    <div class="scene-title">
+                        <h3>📞 接電話</h3>
+                        <p>凱莉接聽表情變認真</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="11_dad_work.jpg" alt="媽媽講電話">
+                    <div class="scene-number">場景 11</div>
+                    <div class="scene-title">
+                        <h3>💬 媽媽講電話</h3>
+                        <p>說「好，我知道了」</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="12_ask.jpg" alt="媽媽抬頭">
+                    <div class="scene-number">場景 12</div>
+                    <div class="scene-title">
+                        <h3>👀 媽媽抬頭</h3>
+                        <p>眉頭微皺看大家</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="13_mazu_tv.jpg" alt="弟弟問">
+                    <div class="scene-number">場景 13</div>
+                    <div class="scene-title">
+                        <h3>❓ 弟弟問</h3>
+                        <p>「怎麼了？」</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="14_mom_point.jpg" alt="媽媽說">
+                    <div class="scene-number">場景 14</div>
+                    <div class="scene-title">
+                        <h3>💬 媽媽說</h3>
+                        <p>「爸要去上班，今天會晚回來」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scene-section">
+            <h2>🎬 第三部分：意外話題 (15-20)</h2>
+            <div class="scene-grid">
+                <div class="scene-card">
+                    <img src="15_excited.jpg" alt="電視播放">
+                    <div class="scene-number">場景 15</div>
+                    <div class="scene-title">
+                        <h3>📺 電視</h3>
+                        <p>剛好播到大甲媽遶境</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="16_brother_talk.jpg" alt="媽媽指電視">
+                    <div class="scene-number">場景 16</div>
+                    <div class="scene-title">
+                        <h3>👆 媽媽指電視</h3>
+                        <p>用下巴指電視</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="17_act.jpg" alt="弟弟翻身">
+                    <div class="scene-number">場景 17</div>
+                    <div class="scene-title">
+                        <h3>💪 弟弟翻身</h3>
+                        <p>聽到媽媽說話立刻坐起來</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="18_mom_laugh.jpg" alt="弟弟說">
+                    <div class="scene-number">場景 18</div>
+                    <div class="scene-title">
+                        <h3>💬 弟弟說</h3>
+                        <p>「就是去年我們去的那個！」</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="19_brother_laugh.jpg" alt="哥哥接話">
+                    <div class="scene-number">場景 19</div>
+                    <div class="scene-title">
+                        <h3>💬 哥哥接話</h3>
+                        <p>摘下耳機說「差點找不到彼此」</p>
+                    </div>
+                </div>
+                <div class="scene-card">
+                    <img src="20_auntie.jpg" alt="弟弟模擬">
+                    <div class="scene-number">場景 20</div>
+                    <div class="scene-title">
+                        <h3>🎭 弟弟模擬</h3>
+                        <p>興奮比劃當時情景</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🎨 使用 Gemini 3 Pro Image 生成 | 宮崎駿動畫風格</p>
+            <p style="margin-top: 20px;">
+                <a href="story.html" style="display: inline-block; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin: 10px;">📖 閱讀故事版（推薦）</a>
+            </p>
+            <p><a href="../index.html">← 返回首頁</a> | <a href="../gallery/index.html">查看畫廊</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👩‍💻 開發者版 - 家庭小確幸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: white;
+            color: #6c5ce7;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .section {
+            padding: 30px;
+        }
+        
+        .section h2 {
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a29bfe;
+        }
+        
+        .episode-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .episode-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .episode-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .episode-card .header {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .episode-card .header h3 {
+            color: white;
+            font-size: 1.3em;
+        }
+        
+        .episode-card .header .status {
+            background: white;
+            color: #6c5ce7;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .episode-card .body {
+            padding: 20px;
+        }
+        
+        .episode-card .body p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .episode-card .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .episode-card .actions a {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+        
+        .episode-card .actions a:hover {
+            transform: translateY(-2px);
+        }
+        
+        .episode-card .actions a.secondary {
+            background: #a29bfe;
+        }
+        
+        .progress-info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .progress-info .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .progress-info .item .done {
+            color: #00b894;
+            font-weight: bold;
+        }
+        
+        .progress-info .item .pending {
+            color: #fdcb6e;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .tips {
+            background: #fff9db;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #fdcb6e;
+        }
+        
+        .tips h3 {
+            color: #e17055;
+            margin-bottom: 10px;
+        }
+        
+        .tips ul {
+            margin-left: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-link">← 回主網站</a>
+            <h1>👩‍💻 開發者版</h1>
+            <div class="subtitle">家庭小確幸 - 故事開發進度</div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 開發項目</h2>
+            
+            <div class="episode-list">
+                <!-- 第一集 -->
+                <div class="episode-card">
+                    <div class="header">
+                        <h3>🎬 第一集：說走就走？先問媽媽！</h3>
+                        <span class="status">✅ 已完成</span>
+                    </div>
+                    <div class="body">
+                        <p>大甲媽遶境回憶 - 週六上午，電視裡的大甲媽遶境節目勾起了家人們的珍貴回憶。</p>
+                        <div class="progress-info">
+                            <div class="item">
+                                <span>場景數量</span>
+                                <span class="done">34 個</span>
+                            </div>
+                            <div class="item">
+                                <span>文字敘述</span>
+                                <span class="done">✅ 完成</span>
+                            </div>
+                            <div class="item">
+                                <span>AI 照片</span>
+                                <span class="done">✅ 34 張</span>
+                            </div>
+                            <div class="item">
+                                <span>網頁製作</span>
+                                <span class="done">✅ 完成</span>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <a href="episode1/story.html">📖 閱讀故事</a>
+                            <a href="episode1/" class="secondary">📁 場景列表</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第二集 -->
+                <div class="episode-card">
+                    <div class="header">
+                        <h3>🎬 第二集：媽祖婆，我們來了！</h3>
+                        <span class="status">🔄 開發中</span>
+                    </div>
+                    <div class="body">
+                        <p>四天三夜的大甲媽遶境之旅！一家人從大甲出發，途經沙鹿、彰化、龍井、清水，最後回鑾大甲。</p>
+                        <div class="progress-info">
+                            <div class="item">
+                                <span>場景數量</span>
+                                <span class="done">35 個</span>
+                            </div>
+                            <div class="item">
+                                <span>文字敘述</span>
+                                <span class="done">✅ 完成</span>
+                            </div>
+                            <div class="item">
+                                <span>AI 照片</span>
+                                <span class="pending">⏳ 待生成 (0/35)</span>
+                            </div>
+                            <div class="item">
+                                <span>網頁製作</span>
+                                <span class="done">✅ 完成</span>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <a href="episode2/story.html">📖 閱讀故事</a>
+                            <a href="episode2/" class="secondary">📁 場景列表</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第三集 -->
+                <div class="episode-card">
+                    <div class="header">
+                        <h3>🎬 第三集：...</h3>
+                        <span class="status">📝 籌備中</span>
+                    </div>
+                    <div class="body">
+                        <p>敬請期待...</p>
+                        <div class="progress-info">
+                            <div class="item">
+                                <span>場景數量</span>
+                                <span class="pending">-</span>
+                            </div>
+                            <div class="item">
+                                <span>文字敘述</span>
+                                <span class="pending">⏳ 籌備中</span>
+                            </div>
+                            <div class="item">
+                                <span>AI 照片</span>
+                                <span class="pending">⏳ 待生成</span>
+                            </div>
+                            <div class="item">
+                                <span>網頁製作</span>
+                                <span class="pending">⏳ 待開發</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips">
+                <h3>💡 開發者提示</h3>
+                <ul>
+                    <li>點擊「閱讀故事」查看完整故事情節</li>
+                    <li>點擊「場景列表」查看所有場景大綱</li>
+                    <li>AI 照片使用 Gemini 3 Pro Image 生成</li>
+                    <li>生成完成後的照片會自動顯示在故事中</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <a href="../index.html">← 回主網站</a>
+        </div>
+    </div>
+</body>
+</html>
