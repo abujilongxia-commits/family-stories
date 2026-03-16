@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四集：兒童節露營去！ - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: white;
+            color: #00b894;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .trip-info {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .trip-info h2 {
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        
+        .trip-info .items {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .trip-info .item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #636e72;
+        }
+        
+        .episode-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #00b894;
+        }
+        
+        .episode-info h2 {
+            color: #00b894;
+            margin-bottom: 15px;
+        }
+        
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .character-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .character-card h3 {
+            color: #00b894;
+            margin-bottom: 8px;
+        }
+        
+        .character-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .scene-section {
+            padding: 30px 20px;
+        }
+        
+        .scene-section h2 {
+            color: #00b894;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #55efc4;
+        }
+        
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .scene-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .scene-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .scene-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #636e72;
+            font-size: 1em;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .scene-content {
+            padding: 15px;
+        }
+        
+        .scene-content h3 {
+            color: #00b894;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .scene-content p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .day-section {
+            margin-bottom: 40px;
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .day-header h3 {
+            margin-bottom: 5px;
+        }
+        
+        .day-header p {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #fdcb6e;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .scene-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="../" class="back-link">← 回開發者版</a>
+            <h1>🎬 第四集</h1>
+            <h1>兒童節露營去！</h1>
+            <div class="subtitle">南庄日杉林露營區 3 天 2 夜</div>
+        </div>
+        
+        <div class="trip-info">
+            <h2>🏕️ 行程資訊</h2>
+            <div class="items">
+                <div class="item">南庄日杉林露營區</div>
+                <div class="item">3 天 2 夜</div>
+                <div class="item">2024 兒童節</div>
+                <div class="item">露營</div>
+                <div class="item">烤肉</div>
+                <div class="item">溯溪</div>
+            </div>
+        </div>
+        
+        <div class="episode-info">
+            <h2>👨‍👩‍👦 角色介紹</h2>
+            <div class="characters">
+                <div class="character-card">
+                    <h3>👨 爸爸</h3>
+                    <p>開車載全家<br>負責烤肉</p>
+                </div>
+                <div class="character-card">
+                    <h3>👩 媽媽凱莉</h3>
+                    <p>50 多歲<br>賢慧、操心</p>
+                </div>
+                <div class="character-card">
+                    <h3>👦 哥哥阿布吉</h3>
+                    <p>20 歲大學生<br>外冷內熱</p>
+                </div>
+                <div class="character-card">
+                    <h3>👦 弟弟棉花糖</h3>
+                    <p>15 歲高中生<br>活力充沛</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scene-section">
+            <h2>📖 故事章節</h2>
+            <span class="status-badge">🔄 開發中 - 等待照片生成</span>
+            
+            <!-- 第一天 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h3>【第一天】出發與抵達</h3>
+                    <p>兒童節假期，一家人出發去露營！</p>
+                </div>
+                <div class="scene-grid">
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景1</div>
+                        <div class="scene-content">
+                            <h3>出發前的準備</h3>
+                            <p>全家忙碌地整理行李...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景2</div>
+                        <div class="scene-content">
+                            <h3>上車出發</h3>
+                            <p>爸爸把行李塞進車裡...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景3</div>
+                        <div class="scene-content">
+                            <h3>高速公路上</h3>
+                            <p>棉花糖期待地看著窗外...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景4</div>
+                        <div class="scene-content">
+                            <h3>抵達露營區</h3>
+                            <p>南庄日杉林露營區！</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景5</div>
+                        <div class="scene-content">
+                            <h3>搭帳篷</h3>
+                            <p>一家人一起搭帳篷...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第二天 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h3>【第二天】探索與玩樂</h3>
+                    <p>整天都在露營區玩耍！</p>
+                </div>
+                <div class="scene-grid">
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景6</div>
+                        <div class="scene-content">
+                            <h3>清晨的杉林</h3>
+                            <p>陽光透過杉林灑落下來...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景7</div>
+                        <div class="scene-content">
+                            <h3>早餐時光</h3>
+                            <p>露營桌前的温馨早餐...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景8</div>
+                        <div class="scene-content">
+                            <h3>探索營區</h3>
+                            <p>戲水區、吊橋、觀景台...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景9</div>
+                        <div class="scene-content">
+                            <h3>吊橋合影</h3>
+                            <p>一家人自拍...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景10</div>
+                        <div class="scene-content">
+                            <h3>溯溪玩水</h3>
+                            <p>冰涼的溪水好消暑！</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景11</div>
+                        <div class="scene-content">
+                            <h3>烤肉時間</h3>
+                            <p>爸爸負責升火...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景12</div>
+                        <div class="scene-content">
+                            <h3>夜晚的星空</h3>
+                            <p>滿天星斗清晰可見...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三天 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h3>【第三天】回家</h3>
+                    <p>依依不捨地回家，但滿載回憶！</p>
+                </div>
+                <div class="scene-grid">
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景13</div>
+                        <div class="scene-content">
+                            <h3>最後的早晨</h3>
+                            <p>捨不得離開...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景14</div>
+                        <div class="scene-content">
+                            <h3>收拾行李</h3>
+                            <p>把帳篷收好...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景15</div>
+                        <div class="scene-content">
+                            <h3>離開營區</h3>
+                            <p>棉花糖說下次還要再來...</p>
+                        </div>
+                    </div>
+                    <div class="scene-card">
+                        <div class="scene-image">📷 場景16</div>
+                        <div class="scene-content">
+                            <h3>結語</h3>
+                            <p>客廳回憶這次的點點滴滴...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="footer">
+            <a href="../" class="back-button">← 回開發者版</a>
+        </div>
+    </div>
+</body>
+</html>

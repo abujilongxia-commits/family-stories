@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四集：兒童節露營去！ - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+        
+        .header .episode-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .story-content {
+            padding: 40px 30px;
+        }
+        
+        .scene {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+        
+        .scene-image {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .scene-image .placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #636e72;
+            font-size: 1.2em;
+            border-radius: 15px;
+        }
+        
+        .scene-text {
+            padding: 0 10px;
+        }
+        
+        .scene-text p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .scene-text .dialogue {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #00b894;
+            font-style: italic;
+        }
+        
+        .scene-text .dialogue strong {
+            color: #00b894;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .scene-text .dialogue .text {
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        .part-divider {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin: 40px -30px;
+        }
+        
+        .part-divider h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .part-divider p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+        
+        .character-intro {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+        }
+        
+        .character-intro h3 {
+            color: #00b894;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .character {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        
+        .character .emoji {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .character h4 {
+            color: #00b894;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .character p {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .trip-info {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .trip-info h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        
+        .trip-info .items {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .trip-info .item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #636e72;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #00b894;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .scene-number {
+            display: inline-block;
+            background: #00b894;
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .story-content {
+                padding: 25px 20px;
+            }
+            
+            .part-divider {
+                margin: 30px -20px;
+                padding: 25px 20px;
+            }
+            
+            .part-divider h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="episode-tag">🎬 第四集</div>
+            <h1>兒童節露營去！</h1>
+            <div class="subtitle">一家人的南庄日杉林露營區 3 天 2 夜...</div>
+        </div>
+        
+        <div class="story-content">
+            <!-- 行程資訊 -->
+            <div class="trip-info">
+                <h3>🏕️ 本集行程</h3>
+                <div class="items">
+                    <div class="item">南庄日杉林露營區</div>
+                    <div class="item">3 天 2 夜</div>
+                    <div class="item">2024 兒童節</div>
+                    <div class="item">露營</div>
+                    <div class="item">烤肉</div>
+                    <div class="item">溯溪</div>
+                </div>
+            </div>
+            
+            <!-- 角色介紹 -->
+            <div class="character-intro">
+                <h3>👨‍👩‍👦 故事角色</h3>
+                <div class="character-grid">
+                    <div class="character">
+                        <div class="emoji">👨</div>
+                        <h4>爸爸</h4>
+                        <p>開車載全家<br>負責烤肉</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👩</div>
+                        <h4>媽媽凱莉</h4>
+                        <p>50 多歲<br>賢慧、操心</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>哥哥阿布吉</h4>
+                        <p>20 歲大學生<br>外冷內熱</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>弟弟棉花糖</h4>
+                        <p>15 歲高中生<br>活力充沛</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第一天 -->
+            <div class="part-divider">
+                <h2>【第一天】出發與抵達</h2>
+                <p>兒童節假期，一家人出發去露營！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景1: 出發前的準備</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">1</span>今天是 2024 年兒童節假期！一大早，全家就開始忙碌地整理行李。</p>
+                    <p>帳篷、睡袋、烤肉食材、零食...客廳堆滿了東西。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text">「棉花糖！你有沒有帶保暖衣物？山區晚上會冷！」</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text">「有啦有啦！媽你好嘮叨喔！」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景2: 上車出發</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">2</span>爸爸把行李全都塞進車裡，一家人陸續上車。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text">「好了！出發！南庄日杉林露營區！」</span>
+                    </div>
+                    <p>棉花糖興奮地跳上車，阿布吉則是慢條斯理地坐好。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景3: 高速公路上</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">3</span>車子行駛在高速公路上，窗外的風景漸漸變成山區景象。</p>
+                    <p>棉花糖看著窗外的山，滿臉期待。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text">「爸！到了嗎？我好期待露營喔！」</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」還早呢！至少還要兩小時，你睡一下很快就到了！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景4: 抵達露營區</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">4</span>經過一段山路，終於抵達南庄日杉林露營區！</p>
+                    <p>映入眼簾的是一片翠綠的杉林，空氣清新無比。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text">「哇！這裡好漂亮！空氣好好！」</span>
+                    </div>
+                    <p>棉花糖第一個衝下车，深深吸了一口氣。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景5: 搭帳篷</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">5</span>一家人開始搭帳篷。爸爸拿出帳篷，開始組裝。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」阿布吉！過來幫我一下！</span>
+                    </div>
+                    <p>阿布吉走過去，父子三人一起把帳篷搭好。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」好了！這是我們的「家」了！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第二天 -->
+            <div class="part-divider">
+                <h2>【第二天】探索與玩樂</h2>
+                <p>整天都在露營區玩耍！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景6: 清晨的杉林</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">6</span>清晨，陽光透過杉林灑落下來。</p>
+                    <p>媽媽第一個醒來，看著身旁的景色，心中充滿寧靜。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」「大家起來了！太陽曬屁股了！」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景7: 早餐時光</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">7</span>媽媽拿出事先準備好的早餐，簡單但溫馨。</p>
+                    <p>一家人圍坐在露營桌前，吃著早餐，享受著清新的空氣。</p>
+                    <div class="dialogue">
+                        <strong>阿布吉</strong>
+                        <span class="text」這裡空氣真好，比在家裡睡得好。</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景8: 探索營區</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">8</span>吃飽喝足，一家人開始探索營區。</p>
+                    <p>這裡有戲水區、吊橋、觀景台，到處都是好玩的。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」爸！那邊有吊橋！我們去走走！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景9: 吊橋合影</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">9</span>一家人走到吊橋上，搖搖晃晃的很有趣。</p>
+                    <p>爸爸拿出手機，準備自拍。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」來！321 茄子！</span>
+                    </div>
+                    <p>照片裡，一家人笑得開心極了。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景10: 溯溪玩水</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">10</span>下午，天氣炎熱，一家人去戲水區玩水！</p>
+                    <p>冰涼的溪水讓人暑氣全消。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」好涼快！哥！一起來玩水！</span>
+                    </div>
+                    <p>阿布吉一開始還有點猶豫，但後來也下去玩了。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景11: 烤肉時間</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">11</span>傍晚的重頭戲——烤肉！</p>
+                    <p>爸爸負責升火，媽媽負責翻肉，棉花糖負責吃。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」來！這個雞翅好了！</span>
+                    </div>
+                    <p>炭火的香味瀰漫整個營區。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景12: 夜晚的星空</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">12</span>晚上，一家人躺在草地上看星星。</p>
+                    <p>山區的光害少，滿天星斗清晰可見。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」你們看！那是北斗七星！</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」真的！好漂亮！</span>
+                    </div>
+                    <p>阿布吉沒有說話，但嘴角帶著微笑。</p>
+                </div>
+            </div>
+            
+            <!-- 第三天 -->
+            <div class="part-divider">
+                <h2>【第三天】回家</h2>
+                <p>依依不捨地回家，但滿載回憶！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景13: 最後的早晨</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">13</span>第三天早晨，大家都捨不得離開。</p>
+                    <p>棉花糖還想再多玩幾天。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」媽～我們可以不要回去嗎？</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」不行喔！下次再來玩！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景14: 收拾行李</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">14</span>一家人開始收拾行李，把帳篷收好。</p>
+                    <p>雖然有點累，但每個人臉上都帶著滿足的笑容。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景15: 離開營區</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">15</span>爸爸發動車子，準備離開。</p>
+                    <p>棉花糖最後看了一眼露營區。</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」爸！下次還要再來！</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」好！下次帶你去更漂亮的地方！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景16: 結語</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">16</span>回到家，一家人坐在客廳，回憶著這幾天的點點滴滴。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」這次露營好開心！</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>阿布吉</strong>
+                        <span class="text」嗯，下次可以去更遠的地方。</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」我要把這次的照片存好！</span>
+                    </div>
+                    <p>這是一次美好的家庭回憶。</p>
+                </div>
+            </div>
+            
+            <!-- 結語 -->
+            <div class="part-divider">
+                <h2>🎉 完</h2>
+                <p>謝謝觀看！</p>
+            </div>
+            
+        </div>
+        
+        <div class="footer">
+            <a href="../index.html" class="back-button">🏠 回首頁</a>
+        </div>
+    </div>
+</body>
+</html>
