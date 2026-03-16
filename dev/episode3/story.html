@@ -5,278 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第三集：守護家人的智慧生活 - 家庭故事</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif;
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            min-height: 100vh;
-            padding: 0;
-            line-height: 1.8;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            box-shadow: 0 0 60px rgba(0,0,0,0.3);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-            padding: 60px 30px;
-            text-align: center;
-        }
-        
-        .header .episode-tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.3);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            line-height: 1.3;
-        }
-        
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .story-content {
-            padding: 40px 30px;
-        }
-        
-        .scene {
-            margin-bottom: 50px;
-            page-break-inside: avoid;
-        }
-        
-        .scene-image {
-            margin-bottom: 25px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        
-        .scene-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .scene-image .placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #636e72;
-            font-size: 1.2em;
-            border-radius: 15px;
-        }
-        
-        .scene-text {
-            padding: 0 10px;
-        }
-        
-        .scene-text p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .scene-text .dialogue {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #0984e3;
-            font-style: italic;
-        }
-        
-        .scene-text .dialogue strong {
-            color: #0984e3;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .scene-text .dialogue .text {
-            color: #555;
-            font-size: 1.05em;
-        }
-        
-        .part-divider {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            margin: 40px -30px;
-        }
-        
-        .part-divider h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-        
-        .part-divider p {
-            opacity: 0.9;
-            font-size: 1em;
-        }
-        
-        .character-intro {
-            background: #f8f9fa;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 15px;
-        }
-        
-        .character-intro h3 {
-            color: #0984e3;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
-        
-        .character {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-        }
-        
-        .character .emoji {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .character h4 {
-            color: #0984e3;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .character p {
-            font-size: 0.85em;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .tech-info {
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .tech-info h3 {
-            color: #2d3436;
-            margin-bottom: 15px;
-        }
-        
-        .tech-info .items {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .tech-info .item {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.9em;
-            color: #636e72;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .footer a {
-            color: #0984e3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .back-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .back-button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .scene-number {
-            display: inline-block;
-            background: #0984e3;
-            color: white;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 0.8em;
-            margin-right: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.6em;
-            }
-            
-            .story-content {
-                padding: 25px 20px;
-            }
-            
-            .part-divider {
-                margin: 30px -20px;
-                padding: 25px 20px;
-            }
-            
-            .part-divider h2 {
-                font-size: 1.4em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft JhengHei", "PingFang TC", serif; background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); min-height: 100vh; padding: 0; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); color: white; padding: 60px 30px; text-align: center; }
+        .header .episode-tag { display: inline-block; background: rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 30px; font-size: 0.9em; margin-bottom: 15px; }
+        .header h1 { font-size: 2.2em; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header .subtitle { font-size: 1.1em; opacity: 0.95; }
+        .story-content { padding: 40px 30px; }
+        .scene { margin-bottom: 40px; page-break-inside: avoid; }
+        .scene-image { margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .scene-image img { width: 100%; height: auto; display: block; }
+        .scene-image .placeholder { width: 100%; height: 250px; background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%); display: flex; align-items: center; justify-content: center; color: #636e72; font-size: 1.1em; border-radius: 15px; }
+        .scene-text { padding: 0 10px; }
+        .scene-text p { font-size: 1.05em; color: #333; margin-bottom: 12px; text-align: justify; }
+        .scene-text .dialogue { background: #f8f9fa; padding: 15px 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #0984e3; }
+        .scene-text .dialogue strong { color: #0984e3; display: block; margin-bottom: 5px; font-size: 0.95em; }
+        .scene-text .dialogue .text { color: #555; font-size: 1em; }
+        .part-divider { background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); color: white; padding: 25px; text-align: center; margin: 30px -30px; }
+        .part-divider h2 { font-size: 1.6em; margin-bottom: 8px; }
+        .part-divider p { opacity: 0.9; font-size: 0.95em; }
+        .character-intro { background: #f8f9fa; padding: 25px; margin: 25px 0; border-radius: 15px; }
+        .character-intro h3 { color: #0984e3; margin-bottom: 15px; text-align: center; }
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .character { background: white; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #e9ecef; }
+        .character .emoji { font-size: 2em; margin-bottom: 8px; }
+        .character h4 { color: #0984e3; margin-bottom: 5px; font-size: 0.9em; }
+        .character p { font-size: 0.8em; color: #666; line-height: 1.4; }
+        .tech-info { background: #dfe6e9; padding: 20px; margin: 25px 0; border-radius: 15px; text-align: center; }
+        .tech-info h3 { color: #2d3436; margin-bottom: 12px; }
+        .tech-info .items { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .tech-info .item { background: white; padding: 8px 15px; border-radius: 8px; font-size: 0.85em; color: #636e72; }
+        .footer { background: #f8f9fa; padding: 25px; text-align: center; margin-top: 35px; }
+        .footer a { color: #0984e3; text-decoration: none; font-weight: bold; }
+        .back-button { display: inline-block; background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); color: white; padding: 10px 25px; border-radius: 25px; text-decoration: none; margin-top: 15px; }
+        .scene-number { display: inline-block; background: #0984e3; color: white; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 50%; font-size: 0.75em; margin-right: 8px; }
+        @media (max-width: 768px) { .header { padding: 40px 20px; } .header h1 { font-size: 1.6em; } .story-content { padding: 25px 20px; } }
     </style>
 </head>
 <body>
@@ -288,7 +52,6 @@
         </div>
         
         <div class="story-content">
-            <!-- 技術資訊 -->
             <div class="tech-info">
                 <h3>⚡ 本集技術重點</h3>
                 <div class="items">
@@ -301,396 +64,87 @@
                 </div>
             </div>
             
-            <!-- 角色介紹 -->
             <div class="character-intro">
                 <h3>👨‍👩‍👦 故事角色</h3>
                 <div class="character-grid">
-                    <div class="character">
-                        <div class="emoji">👨</div>
-                        <h4>爸爸</h4>
-                        <p>平時會想東想西<br>想把家裡弄得更好</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👩</div>
-                        <h4>媽媽凱莉</h4>
-                        <p>50 多歲<br>賢慧、操心</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👦</div>
-                        <h4>哥哥阿布吉</h4>
-                        <p>20 歲大學生<br>外冷內熱</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👦</div>
-                        <h4>弟弟棉花糖</h4>
-                        <p>15 歲高中生<br>活力充沛</p>
-                    </div>
+                    <div class="character"><div class="emoji">👨</div><h4>爸爸</h4><p>平時會想東想西想把家裡弄得更好</p></div>
+                    <div class="character"><div class="emoji">👩</div><h4>媽媽凱莉</h4><p>50 多歲賢慧、操心</p></div>
+                    <div class="character"><div class="emoji">👦</div><h4>哥哥阿布吉</h4><p>20 歲大學生外冷內熱</p></div>
+                    <div class="character"><div class="emoji">👦</div><h4>弟弟棉花糖</h4><p>15 歲高中生活力充沛</p></div>
                 </div>
             </div>
             
-            <!-- 第一部分 -->
-            <div class="part-divider">
-                <h2>第一部分：危機浮現</h2>
-                <p>爸爸發現了一個隱藏的危險...</p>
-            </div>
+            <div class="part-divider"><h2>第一部分：危機浮現</h2><p>爸爸發現了一個隱藏的危險...</p></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景1: 客廳 - 爸爸看新聞</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">1</span>一個普通的週六下午，爸爸在客廳看電視。</p>
-                    <p>新聞正在播放一則住宅火警的報導：「日前桃園一戶人家因為電線走火，發生嚴重火災，幸運的是家人及時逃出...」</p>
-                    <p>爸爸放下遙控器，眉頭皺了起來。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景1: 週六下午的電視</div></div><div class="scene-text"><p><span class="scene-number">1</span>一個普通的週六下午，爸爸在客廳看電視。新聞正在播放一則住宅火警的報導。</p><div class="dialogue"><strong>主播</strong><span class="text">「日前桃園一戶人家因為電線走火，發生嚴重火災，幸運的是家人及時逃出...」</span></div><p>爸爸放下遙控器，眉頭皺了起來。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景2: 爸爸的擔心</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">2</span>爸爸開始回想家裡的電路情況。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「不對...我們家也是老屋，電路不知道有多少年了...」</span>
-                    </div>
-                    <p>他想到家裡的冷氣和熱泵熱水器好像都是用同一條線，這樣會不會太危險？</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景2: 爸爸的擔心</div></div><div class="scene-text"><p><span class="scene-number">2</span>爸爸開始回想家裡的電路情況。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「不對...我們家也是老屋，電路不知道有多少年了...」</span></div><p>他想到家裡的冷氣和熱泵熱水器好像都是用同一條線。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景3: 研究電力問題</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">3</span>爸爸立刻上網查資料，研究老屋電力問題。</p>
-                    <p>「一條 220V 電線分兩台高功率電器...這很危險啊！」爸爸自言自語。</p>
-                    <p>他發現如果冷氣和熱泵熱水器同時運轉，會造成電線負荷過大，不只會跳電，嚴重的話甚至會起火！</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景3: 研究電力問題</div></div><div class="scene-text"><p><span class="scene-number">3</span>爸爸立刻上網查資料，研究老屋電力問題。</p><div class="dialogue"><strong>爸爸</strong><span class="text」一條 220V 電線分兩台高功率電器...這很危險啊！」</span></div><p>他發現同時運轉會造成電線負荷過大，可能跳電甚至起火！</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景4: 發現嚴重性</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">4</span>爸爸深入研究後，發現問題比想像中更嚴重。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「我們家老屋當初裝的時候，只拉了一條 220V 的電源線。現在要同時開冷氣和熱水器，電線根本承受不住！」</span>
-                    </div>
-                    <p>他決定要找一個解決方案。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景4: 發現嚴重性</div></div><div class="scene-text"><p><span class="scene-number">4</span>爸爸深入研究，發現問題比想像中更嚴重。</p><div class="dialogue"><strong>爸爸</strong><span class="text」我們家老屋只拉了一條 220V 電源線。現在要同時開冷氣和熱水器，電線根本承受不住！」</span></div></div></div>
             
-            <!-- 第二部分 -->
-            <div class="part-divider">
-                <h2>第二部分：尋找解決方案</h2>
-                <p>爸爸開始研究如何讓家裡更安全...</p>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景5: 客廳討論</div></div><div class="scene-text"><p><span class="scene-number">5</span>晚飯後，爸爸把家人叫到客廳。</p><div class="dialogue"><strong>爸爸</strong><span class="text」我發現我們家有個很大的問題...」</span></div><p>媽媽和兩個兒子都看向爸爸。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景5: 客廳討論</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">5</span>晚飯後，爸爸把家人叫到客廳。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「我發現我們家有個很大的問題...」</span>
-                    </div>
-                    <p>媽媽和兩個兒子都看向爸爸，不知道他要說什麼。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景6: 爸爸解釋問題</div></div><div class="scene-text"><p><span class="scene-number">6</span>爸爸拿出紙筆，開始畫圖解釋。</p><div class="dialogue"><strong>爸爸</strong><span class="text」你們看，冷氣和熱泵熱水器是用同一條 220V 電線。同時開會負荷過大，可能會跳電，嚴重的話...會起火。」</span></div><p>棉花糖睜大眼睛，阿布吉也皺起眉頭。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景6: 爸爸解釋問題</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">6</span>爸爸拿出紙筆，開始畫圖解釋。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「你們看，我們家客廳的冷氣和熱泵熱水器，是用同一條 220V 電線。如果同時開，電線會負荷過大，可能會跳電，嚴重的話...會起火。」</span>
-                    </div>
-                    <p>棉花糖睜大眼睛，阿布吉也皺起眉頭。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景7: 媽媽的反應</div></div><div class="scene-text"><p><span class="scene-number">7</span>媽媽聽完，有點擔心。</p><div class="dialogue"><strong>媽媽</strong><span class="text」真的這麼危險？那我們該怎麼辦？要請人來重新拉線嗎？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」不用那麼麻煩！我查到有一種 WiFi 智慧電源模組，可以讓它們輪流運作！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景7: 媽媽的反應</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">7</span>媽媽聽完，有點擔心。</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text">「真的這麼危險？那我們該怎麼辦？要請人來重新拉線嗎？」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「不用那麼麻煩！我查到有一種 WiFi 智慧電源模組，可以讓它們輪流運作，這樣就不會同時用電了！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景8: 棉花糖的好奇</div></div><div class="scene-text"><p><span class="scene-number">8</span>棉花糖舉手發問。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」智慧電源模組？那是什麼？很厲害嗎？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」很厲害！可以透過 WiFi 控制，還能用 APP 操作，讓冷氣和熱水器輪流開，這樣就不會過載了！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景8: 棉花糖的好奇</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">8</span>棉花糖舉手發問。</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「智慧電源模組？那是什麼？很厲害嗎？」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「很厲害！可以透過 WiFi 控制，還能用 APP 操作，讓冷氣和熱水器輪流開，這樣就不會過載了！而且還能看到用電量！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景9: 阿布吉的興趣</div></div><div class="scene-text"><p><span class="scene-number">9</span>阿布吉听到 WiFi 和 APP 控制，耳朵豎了起來。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」所以可以用手機控制？是用 eWeLink 還是 Tuya？還是 Home Assistant？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」都可以！我打算用 eWeLink，相對比較簡單。以後如果要用 Home Assistant 也可以擴充！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景9: 阿布吉的興趣</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">9</span>阿布吉听到 WiFi 和 APP 控制，耳朵豎了起來。</p>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text">「所以可以用手機控制？是用 eWeLink 還是 Tuya？還是 Home Assistant？」</span>
-                    </div>
-                    <p>爸爸有點驚訝，原來兒子對這個也有研究！</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「都可以！我打算用 eWeLink，相對比較簡單。以後如果要用 Home Assistant 也可以擴充！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景10: 決定動工</div></div><div class="scene-text"><p><span class="scene-number">10</span>一家人討論完畢，決定這個週末就動工！</p><div class="dialogue"><strong>爸爸</strong><span class="text」好！我們今天先去買材料，週末來安裝！」</span></div><div class="dialogue"><strong>棉花糖</strong><span class="text」好！我要幫忙！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景10: 決定動工</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">10</span>一家人討論完畢，決定這個週末就動工！</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「好！我們今天先去買材料，週末來安裝！」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「好！我要幫忙！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="part-divider"><h2>第二部分：安裝施工</h2><p>爸爸開始動手安裝智慧電源模組...</p></div>
             
-            <!-- 第三部分 -->
-            <div class="part-divider">
-                <h2>第三部分：安裝施工</h2>
-                <p>爸爸開始動手安裝智慧電源模組...</p>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景11: 材料準備</div></div><div class="scene-text"><p><span class="scene-number">11</span>週末一早，爸爸把所有材料都拿出來。</p><p>智慧電源模組、螺絲起子、電工膠帶、延長線...攤滿了一桌子。</p><div class="dialogue"><strong>爸爸</strong><span class="text」今天要把我們家的電路升級！這樣大家用電就更安全了！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景11: 材料準備</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">11</span>週末一早，爸爸把所有材料都拿出來。</p>
-                    <p>智慧電源模組、螺絲起子、電工膠帶、延長線...攤滿了一桌子。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「今天要把我們家的電路升級！這樣大家用電就更安全了！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景12: 爸爸施工中</div></div><div class="scene-text"><p><span class="scene-number">12</span>爸爸戴上手套，認真地安裝智慧電源模組。</p><p>每一條電線都小心翼翼地接上，確保不會有任何鬆脫。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」爸，你小心一點。這種事情還是專業的來比較好。」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」放心，爸爸以前學過的！而且這個模組有保護機制，很安全的！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景12: 爸爸施工中</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">12</span>爸爸戴上手套，認真地安裝智慧電源模組。</p>
-                    <p>每一條電線都小心翼翼地接上，確保不會有任何鬆脫。</p>
-                    <p>阿布吉在旁邊看著爸爸施工。</p>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text">「爸，你小心一點。這種事情還是專業的來比較好。」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「放心，爸爸以前學過的！而且這個模組有保護機制，很安全的！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景13: 棉花糖幫忙</div></div><div class="scene-text"><p><span class="scene-number">13</span>棉花糖跑過來，遞給爸爸螺絲起子。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」爸，給你！這個對吧？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」對！兒子長大了，可以幫忙了！」</span></div><p>棉花糖開心地笑了。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景13: 棉花糖幫忙</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">13</span>棉花糖跑過來，遞給爸爸螺絲起子。</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「爸，給你！這個對吧？」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「對！兒子長大了，可以幫忙了！」</span>
-                    </div>
-                    <p>棉花糖開心地笑了。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景14: 媽媽送水</div></div><div class="scene-text"><p><span class="scene-number">14</span>媽媽端著冰水走過來。</p><div class="dialogue"><strong>媽媽</strong><span class="text」休息一下，先喝點水。」</span></div><p>爸爸接過水杯，看著家人都在身旁，心裡感到溫暖。</p><div class="dialogue"><strong>爸爸</strong><span class="text」快好了！最後一個步驟！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景14: 媽媽送水</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">14</span>媽媽端著冰水走過來。</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text">「休息一下，先喝點水。」</span>
-                    </div>
-                    <p>爸爸接過水杯，看著家人都在身旁，心裡感到溫暖。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「快好了！最後一個步驟！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景15: 完成安裝</div></div><div class="scene-text"><p><span class="scene-number">15</span>經過一番努力，智慧電源模組終於安裝完成了！</p><p>爸爸站起來，滿意地看著自己的作品。小小的模組閃爍著綠色的 LED 燈。</p><div class="dialogue"><strong>爸爸</strong><span class="text」好了！現在我們家的電路升級了！就算冷氣和熱水器同時開也不會跳電，更不會有火災風險！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景15: 完成安裝</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">15</span>經過一番努力，智慧電源模組終於安裝完成了！</p>
-                    <p>爸爸站起來，滿意地看著自己的作品。小小的模組閃爍著綠色的 LED 燈。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「好了！現在我們家的電路升級了！就算冷氣和熱水器同時開也不會跳電，更不會有火災風險！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="part-divider"><h2>第三部分：成果展示</h2><p>家人一起體驗智慧生活的便利...</p></div>
             
-            <!-- 第四部分 -->
-            <div class="part-divider">
-                <h2>第四部分：成果展示</h2>
-                <p>家人一起體驗智慧生活的便利...</p>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景16: APP 演示</div></div><div class="scene-text"><p><span class="scene-number">16</span>爸爸拿出手機，打開 eWeLink APP。</p><div class="dialogue"><strong>爸爸</strong><span class="text」你們看！這是我們家的用電狀況！上面顯示冷氣現在是開的，熱水器是關的。」</span></div><p>手機螢幕上清楚顯示著兩個設備的狀態。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景16: APP 演示</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">16</span>爸爸拿出手機，打開 eWeLink APP。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「你們看！這是我們家的用電狀況！上面顯示冷氣現在是開的，熱水器是關的。」</span>
-                    </div>
-                    <p>手機螢幕上清楚顯示著兩個設備的狀態。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景17: 棉花糖操作</div></div><div class="scene-text"><p><span class="scene-number">17</span>棉花糖接過手機，興奮地滑動著。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」哇！好酷！可以開冷氣！可以開熱水器！還可以設定時間！」</span></div><p>他隨手點了一下，手機顯示：「已開啟熱水器，冷氣將於 30 分鐘後自動關閉」。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景17: 棉花糖操作</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">17</span>棉花糖接過手機，興奮地滑動著。</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「哇！好酷！可以開冷氣！可以開熱水器！還可以設定時間！」</span>
-                    </div>
-                    <p>他隨手點了一下，手機顯示：「已開啟熱水器，冷氣將於 30 分鐘後自動關閉」。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景18: 阿布吉研究</div></div><div class="scene-text"><p><span class="scene-number">18</span>阿布吉也湊過去研究 APP 的功能。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」爸，這個排程功能可以設定嗎？比如設定下午 5 點開熱水器，這樣我們回家就有熱水用了？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」當然可以！還可以設定禮拜幾幾點自動開關，超級方便！而且如果之後要接 Home Assistant 也可以，這樣就能用聲控了！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景18: 阿布吉研究</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">18</span>阿布吉也湊過去研究 APP 的功能。</p>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text">「爸，這個排程功能可以設定嗎？比如設定下午 5 點開熱水器，這樣我們回家就有熱水用了？」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「當然可以！還可以設定禮拜幾幾點自動開關，超級方便！而且如果之後要接 Home Assistant 也可以，這樣就能用聲控了！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景19: 媽媽的感想</div></div><div class="scene-text"><p><span class="scene-number">19</span>媽媽看著這一切，臉上露出欣慰的笑容。</p><div class="dialogue"><strong>媽媽</strong><span class="text」你爸真的很厲害，想辦法保護我們全家。以後夏天開冷氣、冬天開熱水器都不用擔心了！」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」哪裡，這樣我們用電也更省了！而且萬一有什麼異常，手機還會立刻通知我們！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景19: 媽媽的感想</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">19</span>媽媽看著這一切，臉上露出欣慰的笑容。</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text">「你爸真的很厲害，想辦法保護我們全家。以後夏天開冷氣、冬天開熱水器都不用擔心了！」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「哪裡，這樣我們用電也更省了！而且萬一有什麼異常，手機還會立刻通知我們！」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景20: 家庭會議</div></div><div class="scene-text"><p><span class="scene-number">20</span>一家人坐在客廳，討論著智慧家庭的可能性。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」那我們下次可以加什麼？智慧燈光？智慧門鎖？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」一步一步來，先把基礎打好再說！之後可以接 Home Assistant，弄一個真正的智慧家庭！」</span></div><div class="dialogue"><strong>阿布吉</strong><span class="text」我覺得可以加個智慧窗簾，早上自動打開，這樣就不會睡過頭了。」</span></div><p>全家人都笑了。</p></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景20: 家庭會議</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">20</span>一家人坐在客廳，討論著智慧家庭的可能性。</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「那我們下次可以加什麼？智慧燈光？智慧門鎖？」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「一步一步來，先把基礎打好再說！之後可以接 Home Assistant，弄一個真正的智慧家庭！」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text">「我覺得可以加個智慧窗簾，早上自動打開，這樣就不會睡過頭了。」</span>
-                    </div>
-                    <p>全家人都笑了。</p>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景21: 睡前的確認</div></div><div class="scene-text"><p><span class="scene-number">21</span>晚上，關上燈，爸爸最後確認了一次手機。</p><p>螢幕上顯示：「所有設備正常運作，晚安！」</p><div class="dialogue"><strong>爸爸</strong><span class="text」這樣就不用擔心睡覺的時候電器過載了。大家晚安！」</span></div></div></div>
             
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景21: 結語</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">21</span>晚上，關上燈，爸爸最後確認了一次手機。</p>
-                    <p>螢幕上顯示：「所有設備正常運作，晚安！」</p>
-                    <p>他安心地笑了。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「這樣就不用擔心睡覺的時候電器過載了。大家晚安！」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text">「晚安！謝謝你保護我們的家。」</span>
-                    </div>
-                </div>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景22: 媽媽的回應</div></div><div class="scene-text"><p><span class="scene-number">22</span>媽媽微笑著回應。</p><div class="dialogue"><strong>媽媽</strong><span class="text」晚安！謝謝你保護我們的家。」</span></div></div></div>
             
-            <!-- 結語 -->
-            <div class="part-divider">
-                <h2>🎉 完</h2>
-                <p>謝謝觀看！</p>
-            </div>
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景23: 棉花糖的期待</div></div><div class="scene-text"><p><span class="scene-number">23</span>棉花糖躺床上，想像著未來的智慧家庭。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」爸！明天可以教我怎麼用嗎？我也想學！」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」當然可以！兒子，我們一起學！」</span></div></div></div>
             
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景24: 阿布吉的想法</div></div><div class="scene-text"><p><span class="scene-number">24</span>阿布吉在心裡記下這個功能，覺得以後可以介紹給同學。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」（這個功能真的很實用，以後可以推薦給同學。）</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景25: 隔天早晨</div></div><div class="scene-text"><p><span class="scene-number">25</span>隔天早晨，爸爸第一件事就是查看手機。</p><div class="dialogue"><strong>爸爸</strong><span class="text」昨晚一切都正常！我們的改造成功了！」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景26: 早餐時光</div></div><div class="scene-text"><p><span class="scene-number">26</span>一家人吃早餐，談論著昨天的成果。</p><div class="dialogue"><strong>媽媽</strong><span class="text」昨天那個 APP 真的很方便，我也想學怎麼用。」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好啊，等一下我教你，很簡單的！」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景27: 棉花糖的問題</div></div><div class="scene-text"><p><span class="scene-number">27</span>棉花糖突然想到一個問題。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」爸，那如果家裡沒網路怎麼辦？」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好問題！這個模組有離線模式，即使沒網路也能基本運作。不過有網路的話功能更多。」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景28: 阿布吉的建議</div></div><div class="scene-text"><p><span class="scene-number">28</span>阿布吉提出一個建議。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」爸，我們可以設定一個緊急聯絡人嗎？萬一有問題可以自動通知。」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」這是個好想法！我來研究一下怎麼設定！」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景29: 爸爸的驕傲</div></div><div class="scene-text"><p><span class="scene-number">29</span>爸爸看著家人，心裡充滿了成就感。</p><div class="dialogue"><strong>爸爸</strong><span class="text」謝謝你們支持我做這個改動。我們家現在更安全了！」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景30: 媽媽的感謝</div></div><div class="scene-text"><p><span class="scene-number">30</span>媽媽給爸爸一個感謝的擁抱。</p><div class="dialogue"><strong>媽媽</strong><span class="text」謝謝你為這個家付出這麼多。」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景31: 棉花糖的目標</div></div><div class="scene-text"><p><span class="scene-number">31</span>棉花糖立下志願。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」我長大也要學會這些東西，像爸一樣厲害！」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好啊！爸爸教你！」</span></div></div></div>
+            
+            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景32: 結語</div></div><div class="scene-text"><p><span class="scene-number">32</span>這一天，一家人帶著滿足的笑容入睡。</p><p>他們知道，這個家因為爸爸的用心，變得更安全、更智慧了。</p></div></div>
+            
+            <div class="part-divider"><h2>🎉 完</h2><p>謝謝觀看！</p></div>
         </div>
         
         <div class="footer">
