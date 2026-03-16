@@ -74,10 +74,19 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
+        .scene-image {
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
         .scene-image img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
+            object-fit: contain;
         }
         
         .scene-text {
