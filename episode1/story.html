@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一集：說走就走？先問媽媽！ - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+        
+        .header .episode-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .story-content {
+            padding: 40px 30px;
+        }
+        
+        .scene {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+        
+        .scene-image {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .scene-text {
+            padding: 0 10px;
+        }
+        
+        .scene-text p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .scene-text .dialogue {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+        }
+        
+        .scene-text .dialogue strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .scene-text .dialogue .text {
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        .part-divider {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin: 40px -30px;
+        }
+        
+        .part-divider h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .part-divider p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+        
+        .character-intro {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+        }
+        
+        .character-intro h3 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .character {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        
+        .character .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .character h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .character p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .story-content {
+                padding: 25px 20px;
+            }
+            
+            .scene-text p {
+                font-size: 1em;
+            }
+            
+            .part-divider {
+                margin: 30px -20px;
+                padding: 25px 20px;
+            }
+            
+            .part-divider h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="episode-tag">🎬 第一集</div>
+            <h1>說走就走？先問媽媽！</h1>
+            <div class="subtitle">一個普通的週六上午，電視裡的大甲媽遶境節目，勾起了一家人珍貴的回憶...</div>
+        </div>
+        
+        <div class="story-content">
+            <!-- 角色介紹 -->
+            <div class="character-intro">
+                <h3>👨‍👩‍👦 故事角色</h3>
+                <div class="character-grid">
+                    <div class="character">
+                        <div class="emoji">👩</div>
+                        <h4>媽媽凱莉</h4>
+                        <p>50 多歲，溫柔賢慧<br>最愛織毛衣</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>哥哥阿布吉</h4>
+                        <p>20 歲大學生<br>酷酷的但關心弟弟</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>弟弟棉花糖</h4>
+                        <p>15 歲高中生<br>愛笑愛講話</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第一部分 -->
+            <div class="part-divider">
+                <h2>第一部分：週六上午的客廳</h2>
+                <p>陽光從窗簾縫隙灑入，一家人各做各的事</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="01_scene.jpg" alt="客廳全景">
+                </div>
+                <div class="scene-text">
+                    <p>週六上午十點半，南部的陽光溫暖地灑進客廳。淺色木質地板反射著光線，紅色木製沙發上，媽媽凱莉正專心地織著毛衣。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="02_mom.jpg" alt="媽媽織毛衣">
+                </div>
+                <div class="scene-text">
+                    <p>凱莉坐在沙發中央，手裡的棒針靈活地舞動著。她偶爾抬頭看看電視，臉上帶著溫柔的笑容。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="03_brother.jpg" alt="哥哥戴耳機">
+                </div>
+                <div class="scene-text">
+                    <p>單人沙發上，哥哥阿布吉窩在角落，頭上戴著大大的耳機，沉浸在自己的音樂世界裡。灰色的大學 T 恤讓他看起來隨性又帥氣。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="04_brother.jpg" alt="弟弟癱懶骨頭">
+                </div>
+                <div class="scene-text">
+                    <p>客廳另一頭，弟弟棉花糖整個癱在懶骨頭上，手指在手機螢幕上飛快地滑動著。紅色的 Hoodie 和牛仔褲，是這個年紀最標準的打扮。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="05_tv.jpg" alt="電視播放媽祖">
+                </div>
+                <div class="scene-text">
+                    <p>電視裡傳來熱鬧的鑼鼓聲，旅遊節目正在播放大甲媽遶境的畫面。密密麻麻的人群，虔誠的信徒，畫面充滿了台灣傳統的宗教氛圍。</p>
+                </div>
+            </div>
+            
+            <!-- 第二部分 -->
+            <div class="part-divider">
+                <h2>第二部分：爸爸的電話</h2>
+                <p>一通電話，打破了客廳的平靜</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="09_phone.jpg" alt="手機響起">
+                </div>
+                <div class="scene-text">
+                    <p>突然，凱莉的手機響了起來。她放下手裡的毛衣，拿起手機看了看螢幕。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="10_mom_speaking.jpg" alt="媽媽接電話">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「喂？好，我知道了。」</span>
+                    </div>
+                    <p>凱莉的語氣變得認真起來，兩個兒子都抬起頭看向媽媽。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="11_dad_work.jpg" alt="媽媽講電話">
+                </div>
+                <div class="scene-text">
+                    <p>掛掉電話後，凱莉眉頭微皺，看了看客廳裡的兩個兒子。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="12_ask.jpg" alt="弟弟問">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「媽，怎麼了？」</span>
+                    </div>
+                    <p>棉花糖從懶骨頭上坐了起來，好奇地問。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="13_mazu_tv.jpg" alt="媽媽說">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「你爸臨時要去上班，今天會晚回來。」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三部分 -->
+            <div class="part-divider">
+                <h2>第三部分：意外的話題</h2>
+                <p>電視裡的畫面，勾起了共同的回憶</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="14_mom_point.jpg" alt="媽媽指電視">
+                </div>
+                <div class="scene-text">
+                    <p>凱莉用下巴指了指電視，螢幕上正好播到大甲媽遶境的盛大場面。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="15_excited.jpg" alt="弟弟興奮">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「啊！就是去年我們去的那個！」</span>
+                    </div>
+                    <p>棉花糖的眼睛亮了起來，整個人從懶骨頭上彈了起來。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="16_brother_talk.jpg" alt="哥哥接話">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>哥哥阿布吉</strong>
+                        <span class="text">「那個人潮，差點找不到彼此。」</span>
+                    </div>
+                    <p>阿布吉摘下了一側的耳機，難得地接話。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="17_act.jpg" alt="弟弟模擬">
+                </div>
+                <div class="scene-text">
+                    <p>棉花糖興奮地比劃著當時的情景，手舞足蹈的模樣逗笑了媽媽和哥哥。</p>
+                </div>
+            </div>
+            
+            <!-- 第四部分 -->
+            <div class="part-divider">
+                <h2>第四部分：回憶殺</h2>
+                <p>那些年的大甲媽，那些年的回憶</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="18_mom_laugh.jpg" alt="媽媽笑">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「那個阿婆還認出我們，說我們每年都來。」</span>
+                    </div>
+                    <p>凱莉被弟弟的模樣逗笑了，眼神裡滿是溫柔。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="19_brother_laugh.jpg" alt="兄弟笑">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「少年ㄟ～今年擱來喔！」</span>
+                    </div>
+                    <p>棉花糖模仿著阿婆的台語，全家人都笑了。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="20_auntie.jpg" alt="回憶">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「我們去了四次了呢。」</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「2019、2021、2023、2025！」</span>
+                    </div>
+                    <p>弟弟脫口而出這幾個年份，讓哥哥有點驚訝。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="21_imitate.jpg" alt="哥哥酸">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>哥哥阿布吉</strong>
+                        <span class="text">「你這記憶力，用在這裡喔。」</span>
+                    </div>
+                    <p>阿布吉酸了一句，但嘴角帶著笑意。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="22_laugh.jpg" alt="弟弟認真">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「可是每年都很開心啊！」</span>
+                    </div>
+                    <p>棉花糖認真地說，眼睛亮晶晶的。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="23_four_times.jpg" alt="媽媽回憶">
+                </div>
+                <div class="scene-text">
+                    <p>凱莉的眼神放空，回想著過去的點點滴滴。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="24_four_finger.jpg" alt="媽媽說背">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「阿布吉你那時候還背著棉花糖走呢。」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="25_tease.jpg" alt="哥哥驚訝">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>哥哥阿布吉</strong>
+                        <span class="text">「我有嗎？」</span>
+                    </div>
+                    <p>阿布吉一臉驚訝，顯然不記得了。</p>
+                </div>
+            </div>
+            
+            <!-- 第五部分 -->
+            <div class="part-divider">
+                <h2>第五部分：今年再去？</h2>
+                <p>一個提議，讓客廳的氣氛變了</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="26_serious.jpg" alt="媽媽問">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>媽媽凱莉</strong>
+                        <span class="text">「那...今年你們想再去嗎？」</span>
+                    </div>
+                    <p>凱莉看著兩個兒子，語氣試探著。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="27_mom_recall.jpg" alt="弟弟舉手">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>弟弟棉花糖</strong>
+                        <span class="text">「我要去！我要去找阿婆！」</span>
+                    </div>
+                    <p>棉花糖超級興奮地舉手，像個小學生一樣。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="28_backcarry.jpg" alt="哥哥思考">
+                </div>
+                <div class="scene-text">
+                    <p>阿布吉若有所思地看了看弟弟，又看了看媽媽。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="29_surprise.jpg" alt="哥哥說">
+                </div>
+                <div class="scene-text">
+                    <div class="dialogue">
+                        <strong>哥哥阿布吉</strong>
+                        <span class="text">「時間 OK 的話，我陪你去。」</span>
+                    </div>
+                    <p>語氣還是淡淡的，但眼神裡有關心。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="30_go_again.jpg" alt="媽媽笑">
+                </div>
+                <div class="scene-text">
+                    <p>凱莉露出了滿意的笑容，眼角的細紋都藏不住喜悅。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="31_want_go.jpg" alt="弟弟彈">
+                </div>
+                <div class="scene-text">
+                    <p>棉花糖在懶骨頭上彈了一下，開心地不得了。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <img src="32_find_aunt.jpg" alt="三人期待">
+                </div>
+                <div class="scene-text">
+                    <p>客廳裡，三個人的臉上都是期待的表情。電視裡的大甲媽遶境還在繼續，但這個家的故事，才正要開始...</p>
+                </div>
+            </div>
+            
+            <!-- 結尾 -->
+            <div class="footer">
+                <p style="margin-bottom: 20px; color: #666;">🎨 使用 Gemini 3 Pro Image 生成 | 宮崎駿動畫風格</p>
+                <a href="../index.html" class="back-button">← 返回首頁</a>
+                <br>
+                <a href="../gallery/index.html" style="display: inline-block; margin-top: 15px; color: #667eea;">瀏覽更多故事 →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
