@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第九集：居家大改造！ - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif;
+            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+        
+        .header .episode-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .story-content {
+            padding: 40px 30px;
+        }
+        
+        .scene {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+        
+        .scene-image {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .scene-image .placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #636e72;
+            font-size: 1.2em;
+            border-radius: 15px;
+        }
+        
+        .scene-text {
+            padding: 0 10px;
+        }
+        
+        .scene-text p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .scene-text .dialogue {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #e17055;
+            font-style: italic;
+        }
+        
+        .scene-text .dialogue strong {
+            color: #e17055;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .scene-text .dialogue .text {
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        .part-divider {
+            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin: 40px -30px;
+        }
+        
+        .part-divider h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .part-divider p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+        
+        .character-intro {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+        }
+        
+        .character-intro h3 {
+            color: #e17055;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .character {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        
+        .character .emoji {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .character h4 {
+            color: #e17055;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .character p {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .trip-info {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .trip-info h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        
+        .trip-info .items {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .trip-info .item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #636e72;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #e17055;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .scene-number {
+            display: inline-block;
+            background: #e17055;
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .story-content {
+                padding: 25px 20px;
+            }
+            
+            .part-divider {
+                margin: 30px -20px;
+                padding: 25px 20px;
+            }
+            
+            .part-divider h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="episode-tag">🎬 第九集</div>
+            <h1>居家大改造！</h1>
+            <div class="subtitle">回憶 2024 年的居家大改造！一家人打造溫暖的家！</div>
+        </div>
+        
+        <div class="story-content">
+            <!-- 行程資訊 -->
+            <div class="trip-info">
+                <h3>🏠 本集重點</h3>
+                <div class="items">
+                    <div class="item">2024 年</div>
+                    <div class="item">居家改造</div>
+                    <div class="item">溫馨智慧宅</div>
+                    <div class="item">挑戰 100 萬</div>
+                    <div class="item">一家人</div>
+                </div>
+            </div>
+            
+            <!-- 角色介紹 -->
+            <div class="character-intro">
+                <h3>👨‍👩‍👦 故事角色</h3>
+                <div class="character-grid">
+                    <div class="character">
+                        <div class="emoji">👨</div>
+                        <h4>爸爸</h4>
+                        <p>設計師兼工頭<br>總指揮</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👩</div>
+                        <h4>媽媽凱莉</h4>
+                        <p>監工兼採購<br>賢慧能幹</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>哥哥阿布吉</h4>
+                        <p>20 歲<br>幫忙搬東西</p>
+                    </div>
+                    <div class="character">
+                        <div class="emoji">👦</div>
+                        <h4>弟弟棉花糖</h4>
+                        <p>15 歲<br>調皮搗蛋</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第一部分 -->
+            <div class="part-divider">
+                <h2>第一部分：改造的念頭</h2>
+                <p>爸爸決定改造家裡！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景1: 客廳的討論</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">1</span>2024 年的一天，一家人坐在客廳。</p>
+                    <p>爸爸看著家裡，突然說：</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text">「我想把家裡重新改造一下，現在家裡很多地方都舊了。」</span>
+                    </div>
+                    <p>媽媽點點頭。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景2: 改造的動機</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">2</span>爸爸開始解釋改造的原因。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text">「我們住了這麼多年，很多設備都舊了。我想把它們變得更舒適、更溫馨，最好是智慧家庭！」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景3: 棉花糖的反應</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">3</span>棉花糖眼睛亮了起來！</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text">「好耶！！！是不是會有智慧燈光！！！」</span>
+                    </div>
+                    <p>爸爸笑著點頭。</p>
+                </div>
+            </div>
+            
+            <!-- 第二部分 -->
+            <div class="part-divider">
+                <h2>第二部分：規劃與準備</h2>
+                <p>一家人開始規劃改造！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景4: 家庭會議</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">4</span>一家人召開家庭會議，討論改造的內容。</p>
+                    <p>爸爸拿出紙筆，開始畫圖。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」我想要把客廳重新整理，然後臥室也要換床...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景5: 媽媽的採購清單</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">5</span>媽媽拿著採購清單，一項一項確認。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」這個要多少錢？那個呢？</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」我想要控制在 100 萬以內！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景6: 開始施工</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">6</span>改造開始了！</p>
+                    <p>爸爸挽起袖子，親自動手。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」今天先拆掉這個舊櫃子！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三部分 -->
+            <div class="part-divider">
+                <h2>第三部分：改造進行中</h2>
+                <p>一家人一起動手！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景7: 阿布吉幫忙</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">7</span>阿布吉走過來幫忙。</p>
+                    <div class="dialogue">
+                        <strong>阿布吉</strong>
+                        <span class="text」爸，我來幫你搬這個。</span>
+                    </div>
+                    <p>爸爸點點頭，父子倆一起搬重物。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景8: 棉花糖搗蛋</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">8</span>棉花糖在旁邊玩，不小心踢倒了工具箱！</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」棉花糖！不要在這裡玩！</span>
+                    </div>
+                    <p>棉花糖吐吐舌頭，去幫媽媽了。</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景9: 媽媽的巧思</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">9</span>媽媽在裝飾家裡，放了一些小擺設。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」你們看！這樣是不是好看多了！？</span>
+                    </div>
+                    <p>大家點點頭，媽媽的品味真的很好！</p>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景10: 智慧家庭安裝</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">10</span>爸爸安裝了一些智慧家庭設備。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」好了！現在可以用手機控制燈光了！</span>
+                    </div>
+                    <p>棉花糖立刻拿著手機玩起來！</p>
+                </div>
+            </div>
+            
+            <!-- 第四部分 -->
+            <div class="part-divider">
+                <h2>第四部分：完工與入住</h2>
+                <p>温馨的新家！</p>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景11: 完工驗收</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">11</span>改造完成！一家人參觀煥然一新的家。</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」怎麼樣？漂亮嗎！？</span>
+                    </div>
+                    <p>大家都驚呼：</p>
+                    <div class="dialogue">
+                        <strong>棉花糖</strong>
+                        <span class="text」好漂亮！！！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景12: 客廳回憶</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">12</span>晚上，一家人坐在新的客廳裡。</p>
+                    <p>爸爸感慨地說：</p>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」這是我們一起打造的家！</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene">
+                <div class="scene-image">
+                    <div class="placeholder">📷 場景13: 結語</div>
+                </div>
+                <div class="scene-text">
+                    <p><span class="scene-number">13</span>媽媽看著這個家，心裡充滿了感激。</p>
+                    <div class="dialogue">
+                        <strong>媽媽</strong>
+                        <span class="text」謝謝你，把我們的家變得這麼溫馨。</span>
+                    </div>
+                    <div class="dialogue">
+                        <strong>爸爸</strong>
+                        <span class="text」不客氣，這是我們的家，一起努力的成果。</span>
+                    </div>
+                    <p>這是一家人最寶貴的回憶。</p>
+                </div>
+            </div>
+            
+            <!-- 結語 -->
+            <div class="part-divider">
+                <h2>🎉 完</h2>
+                <p>謝謝觀看！</p>
+            </div>
+            
+        </div>
+        
+        <div class="footer">
+            <a href="../index.html" class="back-button">🏠 回首頁</a>
+        </div>
+    </div>
+</body>
+</html>
