@@ -284,7 +284,7 @@
         <div class="header">
             <div class="episode-tag">🎬 第三集</div>
             <h1>守護家人的智慧生活</h1>
-            <div class="subtitle">爸爸安裝 WiFi 智慧電源模組，讓家裡更安全...</div>
+            <div class="subtitle">爸爸研究智慧電源模組，讓家裡更安全、更智慧...</div>
         </div>
         
         <div class="story-content">
@@ -294,10 +294,8 @@
                 <div class="items">
                     <div class="item">220V 電力</div>
                     <div class="item">智慧電源模組</div>
-                    <div class="item">eWeLink APP</div>
-                    <div class="item">Tuya</div>
-                    <div class="item">Home Assistant</div>
-                    <div class="item">冷氣 + 熱泵熱水器</div>
+                    <div class="item">WiFi 控制</div>
+                    <div class="item">冷氣 + 熱泵</div>
                 </div>
             </div>
             
@@ -331,7 +329,7 @@
             <!-- 第一部分 -->
             <div class="part-divider">
                 <h2>第一部分：危機浮現</h2>
-                <p>爸爸發現了一個隱藏的危險...</p>
+                <p>爸爸看到新聞，心裡開始擔心...</p>
             </div>
             
             <div class="scene">
@@ -339,9 +337,9 @@
                     <div class="placeholder">📷 場景1: 客廳 - 爸爸看新聞</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">1</span>一個普通的週六下午，爸爸在客廳看電視。</p>
-                    <p>新聞正在播放一則住宅火警的報導：「日前桃園一戶人家因為電線走火，發生嚴重火災，幸運的是家人及時逃出...」</p>
-                    <p>爸爸放下遙控器，眉頭皺了起來。</p>
+                    <p><span class="scene-number">1</span>晚上吃完飯，爸爸坐在客廳看電視。新聞正在播放一則住宅火警的報導。</p>
+                    <p>「又有一戶人家因為電線走火發生火灾...」主播嚴肅地說著。</p>
+                    <p>爸爸皺起眉頭，心裡開始想著什麼。</p>
                 </div>
             </div>
             
@@ -350,12 +348,12 @@
                     <div class="placeholder">📷 場景2: 爸爸的擔心</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">2</span>爸爸開始回想家裡的電路情況。</p>
+                    <p><span class="scene-number">2</span>爸爸放下遙控器，眼神變得嚴肅起來。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「不對...我們家也是老屋，電路不知道有多少年了...」</span>
+                        <span class="text">「不對，我們家的電路也很老舊了...」</span>
                     </div>
-                    <p>他想到家裡的冷氣和熱泵熱水器好像都是用同一條線，這樣會不會太危險？</p>
+                    <p>他想到家裡的冷氣和熱泵熱水器都是用同一條 220V 的電線，萬一同時運轉，負荷會不會太大？</p>
                 </div>
             </div>
             
@@ -364,23 +362,9 @@
                     <div class="placeholder">📷 場景3: 研究電力問題</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">3</span>爸爸立刻上網查資料，研究老屋電力問題。</p>
-                    <p>「一條 220V 電線分兩台高功率電器...這很危險啊！」爸爸自言自語。</p>
-                    <p>他發現如果冷氣和熱泵熱水器同時運轉，會造成電線負荷過大，不只會跳電，嚴重的話甚至會起火！</p>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景4: 發現嚴重性</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">4</span>爸爸深入研究後，發現問題比想像中更嚴重。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「我們家老屋當初裝的時候，只拉了一條 220V 的電源線。現在要同時開冷氣和熱水器，電線根本承受不住！」</span>
-                    </div>
-                    <p>他決定要找一個解決方案。</p>
+                    <p><span class="scene-number">3</span>爸爸開始上網查資料，研究老屋電路問題。</p>
+                    <p>「一條電線分兩台機器...這很危險啊！」爸爸自言自語。</p>
+                    <p>他發現如果冷氣和熱泵熱水器同時運轉，可能會造成電線過載，甚至起火。</p>
                 </div>
             </div>
             
@@ -392,13 +376,13 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景5: 客廳討論</div>
+                    <div class="placeholder">📷 場景4: 客廳討論</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">5</span>晚飯後，爸爸把家人叫到客廳。</p>
+                    <p><span class="scene-number">4</span>爸爸把家人叫到客廳，準備宣布他的發現。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「我發現我們家有個很大的問題...」</span>
+                        <span class="text">「我發現我們家有個問題...」</span>
                     </div>
                     <p>媽媽和兩個兒子都看向爸爸，不知道他要說什麼。</p>
                 </div>
@@ -406,13 +390,13 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景6: 爸爸解釋問題</div>
+                    <div class="placeholder">📷 場景5: 爸爸解釋問題</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">6</span>爸爸拿出紙筆，開始畫圖解釋。</p>
+                    <p><span class="scene-number">5</span>爸爸拿出紙筆，開始畫圖解釋。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「你們看，我們家客廳的冷氣和熱泵熱水器，是用同一條 220V 電線。如果同時開，電線會負荷過大，可能會跳電，嚴重的話...會起火。」</span>
+                        <span class="text">「你們看，我們家客廳的冷氣和熱泵熱水器是用同一條 220V 電線。如果同時開，電線會負荷過大，可能會跳電，甚至...起火。」</span>
                     </div>
                     <p>棉花糖睜大眼睛，阿布吉也皺起眉頭。</p>
                 </div>
@@ -420,70 +404,53 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景7: 媽媽的反應</div>
+                    <div class="placeholder">📷 場景6: 媽媽的反應</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">7</span>媽媽聽完，有點擔心。</p>
+                    <p><span class="scene-number">6</span>媽媽聽完，有點擔心。</p>
                     <div class="dialogue">
                         <strong>媽媽</strong>
-                        <span class="text">「真的這麼危險？那我們該怎麼辦？要請人來重新拉線嗎？」</span>
+                        <span class="text">「真的這麼危險？那我們該怎麼辦？」</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「不用那麼麻煩！我查到有一種 WiFi 智慧電源模組，可以讓它們輪流運作，這樣就不會同時用電了！」</span>
+                        <span class="text」我已經查到一個方法了！用智慧電源模組，讓它們輪替運作，就不會同時用電了！</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景8: 棉花糖的好奇</div>
+                    <div class="placeholder">📷 場景7: 棉花糖的好奇</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">8</span>棉花糖舉手發問。</p>
+                    <p><span class="scene-number">7</span>棉花糖舉手發問。</p>
                     <div class="dialogue">
                         <strong>棉花糖</strong>
                         <span class="text">「智慧電源模組？那是什麼？很厲害嗎？」</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「很厲害！可以透過 WiFi 控制，還能用 APP 操作，讓冷氣和熱水器輪流開，這樣就不會過載了！而且還能看到用電量！」</span>
+                        <span class="text">「很厲害！可以透過 WiFi 控制，還能設定排程，讓冷氣和熱泵輪流開，這樣就不會過載了！」</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景9: 阿布吉的興趣</div>
+                    <div class="placeholder">📷 場景8: 阿布吉的興趣</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">9</span>阿布吉听到 WiFi 和 APP 控制，耳朵豎了起來。</p>
+                    <p><span class="scene-number">8</span>阿布吉听到 WiFi 控制，耳朵豎了起來。</p>
                     <div class="dialogue">
                         <strong>阿布吉</strong>
-                        <span class="text">「所以可以用手機控制？是用 eWeLink 還是 Tuya？還是 Home Assistant？」</span>
+                        <span class="text">「所以可以用手機控制？」</span>
                     </div>
-                    <p>爸爸有點驚訝，原來兒子對這個也有研究！</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「都可以！我打算用 eWeLink，相對比較簡單。以後如果要用 Home Assistant 也可以擴充！」</span>
+                        <span class="text」對！還能看到用電量，很方便！</span>
                     </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景10: 決定動工</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">10</span>一家人討論完畢，決定這個週末就動工！</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「好！我們今天先去買材料，週末來安裝！」</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「好！我要幫忙！」</span>
-                    </div>
+                    <p>阿布吉點點頭，难得表现出兴趣。</p>
                 </div>
             </div>
             
@@ -495,50 +462,50 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景11: 材料準備</div>
+                    <div class="placeholder">📷 場景9: 工具準備</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">11</span>週末一早，爸爸把所有材料都拿出來。</p>
-                    <p>智慧電源模組、螺絲起子、電工膠帶、延長線...攤滿了一桌子。</p>
+                    <p><span class="scene-number">9</span>週末，爸爸把所有工具都拿出來，準備大顯身手。</p>
+                    <p>螺絲起子、電工膠帶、智慧電源模組...擺滿了一桌子。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「今天要把我們家的電路升級！這樣大家用電就更安全了！」</span>
+                        <span class="text」今天要把我們家的電路升級！</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景12: 爸爸施工中</div>
+                    <div class="placeholder">📷 場景10: 爸爸施工中</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">12</span>爸爸戴上手套，認真地安裝智慧電源模組。</p>
+                    <p><span class="scene-number">10</span>爸爸戴上手套，認真地安裝智慧電源模組。</p>
                     <p>每一條電線都小心翼翼地接上，確保不會有任何鬆脫。</p>
                     <p>阿布吉在旁邊看著爸爸施工。</p>
                     <div class="dialogue">
                         <strong>阿布吉</strong>
-                        <span class="text">「爸，你小心一點。這種事情還是專業的來比較好。」</span>
+                        <span class="text」爸，你小心一點。</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「放心，爸爸以前學過的！而且這個模組有保護機制，很安全的！」</span>
+                        <span class="text」放心，爸爸以前學過的！</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景13: 棉花糖幫忙</div>
+                    <div class="placeholder">📷 場景11: 棉花糖幫忙</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">13</span>棉花糖跑過來，遞給爸爸螺絲起子。</p>
+                    <p><span class="scene-number">11</span>棉花糖跑過來，遞給爸爸螺絲起子。</p>
                     <div class="dialogue">
                         <strong>棉花糖</strong>
-                        <span class="text">「爸，給你！這個對吧？」</span>
+                        <span class="text」爸，給你！這個對吧？</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「對！兒子長大了，可以幫忙了！」</span>
+                        <span class="text」對！兒子長大了，可以幫忙了！</span>
                     </div>
                     <p>棉花糖開心地笑了。</p>
                 </div>
@@ -546,32 +513,28 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景14: 媽媽送水</div>
+                    <div class="placeholder">📷 場景12: 媽媽送水</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">14</span>媽媽端著冰水走過來。</p>
+                    <p><span class="scene-number">12</span>媽媽端著冰水走過來。</p>
                     <div class="dialogue">
                         <strong>媽媽</strong>
-                        <span class="text">「休息一下，先喝點水。」</span>
+                        <span class="text」休息一下，先喝點水。</span>
                     </div>
                     <p>爸爸接過水杯，看著家人都在身旁，心裡感到溫暖。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「快好了！最後一個步驟！」</span>
-                    </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景15: 完成安裝</div>
+                    <div class="placeholder">📷 場景13: 完成安裝</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">15</span>經過一番努力，智慧電源模組終於安裝完成了！</p>
-                    <p>爸爸站起來，滿意地看著自己的作品。小小的模組閃爍著綠色的 LED 燈。</p>
+                    <p><span class="scene-number">13</span>經過一番努力，智慧電源模組終於安裝完成了！</p>
+                    <p>爸爸站起來，滿意地看著自己的作品。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「好了！現在我們家的電路升級了！就算冷氣和熱水器同時開也不會跳電，更不會有火災風險！」</span>
+                        <span class="text」好了！現在我們家的電路升級了！</span>
                     </div>
                 </div>
             </div>
@@ -584,83 +547,83 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景16: APP 演示</div>
+                    <div class="placeholder">📷 場景14: 手機演示</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">16</span>爸爸拿出手機，打開 eWeLink APP。</p>
+                    <p><span class="scene-number">14</span>爸爸拿出手機，開始演示智慧電源的功能。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「你們看！這是我們家的用電狀況！上面顯示冷氣現在是開的，熱水器是關的。」</span>
+                        <span class="text」你們看！這是我們家的用電狀況！</span>
                     </div>
-                    <p>手機螢幕上清楚顯示著兩個設備的狀態。</p>
+                    <p>手機螢幕上顯示著即時用電量和設備狀態。</p>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景17: 棉花糖操作</div>
+                    <div class="placeholder">📷 場景15: 棉花糖操作</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">17</span>棉花糖接過手機，興奮地滑動著。</p>
+                    <p><span class="scene-number">15</span>棉花糖接過手機，興奮地滑動著。</p>
                     <div class="dialogue">
                         <strong>棉花糖</strong>
-                        <span class="text">「哇！好酷！可以開冷氣！可以開熱水器！還可以設定時間！」</span>
+                        <span class="text」哇！好酷！可以開冷氣！可以開熱水器！</span>
                     </div>
-                    <p>他隨手點了一下，手機顯示：「已開啟熱水器，冷氣將於 30 分鐘後自動關閉」。</p>
+                    <p>他隨手點了一下，冷氣馬上啟動了。</p>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景18: 阿布吉研究</div>
+                    <div class="placeholder">📷 場景16: 阿布吉測試</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">18</span>阿布吉也湊過去研究 APP 的功能。</p>
+                    <p><span class="scene-number">16</span>阿布吉也湊過去研究。</p>
                     <div class="dialogue">
                         <strong>阿布吉</strong>
-                        <span class="text">「爸，這個排程功能可以設定嗎？比如設定下午 5 點開熱水器，這樣我們回家就有熱水用了？」</span>
+                        <span class="text」爸，這個排程功能怎麼用？</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「當然可以！還可以設定禮拜幾幾點自動開關，超級方便！而且如果之後要接 Home Assistant 也可以，這樣就能用聲控了！」</span>
+                        <span class="text」可以設定時間啊！比如設定下午 5 點開熱水器，這樣我們回家就有熱水用了！</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景19: 媽媽的感想</div>
+                    <div class="placeholder">📷 場景17: 媽媽的感想</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">19</span>媽媽看著這一切，臉上露出欣慰的笑容。</p>
+                    <p><span class="scene-number">17</span>媽媽看著這一切，臉上露出欣慰的笑容。</p>
                     <div class="dialogue">
                         <strong>媽媽</strong>
-                        <span class="text">「你爸真的很厲害，想辦法保護我們全家。以後夏天開冷氣、冬天開熱水器都不用擔心了！」</span>
+                        <span class="text」你爸真的很厲害，想辦法保護我們全家。</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「哪裡，這樣我們用電也更省了！而且萬一有什麼異常，手機還會立刻通知我們！」</span>
+                        <span class="text」哪裡，這樣我們用電也更省了！</span>
                     </div>
                 </div>
             </div>
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景20: 家庭會議</div>
+                    <div class="placeholder">📷 場景18: 家庭會議</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">20</span>一家人坐在客廳，討論著智慧家庭的可能性。</p>
+                    <p><span class="scene-number">18</span>一家人坐在客廳，討論著智慧家庭的可能性。</p>
                     <div class="dialogue">
                         <strong>棉花糖</strong>
-                        <span class="text">「那我們下次可以加什麼？智慧燈光？智慧門鎖？」</span>
+                        <span class="text」那我們下次可以加什麼？智慧燈光？智慧門鎖？</span>
                     </div>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「一步一步來，先把基礎打好再說！之後可以接 Home Assistant，弄一個真正的智慧家庭！」</span>
+                        <span class="text」一步一步來，先把基礎打好再說！</span>
                     </div>
                     <div class="dialogue">
                         <strong>阿布吉</strong>
-                        <span class="text">「我覺得可以加個智慧窗簾，早上自動打開，這樣就不會睡過頭了。」</span>
+                        <span class="text」我覺得可以加個智慧窗簾，早上自動打開。</span>
                     </div>
                     <p>全家人都笑了。</p>
                 </div>
@@ -668,19 +631,18 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <div class="placeholder">📷 場景21: 結語</div>
+                    <div class="placeholder">📷 場景19: 結語</div>
                 </div>
                 <div class="scene-text">
-                    <p><span class="scene-number">21</span>晚上，關上燈，爸爸最後確認了一次手機。</p>
-                    <p>螢幕上顯示：「所有設備正常運作，晚安！」</p>
-                    <p>他安心地笑了。</p>
+                    <p><span class="scene-number">19</span>晚上，關上燈，爸爸用手機關掉冷氣。</p>
+                    <p>看著螢幕上顯示「所有設備已關閉」，他安心地笑了。</p>
                     <div class="dialogue">
                         <strong>爸爸</strong>
-                        <span class="text">「這樣就不用擔心睡覺的時候電器過載了。大家晚安！」</span>
+                        <span class="text」這樣就不用擔心睡覺的時候電器過載了。大家晚安！</span>
                     </div>
                     <div class="dialogue">
                         <strong>媽媽</strong>
-                        <span class="text">「晚安！謝謝你保護我們的家。」</span>
+                        <span class="text」晚安！謝謝你保護我們的家。</span>
                     </div>
                 </div>
             </div>
