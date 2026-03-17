@@ -240,6 +240,110 @@
                 font-size: 1.4em;
             }
         }
+    
+        /* 漸進式圖片載入 */
+        .scene-image {
+            position: relative;
+            background: #f0f0f0;
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        
+        .scene-image img[data-src] {
+            filter: blur(10px);
+            transform: scale(1.05);
+        }
+        
+        .scene-image img.loaded {
+            filter: blur(0);
+            transform: scale(1);
+        }
+        
+        .scene-image .loading-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .scene-image.loaded .loading-placeholder {
+            display: none;
+        }
+        
+        /* 載入進度指示器 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+        
+        .progress-bar .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar.hidden {
+            display: none;
+        }
+        
+        /* 載入狀態提示 */
+        .loading-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .loading-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #ffa500;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-status.hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .loading-status { bottom: 10px; right: 10px; padding: 10px 15px; font-size: 0.8em; }
+        }
+
     </style>
 </head>
 <body>
@@ -281,7 +385,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="01_scene.jpg" alt="客廳全景">
+                    <img src="thumbnails/01_scene.jpg" data-src="01_scene.jpg" alt="客廳全景">
                 </div>
                 <div class="scene-text">
                     <p>週六上午十點半，南部的陽光溫暖地灑進客廳。淺色木質地板反射著光線，紅色木製沙發上，媽媽凱莉正專心地織著毛衣。</p>
@@ -290,7 +394,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="02_mom.jpg" alt="媽媽織毛衣">
+                    <img src="thumbnails/02_mom.jpg" data-src="02_mom.jpg" alt="媽媽織毛衣">
                 </div>
                 <div class="scene-text">
                     <p>凱莉坐在沙發中央，手裡的棒針靈活地舞動著。她偶爾抬頭看看電視，臉上帶著溫柔的笑容。</p>
@@ -299,7 +403,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="03_brother.jpg" alt="弟弟癱懶骨頭">
+                    <img src="thumbnails/03_brother.jpg" data-src="03_brother.jpg" alt="弟弟癱懶骨頭">
                 </div>
                 <div class="scene-text">
                     <p>客廳另一頭，弟弟棉花糖整個癱在懶骨頭上，手指在手機螢幕上飛快地滑動著。黃色的 T 恤和牛仔褲，是這個年紀最標準的打扮。</p>
@@ -308,7 +412,7 @@
 
             <div class="scene">
                 <div class="scene-image">
-                    <img src="04_brother.jpg" alt="哥哥戴耳機">
+                    <img src="thumbnails/04_brother.jpg" data-src="04_brother.jpg" alt="哥哥戴耳機">
                 </div>
                 <div class="scene-text">
                     <p>單人沙發上，哥哥阿布吉窩在角落，頭上戴著大大的耳機，沉浸在自己的音樂世界裡。灰色的衛衣讓他看起來隨性又帥氣。</p>
@@ -317,7 +421,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="05_tv.jpg" alt="電視播放媽祖">
+                    <img src="thumbnails/05_tv.jpg" data-src="05_tv.jpg" alt="電視播放媽祖">
                 </div>
                 <div class="scene-text">
                     <p>電視裡傳來熱鬧的鑼鼓聲，旅遊節目正在播放大甲媽遶境的畫面。密密麻麻的人群，虔誠的信徒，畫面充滿了台灣傳統的宗教氛圍。</p>
@@ -326,7 +430,7 @@
 
             <div class="scene">
                 <div class="scene-image">
-                    <img src="06_mom_look.jpg" alt="媽媽看兒子">
+                    <img src="thumbnails/06_mom_look.jpg" data-src="06_mom_look.jpg" alt="媽媽看兒子">
                 </div>
                 <div class="scene-text">
                     <p>凱莉的目光從電視移向兩個兒子，眼神裡滿是溫柔。她看著這個安靜的週六上午，心裡感到一陣平靜。</p>
@@ -335,7 +439,7 @@
 
             <div class="scene">
                 <div class="scene-image">
-                    <img src="07_brother_look.jpg" alt="弟弟抬頭">
+                    <img src="thumbnails/07_brother_look.jpg" data-src="07_brother_look.jpg" alt="弟弟抬頭">
                 </div>
                 <div class="scene-text">
                     <p>棉花糖感受到媽媽的目光，從手機上抬起頭，對著媽媽露出了一個燦爛的笑容。</p>
@@ -344,7 +448,7 @@
 
             <div class="scene">
                 <div class="scene-image">
-                    <img src="08_brother_earphone.jpg" alt="哥哥摘耳機">
+                    <img src="thumbnails/08_brother_earphone.jpg" data-src="08_brother_earphone.jpg" alt="哥哥摘耳機">
                 </div>
                 <div class="scene-text">
                     <p>阿布吉似乎也察覺到了什麼，摘下一側耳機，看了看媽媽和弟弟。</p>
@@ -359,7 +463,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="09_phone.jpg" alt="手機響起">
+                    <img src="thumbnails/09_phone.jpg" data-src="09_phone.jpg" alt="手機響起">
                 </div>
                 <div class="scene-text">
                     <p>突然，凱莉的手機響了起來。她放下手裡的毛衣，拿起手機看了看螢幕。</p>
@@ -368,7 +472,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="10_mom_speaking.jpg" alt="媽媽接電話">
+                    <img src="thumbnails/10_mom_speaking.jpg" data-src="10_mom_speaking.jpg" alt="媽媽接電話">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -381,7 +485,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="11_dad_work.jpg" alt="媽媽講電話">
+                    <img src="thumbnails/11_dad_work.jpg" data-src="11_dad_work.jpg" alt="媽媽講電話">
                 </div>
                 <div class="scene-text">
                     <p>掛掉電話後，凱莉眉頭微皺，看了看客廳裡的兩個兒子。</p>
@@ -390,7 +494,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="12_ask.jpg" alt="弟弟問">
+                    <img src="thumbnails/12_ask.jpg" data-src="12_ask.jpg" alt="弟弟問">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -403,7 +507,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="13_mazu_tv.jpg" alt="媽媽說">
+                    <img src="thumbnails/13_mazu_tv.jpg" data-src="13_mazu_tv.jpg" alt="媽媽說">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -421,7 +525,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="14_mom_point.jpg" alt="媽媽指電視">
+                    <img src="thumbnails/14_mom_point.jpg" data-src="14_mom_point.jpg" alt="媽媽指電視">
                 </div>
                 <div class="scene-text">
                     <p>凱莉用下巴指了指電視，螢幕上正好播到大甲媽遶境的盛大場面。</p>
@@ -430,7 +534,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="15_excited.jpg" alt="弟弟興奮">
+                    <img src="thumbnails/15_excited.jpg" data-src="15_excited.jpg" alt="弟弟興奮">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -443,7 +547,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="16_brother_talk.jpg" alt="哥哥接話">
+                    <img src="thumbnails/16_brother_talk.jpg" data-src="16_brother_talk.jpg" alt="哥哥接話">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -456,7 +560,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="17_act.jpg" alt="弟弟模擬">
+                    <img src="thumbnails/17_act.jpg" data-src="17_act.jpg" alt="弟弟模擬">
                 </div>
                 <div class="scene-text">
                     <p>棉花糖興奮地比劃著當時的情景，手舞足蹈的模樣逗笑了媽媽和哥哥。</p>
@@ -471,7 +575,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="18_mom_laugh.jpg" alt="媽媽笑">
+                    <img src="thumbnails/18_mom_laugh.jpg" data-src="18_mom_laugh.jpg" alt="媽媽笑">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -484,7 +588,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="19_brother_laugh.jpg" alt="兄弟笑">
+                    <img src="thumbnails/19_brother_laugh.jpg" data-src="19_brother_laugh.jpg" alt="兄弟笑">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -497,7 +601,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="20_auntie.jpg" alt="回憶">
+                    <img src="thumbnails/20_auntie.jpg" data-src="20_auntie.jpg" alt="回憶">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -514,7 +618,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="21_imitate.jpg" alt="哥哥酸">
+                    <img src="thumbnails/21_imitate.jpg" data-src="21_imitate.jpg" alt="哥哥酸">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -527,7 +631,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="22_laugh.jpg" alt="弟弟認真">
+                    <img src="thumbnails/22_laugh.jpg" data-src="22_laugh.jpg" alt="弟弟認真">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -540,7 +644,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="23_four_times.jpg" alt="媽媽回憶">
+                    <img src="thumbnails/23_four_times.jpg" data-src="23_four_times.jpg" alt="媽媽回憶">
                 </div>
                 <div class="scene-text">
                     <p>凱莉的眼神放空，回想著過去的點點滴滴。</p>
@@ -549,7 +653,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="24_four_finger.jpg" alt="媽媽說背">
+                    <img src="thumbnails/24_four_finger.jpg" data-src="24_four_finger.jpg" alt="媽媽說背">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -561,7 +665,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="25_tease.jpg" alt="哥哥驚訝">
+                    <img src="thumbnails/25_tease.jpg" data-src="25_tease.jpg" alt="哥哥驚訝">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -580,7 +684,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="26_serious.jpg" alt="媽媽問">
+                    <img src="thumbnails/26_serious.jpg" data-src="26_serious.jpg" alt="媽媽問">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -593,7 +697,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="27_mom_recall.jpg" alt="弟弟舉手">
+                    <img src="thumbnails/27_mom_recall.jpg" data-src="27_mom_recall.jpg" alt="弟弟舉手">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -606,7 +710,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="28_backcarry.jpg" alt="哥哥思考">
+                    <img src="thumbnails/28_backcarry.jpg" data-src="28_backcarry.jpg" alt="哥哥思考">
                 </div>
                 <div class="scene-text">
                     <p>阿布吉若有所思地看了看弟弟，又看了看媽媽。</p>
@@ -615,7 +719,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="29_surprise.jpg" alt="哥哥說">
+                    <img src="thumbnails/29_surprise.jpg" data-src="29_surprise.jpg" alt="哥哥說">
                 </div>
                 <div class="scene-text">
                     <div class="dialogue">
@@ -628,7 +732,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="30_go_again.jpg" alt="媽媽笑">
+                    <img src="thumbnails/30_go_again.jpg" data-src="30_go_again.jpg" alt="媽媽笑">
                 </div>
                 <div class="scene-text">
                     <p>凱莉露出了滿意的笑容，眼角的細紋都藏不住喜悅。</p>
@@ -637,7 +741,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="31_want_go.jpg" alt="弟弟彈">
+                    <img src="thumbnails/31_want_go.jpg" data-src="31_want_go.jpg" alt="弟弟彈">
                 </div>
                 <div class="scene-text">
                     <p>棉花糖在懶骨頭上彈了一下，開心地不得了。</p>
@@ -646,7 +750,7 @@
             
             <div class="scene">
                 <div class="scene-image">
-                    <img src="32_find_aunt.jpg" alt="三人期待">
+                    <img src="thumbnails/32_find_aunt.jpg" data-src="32_find_aunt.jpg" alt="三人期待">
                 </div>
                 <div class="scene-text">
                     <p>客廳裡，三個人的臉上都是期待的表情。電視裡的大甲媽遶境還在繼續，但這個家的故事，才正要開始...</p>
@@ -662,5 +766,81 @@
             </div>
         </div>
     </div>
+
+    <!-- 載入進度條 -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress" id="progress"></div>
+    </div>
+    
+    <!-- 載入狀態提示 -->
+    <div class="loading-status" id="loadingStatus">
+        <div class="spinner"></div>
+        <span id="loadingText">載入中 0/0</span>
+    </div>
+    
+    <script>
+        // 漸進式圖片載入
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            const total = images.length;
+            let loaded = 0;
+            
+            const progressBar = document.getElementById('progressBar');
+            const progress = document.getElementById('progress');
+            const loadingStatus = document.getElementById('loadingStatus');
+            const loadingText = document.getElementById('loadingText');
+            
+            function updateProgress() {
+                loaded++;
+                const percent = (loaded / total) * 100;
+                progress.style.width = percent + '%';
+                loadingText.textContent = '載入中 ' + loaded + '/' + total;
+                
+                if (loaded === total) {
+                    setTimeout(() => {
+                        progressBar.classList.add('hidden');
+                        loadingStatus.classList.add('hidden');
+                    }, 500);
+                }
+            }
+            
+            // 使用 Intersection Observer 實現懶載入
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const highResSrc = img.getAttribute('data-src');
+                        
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.src = highResSrc;
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.onerror = function() {
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.src = highResSrc;
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px',
+                threshold: 0.01
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+            
+            if (total === 0) {
+                progressBar.classList.add('hidden');
+                loadingStatus.classList.add('hidden');
+            }
+        });
+    </script>
+
 </body>
 </html>

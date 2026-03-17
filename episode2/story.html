@@ -123,6 +123,110 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255,107,107,0.4);
         }
+    
+        /* 漸進式圖片載入 */
+        .scene-image {
+            position: relative;
+            background: #f0f0f0;
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        
+        .scene-image img[data-src] {
+            filter: blur(10px);
+            transform: scale(1.05);
+        }
+        
+        .scene-image img.loaded {
+            filter: blur(0);
+            transform: scale(1);
+        }
+        
+        .scene-image .loading-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .scene-image.loaded .loading-placeholder {
+            display: none;
+        }
+        
+        /* 載入進度指示器 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+        
+        .progress-bar .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar.hidden {
+            display: none;
+        }
+        
+        /* 載入狀態提示 */
+        .loading-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .loading-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f0f0f0;
+            border-top-color: #ffa500;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-status.hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .loading-status { bottom: 10px; right: 10px; padding: 10px 15px; font-size: 0.8em; }
+        }
+
     </style>
 </head>
 <body>
@@ -137,7 +241,7 @@
             <!-- 場景 1 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="01_家門集合.jpg" alt="家門集合">
+                    <img src="01_家門集合.jpg" data-src="01_家門集合.jpg" alt="家門集合">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 1：家門集合</span>
@@ -149,7 +253,7 @@
             <!-- 場景 2 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="02_鎮瀾宮前.jpg" alt="鎮瀾宮前">
+                    <img src="02_鎮瀾宮前.jpg" data-src="02_鎮瀾宮前.jpg" alt="鎮瀾宮前">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 2：鎮瀾宮前</span>
@@ -161,7 +265,7 @@
             <!-- 場景 3 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="03_起駕時刻.jpg" alt="起駕時刻">
+                    <img src="03_起駕時刻.jpg" data-src="03_起駕時刻.jpg" alt="起駕時刻">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 3：起駕時刻</span>
@@ -173,7 +277,7 @@
             <!-- 場景 4 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="04_犁頭店.jpg" alt="犁頭店">
+                    <img src="04_犁頭店.jpg" data-src="04_犁頭店.jpg" alt="犁頭店">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 4：犁頭店</span>
@@ -184,7 +288,7 @@
             <!-- 場景 5 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="05_七里香.jpg" alt="七里香">
+                    <img src="05_七里香.jpg" data-src="05_七里香.jpg" alt="七里香">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 5：七里香</span>
@@ -195,7 +299,7 @@
             <!-- 場景 6 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="06_路邊休息.jpg" alt="路邊休息">
+                    <img src="06_路邊休息.jpg" data-src="06_路邊休息.jpg" alt="路邊休息">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 6：路邊休息</span>
@@ -206,7 +310,7 @@
             <!-- 場景 7 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="07_抵達沙鹿.jpg" alt="抵達沙鹿">
+                    <img src="07_抵達沙鹿.jpg" data-src="07_抵達沙鹿.jpg" alt="抵達沙鹿">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 7：抵達沙鹿</span>
@@ -217,7 +321,7 @@
             <!-- 場景 8 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="08_第一天結束.jpg" alt="第一天結束">
+                    <img src="08_第一天結束.jpg" data-src="08_第一天結束.jpg" alt="第一天結束">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 8：第一天結束</span>
@@ -228,7 +332,7 @@
             <!-- 場景 9 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="09_清晨出發.jpg" alt="清晨出發">
+                    <img src="09_清晨出發.jpg" data-src="09_清晨出發.jpg" alt="清晨出發">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 9：清晨出發</span>
@@ -239,7 +343,7 @@
             <!-- 場景 10 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="10_彰化火車站.jpg" alt="彰化火車站">
+                    <img src="10_彰化火車站.jpg" data-src="10_彰化火車站.jpg" alt="彰化火車站">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 10：彰化火車站</span>
@@ -250,7 +354,7 @@
             <!-- 場景 11 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="11_扇形車庫.jpg" alt="扇形車庫">
+                    <img src="11_扇形車庫.jpg" data-src="11_扇形車庫.jpg" alt="扇形車庫">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 11：扇形車庫</span>
@@ -261,7 +365,7 @@
             <!-- 場景 12 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="12_南瑤宮.jpg" alt="南瑤宮">
+                    <img src="12_南瑤宮.jpg" data-src="12_南瑤宮.jpg" alt="南瑤宮">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 12：南瑤宮</span>
@@ -272,7 +376,7 @@
             <!-- 場景 13 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="13_午餐.jpg" alt="午餐">
+                    <img src="13_午餐.jpg" data-src="13_午餐.jpg" alt="午餐">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 13：午餐 - 彰化肉圓</span>
@@ -283,7 +387,7 @@
             <!-- 場景 14 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="14_下午遙境.jpg" alt="下午遙境">
+                    <img src="14_下午遙境.jpg" data-src="14_下午遙境.jpg" alt="下午遙境">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 14：下午遙境</span>
@@ -294,7 +398,7 @@
             <!-- 場景 15 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="15_互相扶持.jpg" alt="互相扶持">
+                    <img src="15_互相扶持.jpg" data-src="15_互相扶持.jpg" alt="互相扶持">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 15：互相扶持</span>
@@ -305,7 +409,7 @@
             <!-- 場景 16 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="16_傍晚回程.jpg" alt="傍晚回程">
+                    <img src="16_傍晚回程.jpg" data-src="16_傍晚回程.jpg" alt="傍晚回程">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 16：傍晚回程</span>
@@ -316,7 +420,7 @@
             <!-- 場景 17 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="17_第二天結束.jpg" alt="第二天結束">
+                    <img src="17_第二天結束.jpg" data-src="17_第二天結束.jpg" alt="第二天結束">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 17：第二天結束</span>
@@ -327,7 +431,7 @@
             <!-- 場景 18 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="18_凌晨準備.jpg" alt="凌晨準備">
+                    <img src="18_凌晨準備.jpg" data-src="18_凌晨準備.jpg" alt="凌晨準備">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 18：凌晨準備</span>
@@ -338,7 +442,7 @@
             <!-- 場景 19 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="19_龍井集合.jpg" alt="龍井集合">
+                    <img src="19_龍井集合.jpg" data-src="19_龍井集合.jpg" alt="龍井集合">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 19：龍井集合</span>
@@ -349,7 +453,7 @@
             <!-- 場景 20 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="20_晨光出發.jpg" alt="晨光出發">
+                    <img src="20_晨光出發.jpg" data-src="20_晨光出發.jpg" alt="晨光出發">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 20：晨光出發</span>
@@ -360,7 +464,7 @@
             <!-- 場景 21 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="21_田野風光.jpg" alt="田野風光">
+                    <img src="21_田野風光.jpg" data-src="21_田野風光.jpg" alt="田野風光">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 21：田野風光</span>
@@ -371,7 +475,7 @@
             <!-- 場景 22 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="22_清水紫雲巖.jpg" alt="清水紫雲巖">
+                    <img src="22_清水紫雲巖.jpg" data-src="22_清水紫雲巖.jpg" alt="清水紫雲巖">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 22：清水紫雲巖</span>
@@ -382,7 +486,7 @@
             <!-- 場景 23 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="23_輕鬆氛圍.jpg" alt="輕鬆氛圍">
+                    <img src="23_輕鬆氛圍.jpg" data-src="23_輕鬆氛圍.jpg" alt="輕鬆氛圍">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 23：輕鬆氛圍</span>
@@ -393,7 +497,7 @@
             <!-- 場景 24 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="24_路邊合照.jpg" alt="路邊合照">
+                    <img src="24_路邊合照.jpg" data-src="24_路邊合照.jpg" alt="路邊合照">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 24：路邊合照</span>
@@ -404,7 +508,7 @@
             <!-- 場景 25 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="25_中午結束.jpg" alt="中午結束">
+                    <img src="25_中午結束.jpg" data-src="25_中午結束.jpg" alt="中午結束">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 25：中午結束</span>
@@ -415,7 +519,7 @@
             <!-- 場景 26 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="26_下午逛清水.jpg" alt="下午逛清水">
+                    <img src="26_下午逛清水.jpg" data-src="26_下午逛清水.jpg" alt="下午逛清水">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 26：下午逛清水</span>
@@ -426,7 +530,7 @@
             <!-- 場景 27 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="27_最終日.jpg" alt="最終日">
+                    <img src="27_最終日.jpg" data-src="27_最終日.jpg" alt="最終日">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 27：最終日</span>
@@ -437,7 +541,7 @@
             <!-- 場景 28 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="28_台中港出發.jpg" alt="台中港出發">
+                    <img src="28_台中港出發.jpg" data-src="28_台中港出發.jpg" alt="台中港出發">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 28：台中港出發</span>
@@ -448,7 +552,7 @@
             <!-- 場景 29 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="29_最後一段.jpg" alt="最後一段">
+                    <img src="29_最後一段.jpg" data-src="29_最後一段.jpg" alt="最後一段">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 29：最後一段</span>
@@ -459,7 +563,7 @@
             <!-- 場景 30 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="30_回鎮瀾宮.jpg" alt="回鎮瀾宮">
+                    <img src="30_回鎮瀾宮.jpg" data-src="30_回鎮瀾宮.jpg" alt="回鎮瀾宮">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 30：回鎮瀾宮</span>
@@ -470,7 +574,7 @@
             <!-- 場景 31 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="31_感謝.jpg" alt="感謝">
+                    <img src="31_感謝.jpg" data-src="31_感謝.jpg" alt="感謝">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 31：感謝</span>
@@ -481,7 +585,7 @@
             <!-- 場景 32 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="32_阿布吉感性.jpg" alt="阿布吉感性">
+                    <img src="32_阿布吉感性.jpg" data-src="32_阿布吉感性.jpg" alt="阿布吉感性">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 32：阿布吉感性</span>
@@ -492,7 +596,7 @@
             <!-- 場景 33 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="33_棉花糖的願望.jpg" alt="棉花糖的願望">
+                    <img src="33_棉花糖的願望.jpg" data-src="33_棉花糖的願望.jpg" alt="棉花糖的願望">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 33：棉花糖的願望</span>
@@ -503,7 +607,7 @@
             <!-- 場景 34 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="34_回家.jpg" alt="回家">
+                    <img src="34_回家.jpg" data-src="34_回家.jpg" alt="回家">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 34：回家</span>
@@ -514,7 +618,7 @@
             <!-- 場景 35 -->
             <div class="scene">
                 <div class="scene-image">
-                    <img src="35_結尾.jpg" alt="結尾">
+                    <img src="35_結尾.jpg" data-src="35_結尾.jpg" alt="結尾">
                 </div>
                 <div class="scene-text">
                     <span class="scene-number">場景 35：結尾</span>
@@ -529,5 +633,81 @@
             <a href="../dev/episode2/story.html">👩‍💻 開發者版</a>
         </div>
     </div>
+
+    <!-- 載入進度條 -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress" id="progress"></div>
+    </div>
+    
+    <!-- 載入狀態提示 -->
+    <div class="loading-status" id="loadingStatus">
+        <div class="spinner"></div>
+        <span id="loadingText">載入中 0/0</span>
+    </div>
+    
+    <script>
+        // 漸進式圖片載入
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            const total = images.length;
+            let loaded = 0;
+            
+            const progressBar = document.getElementById('progressBar');
+            const progress = document.getElementById('progress');
+            const loadingStatus = document.getElementById('loadingStatus');
+            const loadingText = document.getElementById('loadingText');
+            
+            function updateProgress() {
+                loaded++;
+                const percent = (loaded / total) * 100;
+                progress.style.width = percent + '%';
+                loadingText.textContent = '載入中 ' + loaded + '/' + total;
+                
+                if (loaded === total) {
+                    setTimeout(() => {
+                        progressBar.classList.add('hidden');
+                        loadingStatus.classList.add('hidden');
+                    }, 500);
+                }
+            }
+            
+            // 使用 Intersection Observer 實現懶載入
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const highResSrc = img.getAttribute('data-src');
+                        
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.src = highResSrc;
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.onerror = function() {
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.src = highResSrc;
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px',
+                threshold: 0.01
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+            
+            if (total === 0) {
+                progressBar.classList.add('hidden');
+                loadingStatus.classList.add('hidden');
+            }
+        });
+    </script>
+
 </body>
 </html>
