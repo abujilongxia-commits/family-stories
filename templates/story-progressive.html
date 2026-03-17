@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - 家庭故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background: linear-gradient(135deg, {{GRADIENT_FROM}} 0%, {{GRADIENT_TO}} 100%);
+            min-height: 100vh;
+            padding: 0;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, {{GRADIENT_FROM}} 0%, {{GRADIENT_TO}} 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+        
+        .header .episode-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.3;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .story-content {
+            padding: 40px 30px;
+        }
+        
+        .scene {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+        
+        .scene-image {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: #f0f0f0;
+            position: relative;
+        }
+        
+        /* 漸進式圖片載入核心樣式 */
+        .scene-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .scene-image img[data-src] {
+            /* 低畫質縮圖（已載入） */
+            filter: blur(10px);
+            transform: scale(1.05);
+        }
+        
+        .scene-image img.loaded {
+            /* 高畫質圖片已載入 */
+            filter: blur(0);
+            transform: scale(1);
+        }
+        
+        .scene-image .loading-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .scene-image.loaded .loading-placeholder {
+            display: none;
+        }
+        
+        .scene-text {
+            padding: 0 10px;
+        }
+        
+        .scene-text p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .scene-number {
+            display: inline-block;
+            background: linear-gradient(135deg, {{GRADIENT_FROM}} 0%, {{GRADIENT_TO}} 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-links {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            background: linear-gradient(135deg, {{GRADIENT_FROM}} 0%, {{GRADIENT_TO}} 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        /* 載入進度指示器 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+        
+        .progress-bar .progress {
+            height: 100%;
+            background: linear-gradient(90deg, {{GRADIENT_FROM}}, {{GRADIENT_TO}});
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar.hidden {
+            display: none;
+        }
+        
+        /* 載入狀態提示 */
+        .loading-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .loading-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f0f0f0;
+            border-top-color: {{GRADIENT_TO}};
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-status.hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 40px 20px; }
+            .header h1 { font-size: 1.6em; }
+            .story-content { padding: 25px 20px; }
+            .loading-status { bottom: 10px; right: 10px; padding: 10px 15px; font-size: 0.8em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 載入進度條 -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress" id="progress"></div>
+    </div>
+    
+    <!-- 載入狀態提示 -->
+    <div class="loading-status" id="loadingStatus">
+        <div class="spinner"></div>
+        <span id="loadingText">載入中 0/0</span>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <span class="episode-tag">{{EPISODE_TAG}}</span>
+            <h1>{{TITLE}}</h1>
+            <p class="subtitle">{{SUBTITLE}}</p>
+        </div>
+        
+        <div class="story-content">
+            {{SCENES}}
+        </div>
+        
+        <div class="nav-links">
+            <a href="../">← 返回首頁</a>
+            <a href="./">場景列表</a>
+        </div>
+    </div>
+    
+    <script>
+        // 漸進式圖片載入
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            const total = images.length;
+            let loaded = 0;
+            
+            const progressBar = document.getElementById('progressBar');
+            const progress = document.getElementById('progress');
+            const loadingStatus = document.getElementById('loadingStatus');
+            const loadingText = document.getElementById('loadingText');
+            
+            function updateProgress() {
+                loaded++;
+                const percent = (loaded / total) * 100;
+                progress.style.width = percent + '%';
+                loadingText.textContent = `載入中 ${loaded}/${total}`;
+                
+                if (loaded === total) {
+                    // 所有圖片載入完成
+                    setTimeout(() => {
+                        progressBar.classList.add('hidden');
+                        loadingStatus.classList.add('hidden');
+                    }, 500);
+                }
+            }
+            
+            // 使用 Intersection Observer 實現懶載入
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const highResSrc = img.getAttribute('data-src');
+                        
+                        // 預載入高畫質圖片
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.src = highResSrc;
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.onerror = function() {
+                            // 高畫質載入失敗，保留低畫質
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('loaded');
+                            updateProgress();
+                            observer.unobserve(img);
+                        };
+                        tempImg.src = highResSrc;
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px', // 提前 100px 開始載入
+                threshold: 0.01
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+            
+            // 如果沒有圖片，隱藏進度指示器
+            if (total === 0) {
+                progressBar.classList.add('hidden');
+                loadingStatus.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
