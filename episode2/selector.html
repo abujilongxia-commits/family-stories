@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二集圖片選擇器</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif; background: #1a1a2e; color: #fff; padding: 20px; }
+        h1 { text-align: center; margin-bottom: 30px; color: #e94560; }
+        h2 { margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #e94560; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card { background: #16213e; border-radius: 12px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3); }
+        .card.selected { ring: 3px solid #e94560; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 15px; }
+        .card-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .card-prompt { font-size: 11px; color: #888; line-height: 1.4; max-height: 60px; overflow: hidden; }
+        .checkbox { position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; background: rgba(0,0,0,0.7); border: 2px solid #e94560; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .card.selected .checkbox { background: #e94560; }
+        .card.selected .checkbox::after { content: "✓"; color: white; font-weight: bold; }
+        .stats { position: fixed; bottom: 20px; left: 20px; background: #16213e; padding: 15px 25px; border-radius: 12px; font-size: 14px; }
+        .btn { position: fixed; bottom: 20px; right: 20px; background: #e94560; color: white; border: none; padding: 15px 30px; border-radius: 12px; font-size: 16px; cursor: pointer; transition: background 0.3s; }
+        .btn:hover { background: #ff6b6b; }
+        .section-nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .section-nav a { color: #e94560; text-decoration: none; padding: 8px 16px; background: #16213e; border-radius: 20px; font-size: 14px; }
+        .section-nav a:hover { background: #e94560; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🎬 第二集圖片選擇器</h1>
+    
+    <div class="section-nav">
+        <a href="#new">📸 新生成 (35張)</a>
+        <a href="#archive">📁 庫存區</a>
+    </div>
+
+    <h2 id="new">📸 新生成的圖片 (35張)</h2>
+    <div class="grid" id="new-grid"></div>
+
+    <h2 id="archive">📁 庫存區 (上一批)</h2>
+    <div class="grid" id="archive-grid"></div>
+
+    <div class="stats">已選擇: <span id="count">0</span> 張</div>
+    <button class="btn" onclick="saveSelection()">💾 儲存選擇</button>
+
+    <script>
+        const newImages = [
+            { name: "01_家門集合.jpg", prompt: "傍晚時分，台灣家庭家門口，爸爸拿相機走出房門，媽媽拿香旗和供品，棉花糖從沙發跳起來，全家準備出門參加大甲媽祖遶境，人山人海信徒隊伍、紅色香旗旗海飄飄，金色媽祖神轎被多人抬著前進，夜晚燈火通明，宮崎駿動畫風格" },
+            { name: "02_鎮瀾宮前.jpg", prompt: "晚上10點，大甲鎮瀾宮前廣場人山人海，媽媽拿香旗雙手合十虔誠祈福，爸爸拿相機，棉花糖好奇問問題，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，金色媽祖神轎，鞭炮煙霧，夜晚金色光芒，宮崎駿動畫風格" },
+            { name: "03_起駕時刻.jpg", prompt: "晚上10點05分，大甲媽祖起駕的震撼時刻，鞭炮聲響起，鑼鼓喧天，媽祖神轎被抬起，棉花糖超級興奮喊出發了，阿布吉說跟緊一點，爸爸拿相機捕捉畫面，大甲媽祖遶境真實場景，人山人海信徒隊伍，陣頭表演，熱鬧非凡，宮崎駿動畫風格" },
+            { name: "04_犁頭店.jpg", prompt: "深夜，大甲媽祖遶境隊伍經過犁頭店歷史街區，古色古香的傳統建築，路上滿是信徒，媽媽指著匾額解說，棉花糖擠到前面看，爸爸拿相機拍照，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，金色神轎，鞭炮聲，宮崎駿動畫風格" },
+            { name: "05_七里香.jpg", prompt: "深夜，大甲媽祖遶境路邊，七里香豆乳店門口，棉花糖累到不行癱坐路邊，媽媽遞豆漿，阿布吉蹲下來說上來吧我背你，棉花糖笑著爬上背說謝謝哥，爸爸拿相機捕捉畫面，大甲媽祖遶境真實場景，兄友弟恭的溫暖情感，宮崎駿動畫風格" },
+            { name: "06_路邊休息.jpg", prompt: "大甲媽祖遶境路邊休息，一家四口坐路邊，疲憊但滿足，媽媽拿香旗，爸爸拿相機，兩個兒子，人山人海信徒，紅色香旗旗海，夜晚燈火通明，宮崎駿動畫風格" },
+            { name: "07_抵達沙鹿.jpg", prompt: "晚上9點，大甲媽祖遶境第一天結束，一家四口抵達沙鹿民宿，媽媽說大家辛苦了，爸爸說訂了民宿，棉花糖倒在床上說謝謝你，大甲媽祖遶境期間，沙鹿小鎮街道，夜晚氛圍，民宿門口，紅色燈籠，宮崎駿動畫風格" },
+            { name: "08_第一天結束.jpg", prompt: "大甲媽祖遶境第一天結束，民宿房間內，一家四口躺在床上聊天，棉花糖說要去南瑤宮，爸爸說好明天帶你看，室內溫暖燈光，窗外小鎮夜景，溫馨家庭氛圍，宮崎駿動畫風格" },
+            { name: "09_清晨出發.jpg", prompt: "凌晨4點，大甲媽祖遶境第二天清晨，一家四口在民宿門口起床準備出發，棉花糖精神飽滿說出發吧，媽媽拿香旗，爸爸拿相機，阿布吉打著哈欠，大甲媽祖遶境真實場景，清晨街道，天還沒全亮但已有其他信徒出發，紅色燈籠光線，宮崎駿動畫風格" },
+            { name: "10_彰化火車站.jpg", prompt: "上午，大甲媽祖遶境期間抵達彰化火車站，古老的火車站建築充滿歷史感，棉花糖說好老的感覺，爸爸拿相機拍個不停，媽媽說趕快去南瑤宮，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，信徒隊伍經過，古蹟火車站建築背景，宮崎駿動畫風格" },
+            { name: "11_扇形車庫.jpg", prompt: "上午，大甲媽祖遶境第二天，彰化扇形車庫，棉花糖眼睛發亮驚奇表情看著火車，爸爸拿相機拍照，媽媽拿香旗站在一旁，大甲媽祖遶境真實場景，扇形車庫火車頭，鐵道設施，紅色香旗旗海飄飄，歷史懷舊的氛圍，宮崎駿動畫風格" },
+            { name: "12_南瑤宮.jpg", prompt: "上午，大甲媽祖遶境抵達彰化南瑤宮，巨大的廟宇氣勢非凡，紅色燈籠高掛，媽媽虔誠祈禱，爸爸雙手合十，棉花糖雙手合十說保佑我會考順利，阿布吉說臨時抱佛腳，大甲媽祖遶境真實場景，南瑤宮建築壯觀，香火裊繞，信徒人山人海，金色神轎，鞭炮煙霧，莊嚴神聖，宮崎駿動畫風格" },
+            { name: "13_午餐.jpg", prompt: "中午，大甲媽祖遶境第二天，彰化市區路邊小吃攤，桌上放著彰化肉圓等道地美食，媽媽端上盤子，棉花糖說好吃，爸爸夾菜說多吃點，大甲媽祖遶境期間，街道上信徒經過，紅色香旗，攤位氛圍，家庭歡樂用餐，宮崎駿動畫風格" },
+            { name: "14_下午遶境.jpg", prompt: "下午，大甲媽祖遶境市區，太陽很大，天氣炎熱，棉花糖步伐變慢說腳好酸，爸爸走過來問要不要拿包包，棉花糖搖搖頭，阿布吉遞水壺說喝點水，媽媽拿香旗，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，信徒隊伍前進，街道馬路背景，炎熱下午陽光，宮崎駿動畫風格" },
+            { name: "15_互相扶持.jpg", prompt: "下午，大甲媽祖遶境路上，阿布吉幫棉花糖拿背包，棉花糖說謝謝哥，阿布吉酷酷地說誰叫你是我家的人但嘴角帶笑，爸爸拿相機看著兩個兒子，媽媽拿香旗，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，金色神轎在遠處，兄弟情深，宮崎駿動畫風格" },
+            { name: "16_傍晚回程.jpg", prompt: "傍晚，大甲媽祖遶境第二天結束，夕陽西下，一家四口拖著疲憊的身體回民宿，媽媽說大家辛苦了，爸爸說我幫你們按按摩，棉花糖驚訝說爸你也會按摩，大甲媽祖遶境期間，傍晚街道，夕陽餘暉，路邊有紅色燈籠，溫馨氛圍，宮崎駿動畫風格" },
+            { name: "17_第二天結束.jpg", prompt: "晚上，大甲媽祖遶境第二天結束，民宿房間內睡覺前，爸媽聊天，爸爸說很高興能一起來，媽媽說對啊很久沒這樣全家出動了，大甲媽祖遶境期間，室內場景，民宿房間，溫暖燈光，窗外小鎮夜景，疲憊但充實的氛圍，宮崎駿動畫風格" },
+            { name: "18_凌晨準備.jpg", prompt: "凌晨4點，大甲媽祖遶境第九天，一家四口在民宿內起床準備，媽媽拿香旗，棉花糖說今天輕鬆多了只走到清水，阿布吉精神飽滿，爸爸確認相機電力，大甲媽祖遶境期間，清晨室內，略暗但有希望感的氛圍，宮崎駿動畫風格" },
+            { name: "19_龍井集合.jpg", prompt: "清晨，大甲媽祖遶境第九天龍井集合點，天還沒全亮但已經很多信徒聚集，棉花糖好奇說這裡就是龍井，媽媽說可以慢慢走，爸爸說好好欣賞風景，大甲媽祖遶境真實場景，清晨街道，晨霧，其他信徒隊伍聚集，紅色香旗旗海飄飄，宮崎駿動畫風格" },
+            { name: "20_晨光出發.jpg", prompt: "清晨，大甲媽祖遶境第九天晨光出發，清晨陽光下，一家四口走在風景優美的路上，棉花糖問爸爸你當初怎麼會想來，爸爸說想說難得有機會陪你們，棉花糖說爸你最好了，媽媽看在眼裡默默微笑，大甲媽祖遶境真實場景，晨光，紅色香旗旗海飄飄，隊伍前進，遠處可見金色神轎，田野風景，宮崎駿動畫風格" },
+            { name: "21_田野風光.jpg", prompt: "上午，大甲媽祖遶境第九天，經過龍井田野，稻田綠油油一片風景優美，媽媽說好漂亮，棉花糖說下次我要帶同學來，爸爸說好我們約定明年再來，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，隊伍經過田野，綠色稻田背景，清新自然的氛圍，宮崎駿動畫風格" },
+            { name: "22_清水朝興宮.jpg", prompt: "上午，大甲媽祖遶境抵達清水朝興宮，媽媽誠心祈禱說祈求全家平安，爸爸說謝謝媽祖婆這幾天保佑，棉花糖說腿沒有那麼酸了，阿布吉說因為今天比較輕鬆啊白癡，大甲媽祖遶境真實場景，朝興宮建築，紅色燈籠高掛，香火裊繞，信徒參拜，金色神轎，熱鬧但莊嚴，宮崎駿動畫風格" },
+            { name: "23_輕鬆氛圍.jpg", prompt: "下午，大甲媽祖遶境第九天輕鬆氛圍，一家四口走在路上有說有笑，媽媽說難得這麼輕鬆，爸爸說對啊可以慢慢走，棉花糖說我可以走完全程，阿布吉說是嗎昨天是誰走不動的，哥！！大喊，全家都笑得很開心，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，隊伍前進，街道背景，輕鬆愉快的氛圍，宮崎駿動畫風格" },
+            { name: "24_路邊合照.jpg", prompt: "下午，大甲媽祖遶境路邊，爸爸提議說來我們拍一張，一家四口站在路邊，背景是正在進行的遶境隊伍，媽媽拿香旗，爸爸拿相機設定自拍，阿布吉和棉花糖站在中間，1、2、3…媽祖婆保佑！大家喊著，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，金色神轎在遠處，幸福溫暖的氛圍，宮崎駿動畫風格" },
+            { name: "25_中午結束.jpg", prompt: "中午12點，大甲媽祖遶境第九天比昨天早很多結束，棉花糖高舉雙手說好耶，爸爸問下午我們去清水市區逛逛，媽媽問你們不累嗎，父子三人異口同聲說不累，一家四口走在清水小鎮街道上，陽光普照，大甲媽祖遶境期間，路邊有小吃攤和商店，輕鬆愉快的氛圍，宮崎駿動畫風格" },
+            { name: "26_下午逛清水.jpg", prompt: "下午，大甲媽祖遶境第九天下午，輕鬆逛清水市區吃當地美食，棉花糖指著問爸那個是什麼，爸爸說那是清水米糕，阿布吉說爸你好厲害什麼都知道，爸爸難得露出得意表情說因為我做了功課，媽媽拿香旗站在一旁，大甲媽祖遶境期間，清水小鎮街道，下午陽光，輕鬆愉快的家庭時光，宮崎駿動畫風格" },
+            { name: "27_最終日.jpg", prompt: "清晨6點30分，大甲媽祖遶境回鑾日最終日，一家四口既期待又不捨，媽媽感慨說今天是回鑾日，爸爸說最後一天要好好珍惜，棉花糖說我不想結束，阿布吉說傻喔明年還可以來啊，大甲媽祖遶境期間，清晨街道，略帶不捨但溫暖的氛圍，宮崎駿動畫風格" },
+            { name: "28_台中港出發.jpg", prompt: "清晨，大甲媽祖回鑾從台中港出發，天空很藍，陽光明媚，棉花糖說嗯，媽媽說大家一起走完，爸爸說這是最後一段路，大甲媽祖遶境真實場景，藍天白雲，港口氛圍，紅色香旗旗海飄飄，隊伍出發，宮崎駿動畫風格" },
+            { name: "29_最後一段.jpg", prompt: "上午，大甲媽祖回鑾最後一段路，棉花糖突然感性起來說哥謝謝你一直背我，阿布吉愣了一下說嗯，爸爸按下快門捕捉這個畫面說你們感情真好，媽媽拿香旗站在旁邊，大甲媽祖遶境真實場景，紅色香旗旗海飄飄，隊伍前進，街道背景，感性溫馨的氛圍，宮崎駿動畫風格" },
+            { name: "30_回鎮瀾宮.jpg", prompt: "下午，大甲媽祖回鑾抵達大甲鎮瀾宮，進行回鑾儀式，媽媽帶頭誠心感謝說謝謝媽祖婆這幾天保佑，爸爸也難得感性說謝謝，棉花糖雙手合十說媽祖婆我明年還要來，大甲媽祖遶境真實場景，鎮瀾宮建築壯觀，紅色燈籠高掛，鞭炮煙霧，信徒歡呼，莊嚴溫馨的氛圍，宮崎駿動畫風格" },
+            { name: "31_感謝.jpg", prompt: "下午，大甲媽祖回鑾感謝儀式，媽媽帶全家鞠躬感謝說謝謝媽祖婆保佑我們一家人都平安，爸爸點點頭說明年再來，阿布吉和棉花糖也跟著鞠躬，大甲媽祖遶境真實場景，鎮瀾宮前廣場，紅色香旗，鞭炮煙霧，感恩莊嚴的氛圍，宮崎駿動畫風格" },
+            { name: "32_阿布吉感性.jpg", prompt: "下午，大甲媽祖回鑾後，阿布吉難得感性說嗯明年再來，爸爸拍拍阿布吉的肩膀說你這幾天做得很好，阿布吉有點不好意思說謝謝爸，媽媽拿香旗站在旁邊微笑，棉花糖好奇看著哥哥，大甲媽祖遶境真實場景，鎮瀾宮前，紅色燈籠，父子情深的溫馨氛圍，宮崎駿動畫風格" },
+            { name: "33_棉花糖的願望.jpg", prompt: "下午，大甲媽祖回鑾後，棉花糖突然說我長大要當轎班，媽媽嚇一跳說真的假的，棉花糖堅定說真的我要扛轎子，爸爸笑著說好那你要努力訓練，阿布吉說那我幫你訓練，哥！！大喊，大甲媽祖遶境真實場景，鎮瀾宮前，媽祖神轎，紅色香旗，支持家庭氛圍，宮崎駿動畫風格" },
+            { name: "34_回家.jpg", prompt: "傍晚，大甲媽祖遶境結束回家路上，爸爸開車，媽媽坐副駕駛，兩個兒子在後座睡著了，媽媽說這幾天辛苦你了，爸爸說不會高興能一起來，媽媽問明年再來，爸爸說嗯約定好了，大甲媽祖遶境結束，車內溫馨氛圍，疲憊但滿足，車窗外的台灣風景後掠，宮崎駿動畫風格" },
+            { name: "35_結尾.jpg", prompt: "晚上，大甲媽祖遶境結束回到家，客廳沙發上，一家人癱在上面，棉花糖說好累但好好玩，阿布吉說我覺得腿不是自己的，媽媽說大家都很棒，爸爸拿出相機說我洗出來的照片，爸！！全家大喊，客廳裡充滿歡笑聲，這幾天的回憶會永遠記在心裡，室內家庭場景，窗簾拉開可見戶外天亮，幸福溫馨的結尾，宮崎駿動畫風格" }
+        ];
+
+        const archiveImages = [];
+
+        function renderImages(images, gridId, folder) {
+            const grid = document.getElementById(gridId);
+            images.forEach((img, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.name = img.name;
+                card.dataset.folder = folder;
+                card.onclick = function() {
+                    this.classList.toggle('selected');
+                    updateCount();
+                };
+                card.innerHTML = `
+                    <div class="checkbox"></div>
+                    <img src="${folder}/${img.name}" alt="${img.name}" onerror="this.src='https://via.placeholder.com/250x200?text=No+Image'">
+                    <div class="card-content">
+                        <div class="card-title">${img.name}</div>
+                        <div class="card-prompt">${img.prompt}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateCount() {
+            const count = document.querySelectorAll('.card.selected').length;
+            document.getElementById('count').textContent = count;
+        }
+
+        function saveSelection() {
+            const selected = [];
+            document.querySelectorAll('.card.selected').forEach(card => {
+                selected.push({
+                    name: card.dataset.name,
+                    folder: card.dataset.folder
+                });
+            });
+            
+            const json = JSON.stringify(selected, null, 2);
+            const blob = new Blob([json], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'episode2_selection.json';
+            a.click();
+            
+            alert(`已選擇 ${selected.length} 張圖片！\n下載的 JSON 檔案請告訴蝦蝦助手`);
+        }
+
+        // 載入圖片
+        renderImages(newImages, 'new-grid', '.');
+        
+        // 載入庫存區圖片（如果有的話）
+        fetch('./archive_2026-03-17_v2/')
+            .then(r => r.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const links = doc.querySelectorAll('a[href$=".jpg"]');
+                const archive = [];
+                links.forEach(link => {
+                    const name = link.getAttribute('href').split('/').pop();
+                    if (name && name.endsWith('.jpg')) {
+                        archive.push({name: name, prompt: '庫存區圖片'});
+                    }
+                });
+                if (archive.length > 0) {
+                    renderImages(archive, 'archive-grid', './archive_2026-03-17_v2');
+                }
+            })
+            .catch(() => {});
+    </script>
+</body>
+</html>
