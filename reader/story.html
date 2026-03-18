@@ -30,9 +30,8 @@
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 60px 30px;
+            padding: 50px 20px;
             text-align: center;
-            position: relative;
         }
         
         .header .episode-tag {
@@ -42,150 +41,108 @@
             border-radius: 30px;
             font-size: 0.9em;
             margin-bottom: 15px;
-            backdrop-filter: blur(10px);
         }
         
         .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
         
         .story-content {
-            padding: 30px 20px 60px;
+            padding: 30px 20px 80px;
         }
         
-        /* 漫畫式排版 - 圖文並排 */
-        .comic-scene {
+        /* 漫畫分格 */
+        .comic-panel {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 40px;
-            align-items: flex-start;
+            margin-bottom: 30px;
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
         }
         
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .comic-scene:nth-child(odd) .scene-image-container {
-            order: 1;
+        .comic-panel:nth-child(odd) {
+            flex-direction: row;
         }
         
-        .comic-scene:nth-child(odd) .scene-text-container {
-            order: 2;
+        .comic-panel:nth-child(even) {
+            flex-direction: row-reverse;
         }
         
-        .comic-scene:nth-child(even) .scene-image-container {
-            order: 2;
-        }
-        
-        .comic-scene:nth-child(even) .scene-text-container {
-            order: 1;
-        }
-        
-        .scene-image-container {
+        .panel-image {
             flex: 1;
             min-width: 280px;
             max-width: 450px;
-            flex: 1 1 350px;
-        }
-        
-        .scene-image {
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            position: relative;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         
-        .scene-image img {
+        .panel-image img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.5s ease;
+            cursor: pointer;
         }
         
-        .scene-image:hover img {
-            transform: scale(1.02);
-        }
-        
-        .scene-image .placeholder {
-            width: 100%;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #636e72;
-            font-size: 1.1em;
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-        }
-        
-        .scene-text-container {
+        .panel-text {
             flex: 1;
             min-width: 250px;
-            flex: 1 1 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
-        .scene-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 0.85em;
-            margin-right: 8px;
-        }
-        
-        .scene-title {
-            font-size: 1.3em;
-            color: #2d3436;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .scene-text {
-            color: #333;
-            font-size: 1em;
-            line-height: 1.9;
-        }
-        
-        .scene-text p {
-            margin-bottom: 12px;
-        }
-        
-        .scene-text .dialogue {
+        .dialogue {
             background: #f8f9fa;
-            padding: 15px 18px;
+            padding: 15px 20px;
             border-radius: 12px;
-            margin: 15px 0;
+            margin-bottom: 12px;
             border-left: 4px solid #667eea;
         }
         
-        .scene-text .dialogue strong {
+        .dialogue strong {
             color: #667eea;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-size: 0.95em;
         }
         
-        .scene-text .dialogue .text {
-            color: #555;
+        .dialogue-text {
+            color: #444;
             font-size: 1em;
+        }
+        
+        .narration {
+            color: #666;
+            font-size: 0.95em;
+            font-style: italic;
+        }
+        
+        /* 分隔區塊 */
+        .part-divider {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin: 40px 0 30px;
+            border-radius: 15px;
+        }
+        
+        .part-divider h2 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+        
+        .part-divider p {
+            opacity: 0.9;
+            font-size: 0.95em;
         }
         
         /* 返回按鈕 */
@@ -201,60 +158,9 @@
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
             z-index: 100;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
         }
         
-        .back-button:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
-        }
-        
-        /* 載入動畫 */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* 進度條 */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            z-index: 1000;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .progress-bar.hidden {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        /* 彈出視窗 */
+        /* 燈箱 */
         .lightbox {
             display: none;
             position: fixed;
@@ -287,33 +193,37 @@
             cursor: pointer;
         }
         
-        /* RWD - 手機版 */
+        /* 載入動畫 */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            z-index: 1000;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* RWD */
         @media (max-width: 600px) {
-            .comic-scene {
+            .comic-panel {
                 flex-direction: column !important;
             }
-            
-            .scene-image-container,
-            .scene-text-container {
+            .panel-image, .panel-text {
                 max-width: 100% !important;
-                flex: 1 1 100% !important;
-                order: unset !important;
             }
-            
-            .header {
-                padding: 40px 20px;
-            }
-            
             .header h1 {
-                font-size: 1.6em;
+                font-size: 1.5em;
             }
-            
             .story-content {
                 padding: 20px 15px 80px;
-            }
-            
-            .scene-title {
-                font-size: 1.15em;
             }
         }
     </style>
@@ -325,21 +235,18 @@
     
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-button" style="position: static; margin-bottom: 20px; display: inline-block;">← 返回</a>
+            <a href="index.html" style="color: white; text-decoration: none; display: inline-block; margin-bottom: 15px;">← 返回</a>
             <div class="episode-tag" id="episodeTag">🎬 載入中...</div>
             <h1 id="episodeTitle">家庭故事集</h1>
-            <div class="subtitle" id="episodeSubtitle">點擊圖片可放大查看</div>
+            <div id="episodeSubtitle">點擊圖片可放大</div>
         </div>
         
         <div class="story-content" id="storyContent">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                <p>正在載入故事...</p>
-            </div>
+            <p style="text-align: center; padding: 40px;">正在載入故事...</p>
         </div>
     </div>
     
-    <a href="index.html" class="back-button">🏠 返回集數選擇</a>
+    <a href="index.html" class="back-button">🏠 返回目錄</a>
     
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close">&times;</span>
@@ -347,7 +254,6 @@
     </div>
     
     <script>
-        // 集數標題
         const episodeTitles = {
             1: '說走就走？先問媽媽！',
             2: '媽祖婆，我們來了！',
@@ -360,13 +266,11 @@
             9: '居家大改造！'
         };
         
-        // 初始化
         document.addEventListener('DOMContentLoaded', async function() {
             await loadConfiguration();
             loadEpisodeFromURL();
         });
         
-        // 載入配置
         async function loadConfiguration() {
             try {
                 const response = await fetch('./config.json');
@@ -377,87 +281,60 @@
             }
         }
         
-        // 從 URL 載入集數
         function loadEpisodeFromURL() {
             const params = new URLSearchParams(window.location.search);
             const episodeId = params.get('episode');
-            
             if (episodeId) {
                 loadEpisode(parseInt(episodeId));
             }
         }
         
-        // 載入指定集數
         async function loadEpisode(episodeId) {
-            currentEpisode = episodeId;
-            
             try {
-                // 獲取集數 HTML
                 const response = await fetch(`../episode${episodeId}/story.html`);
-                
-                if (!response.ok) {
-                    throw new Error(`無法載入第 ${episodeId} 集`);
-                }
+                if (!response.ok) throw new Error(`無法載入第 ${episodeId} 集`);
                 
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 
-                // 更新標題
                 const originalTitle = doc.querySelector('title')?.textContent || `第${episodeId}集`;
                 document.title = `${originalTitle} - 家庭故事集`;
                 
                 document.getElementById('episodeTag').textContent = `🎬 第${episodeId}集`;
                 document.getElementById('episodeTitle').textContent = episodeTitles[episodeId] || originalTitle;
-                document.getElementById('episodeSubtitle').textContent = '點擊圖片可放大查看';
                 
-                // 獲取主要內容
                 let mainContent = doc.querySelector('.story-content') || doc.querySelector('.container');
+                const selectedImages = config?.selectedImages?.[`episode${episodeId}`] || [];
                 
-                if (mainContent) {
-                    // 獲取選擇的圖片
-                    const selectedImages = config?.selectedImages?.[`episode${episodeId}`] || [];
-                    
-                    // 處理內容 - 漫畫式排版
-                    const processedContent = processContentComic(mainContent.innerHTML, episodeId, selectedImages);
-                    document.getElementById('storyContent').innerHTML = processedContent;
-                    
-                    // 初始化漸進式圖片載入
-                    initProgressiveLoading();
-                    
-                    // 初始化燈箱
-                    initLightbox();
-                }
+                const processedContent = processContentSimple(mainContent.innerHTML, selectedImages);
+                document.getElementById('storyContent').innerHTML = processedContent;
+                
+                initLightbox();
                 
             } catch (error) {
-                console.error('載入故事時發生錯誤:', error);
                 document.getElementById('storyContent').innerHTML = `
-                    <div class="loading">
-                        <p>載入故事時發生錯誤：${error.message}</p>
-                        <a href="index.html" style="color: #667eea; margin-top: 20px; display: inline-block;">返回集數選擇</a>
-                    </div>
+                    <p style="text-align: center; padding: 40px; color: red;">
+                        載入錯誤：${error.message}<br>
+                        <a href="index.html" style="color: #667eea;">返回目錄</a>
+                    </p>
                 `;
             }
         }
         
-        // 漫畫式內容處理
-        function processContentComic(html, episodeId, selectedImages) {
-            // 解析 HTML
+        function processContentSimple(html, selectedImages) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // 找出所有場景
             const scenes = doc.querySelectorAll('.scene, .part-divider, .character-intro, .trip-info');
-            
             let result = '';
             let imageIndex = 0;
             
             scenes.forEach((scene, index) => {
-                // 獲取場景內容
-                const sceneHTML = scene.innerHTML.trim();
                 const sceneClass = scene.className || '';
+                const sceneHTML = scene.innerHTML.trim();
                 
-                // 如果是分隔牌或介紹區塊，直接輸出
+                // 分隔區塊
                 if (sceneClass.includes('part-divider') || sceneClass.includes('character-intro') || sceneClass.includes('trip-info')) {
                     const title = scene.querySelector('h2, h3')?.textContent || '';
                     const content = scene.querySelector('p')?.textContent || '';
@@ -465,154 +342,65 @@
                     
                     let itemsHTML = '';
                     if (items.length > 0) {
-                        itemsHTML = '<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px;">';
+                        itemsHTML = '<div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px;">';
                         items.forEach(item => {
-                            itemsHTML += `<span style="background: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; color: #636e72;">${item.textContent}</span>`;
+                            itemsHTML += `<span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 0.85em;">${item.textContent}</span>`;
                         });
                         itemsHTML += '</div>';
                     }
                     
-                    result += `
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; text-align: center; margin: 30px 0; border-radius: 15px;">
-                            <h2 style="font-size: 1.4em; margin-bottom: 10px;">${title}</h2>
-                            <p style="opacity: 0.9;">${content}</p>
-                            ${itemsHTML}
-                        </div>
-                    `;
+                    result += `<div class="part-divider"><h2>${title}</h2><p>${content}</p>${itemsHTML}</div>`;
                     return;
                 }
                 
-                // 獲取場景標題和編號
-                const sceneNumber = scene.querySelector('.scene-number')?.textContent || (index + 1);
-                const sceneTitle = scene.querySelector('p')?.textContent?.replace(/^\d+\s*/, '') || '';
+                // 對話框
+                const dialogues = scene.querySelectorAll('.dialogue');
+                let dialogueHTML = '';
+                dialogues.forEach(d => {
+                    const name = d.querySelector('strong')?.textContent || '';
+                    const text = d.querySelector('.text')?.textContent || d.textContent;
+                    dialogueHTML += `<div class="dialogue"><strong>${name}</strong><div class="dialogue-text">${text}</div></div>`;
+                });
                 
-                // 嘗試獲取對應圖片
+                // 敘述文字
+                const paragraphs = scene.querySelectorAll('p:not(.dialogue)');
+                paragraphs.forEach(p => {
+                    if (!p.querySelector('.dialogue') && p.textContent.trim()) {
+                        dialogueHTML += `<p class="narration" style="margin-bottom: 10px;">${p.textContent.trim()}</p>`;
+                    }
+                });
+                
+                // 圖片（有圖就顯示，沒有就略過）
                 let imageHTML = '';
                 if (imageIndex < selectedImages.length) {
                     const imgPath = selectedImages[imageIndex];
-                    imageHTML = `
-                        <div class="scene-image">
-                            <img src="${imgPath}" alt="場景 ${sceneNumber}" loading="lazy" data-src="${imgPath}">
-                        </div>
-                    `;
+                    imageHTML = `<div class="panel-image"><img src="${imgPath}" alt="場景" loading="lazy"></div>`;
                     imageIndex++;
-                } else {
-                    imageHTML = `
-                        <div class="scene-image">
-                            <div class="placeholder">📷 場景 ${sceneNumber}</div>
-                        </div>
-                    `;
                 }
                 
-                // 輸出漫畫式區塊
-                result += `
-                    <div class="comic-scene" style="animation-delay: ${index * 0.1}s;">
-                        <div class="scene-image-container">
-                            ${imageHTML}
-                        </div>
-                        <div class="scene-text-container">
-                            <div class="scene-title">
-                                <span class="scene-number">${sceneNumber}</span>
-                                ${sceneTitle}
-                            </div>
-                            <div class="scene-text">
-                                ${sceneHTML}
-                            </div>
-                        </div>
-                    </div>
-                `;
+                // 有圖片或有對話就顯示
+                if (imageHTML || dialogueHTML) {
+                    result += `<div class="comic-panel" style="animation-delay: ${index * 0.05}s;">${imageHTML}<div class="panel-text">${dialogueHTML}</div></div>`;
+                }
             });
             
             return result;
         }
         
-        // 初始化漸進式圖片載入
-        function initProgressiveLoading() {
-            const images = document.querySelectorAll('.scene-image img[loading="lazy"]');
-            const total = images.length;
-            let loaded = 0;
-            
-            const progressBar = document.getElementById('progressBar');
-            const progress = document.getElementById('progress');
-            
-            function updateProgress() {
-                loaded++;
-                const percent = (loaded / total) * 100;
-                progress.style.width = percent + '%';
-                
-                if (loaded === total) {
-                    setTimeout(() => {
-                        progressBar.classList.add('hidden');
-                    }, 500);
-                }
-            }
-            
-            // 使用 Intersection Observer
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const highResSrc = img.getAttribute('data-src');
-                        
-                        if (highResSrc && highResSrc !== img.src) {
-                            const tempImg = new Image();
-                            tempImg.onload = function() {
-                                img.src = highResSrc;
-                                img.style.opacity = '1';
-                                updateProgress();
-                                observer.unobserve(img);
-                            };
-                            tempImg.onerror = function() {
-                                updateProgress();
-                                observer.unobserve(img);
-                            };
-                            tempImg.src = highResSrc;
-                        } else {
-                            updateProgress();
-                            observer.unobserve(img);
-                        }
-                    }
-                });
-            }, {
-                rootMargin: '100px 0px',
-                threshold: 0.01
-            });
-            
-            images.forEach(img => {
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.5s ease';
-                imageObserver.observe(img);
-            });
-            
-            if (total === 0) {
-                progressBar.classList.add('hidden');
-            }
-        }
-        
-        // 初始化燈箱
         function initLightbox() {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const closeBtn = document.querySelector('.lightbox-close');
             
-            document.querySelectorAll('.scene-image img').forEach(img => {
-                img.style.cursor = 'pointer';
+            document.querySelectorAll('.panel-image img').forEach(img => {
                 img.addEventListener('click', function() {
-                    const src = this.getAttribute('data-src') || this.src;
-                    lightboxImg.src = src;
+                    lightboxImg.src = this.src;
                     lightbox.classList.add('active');
                 });
             });
             
-            closeBtn.addEventListener('click', function() {
-                lightbox.classList.remove('active');
-            });
-            
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                }
-            });
+            closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+            lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('active'); });
         }
     </script>
 </body>
