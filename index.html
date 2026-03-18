@@ -59,10 +59,44 @@
         .btn-secondary:hover {
             background: rgba(255,255,255,0.3);
         }
+        .episode-list {
+            margin-top: 50px;
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .episode-list h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .episode-list ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .episode-list li {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .episode-list li:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+        .episode-list .ep-num {
+            font-weight: bold;
+            color: #fff;
+            margin-right: 10px;
+        }
         @media (max-width: 768px) {
             h1 { font-size: 2.5em; }
             p { font-size: 1.1em; }
             .btn { padding: 15px 30px; font-size: 1em; }
+            .episode-list ul { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -72,8 +106,22 @@
         <p>記錄我們家庭的溫馨時光與美好回憶</p>
         <div class="buttons">
             <a href="reader/" class="btn">📚 開始閱讀</a>
-            <a href="reader/index.html" class="btn btn-secondary">📖 讀者版</a>
             <a href="dev/image-selector.html" class="btn btn-secondary">🖼️ 圖片選擇</a>
+        </div>
+        
+        <div class="episode-list">
+            <h2>📺 完整剧集列表</h2>
+            <ul>
+                <li><span class="ep-num">第 1 集</span>說走就走？先問媽媽！</li>
+                <li><span class="ep-num">第 2 集</span>媽祖婆，我們來了！</li>
+                <li><span class="ep-num">第 3 集</span>守護家人的智慧生活</li>
+                <li><span class="ep-num">第 4 集</span>兒童節的特別約定</li>
+                <li><span class="ep-num">第 5 集</span>媽媽的生日驚喜</li>
+                <li><span class="ep-num">第 6 集</span>哥哥的大學畢業</li>
+                <li><span class="ep-num">第 7 集</span>弟弟的校運會</li>
+                <li><span class="ep-num">第 8 集</span>家庭電影夜</li>
+                <li><span class="ep-num">第 9 集</span>年度回顧與新年願景</li>
+            </ul>
         </div>
     </div>
 </body>
