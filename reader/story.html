@@ -3,397 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家庭故事集 - 閱讀中</title>
+    <title>家庭故事集</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; background: white; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; text-align: center; }
+        .header a { color: white; text-decoration: none; display: inline-block; margin-bottom: 10px; }
+        .header h1 { font-size: 1.8em; margin-bottom: 5px; }
+        .story-content { padding: 20px; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 0;
-            line-height: 1.8;
-        }
+        .panel { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
+        .panel:nth-child(even) { flex-direction: row-reverse; }
+        .panel-img { flex: 1; min-width: 250px; max-width: 380px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .panel-img img { width: 100%; height: auto; display: block; cursor: pointer; }
+        .panel-text { flex: 1; min-width: 200px; }
         
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            box-shadow: 0 0 60px rgba(0,0,0,0.3);
-        }
+        .dialogue { background: #f5f5f5; padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #667eea; }
+        .dialogue strong { color: #667eea; display: block; margin-bottom: 3px; font-size: 0.9em; }
+        .dialogue-text { color: #444; font-size: 0.95em; }
+        .narration { color: #666; font-size: 0.9em; margin-bottom: 8px; }
         
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
+        .section-title { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; margin: 30px 0 20px; border-radius: 10px; }
+        .section-title h2 { font-size: 1.2em; }
         
-        .header .episode-tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.3);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
+        .back-button { display: block; text-align: center; padding: 20px; }
+        .back-button a { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; }
         
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 95%; max-height: 95%; border-radius: 10px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
         
-        .story-content {
-            padding: 30px 20px 80px;
-        }
-        
-        /* 漫畫分格 */
-        .comic-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .comic-panel:nth-child(odd) {
-            flex-direction: row;
-        }
-        
-        .comic-panel:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        
-        .panel-image {
-            flex: 1;
-            min-width: 280px;
-            max-width: 450px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .panel-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            cursor: pointer;
-        }
-        
-        .panel-text {
-            flex: 1;
-            min-width: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .dialogue {
-            background: #f8f9fa;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .dialogue strong {
-            color: #667eea;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.95em;
-        }
-        
-        .dialogue-text {
-            color: #444;
-            font-size: 1em;
-        }
-        
-        .narration {
-            color: #666;
-            font-size: 0.95em;
-            font-style: italic;
-        }
-        
-        /* 分隔區塊 */
-        .part-divider {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            margin: 40px 0 30px;
-            border-radius: 15px;
-        }
-        
-        .part-divider h2 {
-            font-size: 1.3em;
-            margin-bottom: 8px;
-        }
-        
-        .part-divider p {
-            opacity: 0.9;
-            font-size: 0.95em;
-        }
-        
-        /* 返回按鈕 */
-        .back-button {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            z-index: 100;
-        }
-        
-        /* 燈箱 */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox.active {
-            display: flex;
-        }
-        
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 10px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-        }
-        
-        /* 載入動畫 */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            z-index: 1000;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        /* RWD */
         @media (max-width: 600px) {
-            .comic-panel {
-                flex-direction: column !important;
-            }
-            .panel-image, .panel-text {
-                max-width: 100% !important;
-            }
-            .header h1 {
-                font-size: 1.5em;
-            }
-            .story-content {
-                padding: 20px 15px 80px;
-            }
+            .panel { flex-direction: column !important; }
+            .panel-img, .panel-text { max-width: 100% !important; }
         }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar">
-        <div class="progress" id="progress"></div>
-    </div>
-    
     <div class="container">
         <div class="header">
-            <a href="index.html" style="color: white; text-decoration: none; display: inline-block; margin-bottom: 15px;">← 返回</a>
-            <div class="episode-tag" id="episodeTag">🎬 載入中...</div>
+            <a href="index.html">← 返回目錄</a>
+            <div id="episodeTag">🎬</div>
             <h1 id="episodeTitle">家庭故事集</h1>
-            <div id="episodeSubtitle">點擊圖片可放大</div>
         </div>
-        
         <div class="story-content" id="storyContent">
-            <p style="text-align: center; padding: 40px;">正在載入故事...</p>
+            <p style="text-align: center; padding: 40px;">載入中...</p>
+        </div>
+        <div class="back-button">
+            <a href="index.html">🏠 返回目錄</a>
         </div>
     </div>
-    
-    <a href="index.html" class="back-button">🏠 返回目錄</a>
-    
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close">&times;</span>
-        <img src="" alt="大圖" id="lightboxImg">
+        <img src="" alt="">
     </div>
-    
     <script>
-        const episodeTitles = {
-            1: '說走就走？先問媽媽！',
-            2: '媽祖婆，我們來了！',
-            3: '守護家人的智慧生活',
-            4: '春節團圓',
-            5: '棒球場攻略！',
-            6: '水彈槍大戰！',
-            7: '魔術方塊高手！',
-            8: '小老師棉花糖！',
-            9: '居家大改造！'
+        const titles = {
+            1: '說走就走？先問媽媽！', 2: '媽祖婆，我們來了！', 3: '守護家人的智慧生活',
+            4: '春節團圓', 5: '棒球場攻略！', 6: '水彈槍大戰！',
+            7: '魔術方塊高手！', 8: '小老師棉花糖！', 9: '居家大改造！'
         };
         
-        document.addEventListener('DOMContentLoaded', async function() {
-            await loadConfiguration();
-            loadEpisodeFromURL();
-        });
+        let config = {};
         
-        async function loadConfiguration() {
+        async function init() {
+            try { config = await (await fetch('./config.json')).json(); } catch(e) {}
+            const id = new URLSearchParams(location.search).get('episode');
+            if(id) loadEpisode(parseInt(id));
+        }
+        
+        async function loadEpisode(id) {
             try {
-                const response = await fetch('./config.json');
-                window.config = await response.json();
-            } catch (error) {
-                console.error('無法載入配置:', error);
-                window.config = {};
+                const res = await fetch(`../episode${id}/story.html`);
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                
+                document.getElementById('episodeTag').textContent = `🎬 第${id}集`;
+                document.getElementById('episodeTitle').textContent = titles[id] || `第${id}集`;
+                document.title = titles[id] + ' - 家庭故事集';
+                
+                const images = config.selectedImages?.[`episode${id}`] || [];
+                const content = processStory(doc, images);
+                document.getElementById('storyContent').innerHTML = content;
+                
+                // 燈箱
+                document.querySelectorAll('.panel-img img').forEach(img => {
+                    img.onclick = () => { document.getElementById('lightbox').querySelector('img').src = img.src; document.getElementById('lightbox').classList.add('active'); };
+                });
+                document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
+                document.getElementById('lightbox').onclick = e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('active'); };
+                
+            } catch(e) {
+                document.getElementById('storyContent').innerHTML = `<p style="text-align:center;padding:40px;">載入失敗：${e.message}</p>`;
             }
         }
         
-        function loadEpisodeFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            const episodeId = params.get('episode');
-            if (episodeId) {
-                loadEpisode(parseInt(episodeId));
-            }
-        }
-        
-        async function loadEpisode(episodeId) {
-            try {
-                const response = await fetch(`../episode${episodeId}/story.html`);
-                if (!response.ok) throw new Error(`無法載入第 ${episodeId} 集`);
-                
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                const originalTitle = doc.querySelector('title')?.textContent || `第${episodeId}集`;
-                document.title = `${originalTitle} - 家庭故事集`;
-                
-                document.getElementById('episodeTag').textContent = `🎬 第${episodeId}集`;
-                document.getElementById('episodeTitle').textContent = episodeTitles[episodeId] || originalTitle;
-                
-                let mainContent = doc.querySelector('.story-content') || doc.querySelector('.container');
-                const selectedImages = config?.selectedImages?.[`episode${episodeId}`] || [];
-                
-                const processedContent = processContentSimple(mainContent.innerHTML, selectedImages);
-                document.getElementById('storyContent').innerHTML = processedContent;
-                
-                initLightbox();
-                
-            } catch (error) {
-                document.getElementById('storyContent').innerHTML = `
-                    <p style="text-align: center; padding: 40px; color: red;">
-                        載入錯誤：${error.message}<br>
-                        <a href="index.html" style="color: #667eea;">返回目錄</a>
-                    </p>
-                `;
-            }
-        }
-        
-        function processContentSimple(html, selectedImages) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            const scenes = doc.querySelectorAll('.scene, .part-divider, .character-intro, .trip-info');
+        function processStory(doc, images) {
             let result = '';
-            let imageIndex = 0;
+            let imgIdx = 0;
             
-            scenes.forEach((scene, index) => {
-                const sceneClass = scene.className || '';
-                const sceneHTML = scene.innerHTML.trim();
-                
-                // 分隔區塊 - 簡化呈現
-                if (sceneClass.includes('part-divider') || sceneClass.includes('character-intro') || sceneClass.includes('trip-info')) {
-                    const title = scene.querySelector('h2, h3')?.textContent || '';
-                    // 只顯示標題，移除「第一部分」等
-                    const simpleTitle = title.replace(/^第.+?：/, '').replace(/^第.+?\n/, '');
-                    if (simpleTitle) {
-                        result += `<div class="part-divider"><h2>${simpleTitle}</h2></div>`;
-                    }
-                    return;
-                }
-                
-                // 對話框
-                const dialogues = scene.querySelectorAll('.dialogue');
-                let dialogueHTML = '';
-                dialogues.forEach(d => {
+            // 取得所有場景
+            const scenes = doc.querySelectorAll('.scene');
+            
+            scenes.forEach((scene, i) => {
+                // 對話
+                let text = '';
+                scene.querySelectorAll('.dialogue').forEach(d => {
                     const name = d.querySelector('strong')?.textContent || '';
-                    const text = d.querySelector('.text')?.textContent || d.textContent;
-                    dialogueHTML += `<div class="dialogue"><strong>${name}</strong><div class="dialogue-text">${text}</div></div>`;
+                    const txt = d.querySelector('.text')?.textContent || d.textContent;
+                    text += `<div class="dialogue"><strong>${name}</strong><div class="dialogue-text">${txt}</div></div>`;
                 });
                 
-                // 敘述文字
-                const paragraphs = scene.querySelectorAll('p:not(.dialogue)');
-                paragraphs.forEach(p => {
-                    if (!p.querySelector('.dialogue') && p.textContent.trim()) {
-                        dialogueHTML += `<p class="narration" style="margin-bottom: 10px;">${p.textContent.trim()}</p>`;
+                // 敘述
+                scene.querySelectorAll('p').forEach(p => {
+                    if(!p.querySelector('.dialogue') && p.textContent.trim()) {
+                        text += `<p class="narration">${p.textContent.trim()}</p>`;
                     }
                 });
                 
-                // 圖片（有圖就顯示，沒有就略過）
-                let imageHTML = '';
-                if (imageIndex < selectedImages.length) {
-                    const imgPath = selectedImages[imageIndex];
-                    imageHTML = `<div class="panel-image"><img src="${imgPath}" alt="場景" loading="lazy"></div>`;
-                    imageIndex++;
+                // 圖片
+                let imgHtml = '';
+                if(imgIdx < images.length) {
+                    imgHtml = `<div class="panel-img"><img src="${images[imgIdx]}" loading="lazy" alt=""></div>`;
+                    imgIdx++;
                 }
                 
-                // 有圖片或有對話就顯示
-                if (imageHTML || dialogueHTML) {
-                    result += `<div class="comic-panel" style="animation-delay: ${index * 0.05}s;">${imageHTML}<div class="panel-text">${dialogueHTML}</div></div>`;
+                // 有內容才顯示
+                if(imgHtml || text) {
+                    result += `<div class="panel">${imgHtml}<div class="panel-text">${text}</div></div>`;
                 }
             });
             
-            return result;
+            return result || '<p style="text-align:center;padding:40px;">沒有內容</p>';
         }
         
-        function initLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.querySelector('.lightbox-close');
-            
-            document.querySelectorAll('.panel-image img').forEach(img => {
-                img.addEventListener('click', function() {
-                    lightboxImg.src = this.src;
-                    lightbox.classList.add('active');
-                });
-            });
-            
-            closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
-            lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('active'); });
-        }
+        init();
     </script>
 </body>
 </html>
