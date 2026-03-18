@@ -3,67 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家庭故事集 - 選擇頁面</title>
+    <title>家庭故事集 - 讀者版</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        .header {
             text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
         }
         
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
+        .header h1 {
+            font-size: 2.8em;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        .subtitle {
-            color: #7f8c8d;
+        .header p {
             font-size: 1.2em;
-            margin-bottom: 40px;
+            opacity: 0.95;
         }
         
         .episodes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
         
         .episode-card {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            border: 2px solid transparent;
+            position: relative;
         }
         
         .episode-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-color: #3498db;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .episode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .episode-card:hover::before {
+            opacity: 1;
+        }
+        
+        .episode-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+        }
+        
+        .episode-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .episode-card:hover .episode-image img {
+            transform: scale(1.1);
+        }
+        
+        .episode-content {
+            padding: 25px;
         }
         
         .episode-number {
-            font-size: 2em;
-            color: #3498db;
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
             font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
         
         .episode-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: #2c3e50;
             margin-bottom: 10px;
             font-weight: 600;
@@ -71,355 +127,249 @@
         
         .episode-desc {
             color: #7f8c8d;
-            font-size: 0.9em;
-            line-height: 1.4;
+            font-size: 0.95em;
+            line-height: 1.6;
         }
         
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: #3498db;
+        .episode-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat-icon {
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        
+        .footer a {
             color: white;
             text-decoration: none;
-            border-radius: 25px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 30px;
             transition: background 0.3s ease;
+            display: inline-block;
+            margin: 10px;
         }
         
-        .back-link:hover {
-            background: #2980b9;
+        .footer a:hover {
+            background: rgba(255,255,255,0.3);
         }
         
-        /* 新增彈出視窗樣式 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 2% auto;
-            padding: 20px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
-        
-        .close:hover {
-            color: #000;
-        }
-        
-        .story-content {
-            margin-top: 20px;
-        }
-        
+        /* 載入動畫 */
         .loading {
             text-align: center;
-            padding: 20px;
-            font-size: 1.2em;
-            color: #7f8c8d;
+            padding: 60px 20px;
+            color: white;
         }
         
-        /* 圖片顯示樣式 */
-        .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
         
-        .image-item {
-            width: calc(33.333% - 10px);
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
-        .image-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .no-images {
-            text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-        
+        /* 響應式設計 */
         @media (max-width: 768px) {
-            .episodes-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 15px;
-            }
-            
-            h1 {
+            .header h1 {
                 font-size: 2em;
             }
             
-            .modal-content {
-                width: 95%;
-                margin: 5% auto;
+            .episodes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
             }
             
-            .image-item {
-                width: calc(50% - 10px);
+            .episode-image {
+                height: 180px;
             }
         }
         
         @media (max-width: 480px) {
-            .image-item {
-                width: 100%;
+            .episodes-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📖 家庭故事集</h1>
-        <div class="subtitle">點擊下方卡片瀏覽不同集數的故事</div>
-        
-        <div class="episodes-grid">
-            <div class="episode-card" onclick="loadStory('episode1')">
-                <div class="episode-number">1</div>
-                <div class="episode-title">說走就走？先問媽媽！</div>
-                <div class="episode-desc">家庭日常中的溫馨互動與溝通</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode2')">
-                <div class="episode-number">2</div>
-                <div class="episode-title">媽祖婆，我們來了！</div>
-                <div class="episode-desc">大甲媽祖遶境的文化體驗之旅</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode3')">
-                <div class="episode-number">3</div>
-                <div class="episode-title">守護家人的智慧生活</div>
-                <div class="episode-desc">智能家居與家庭安全的溫馨故事</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode4')">
-                <div class="episode-number">4</div>
-                <div class="episode-title">兒童節的特別約定</div>
-                <div class="episode-desc">家庭露營與親子互動的美好時光</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode5')">
-                <div class="episode-number">5</div>
-                <div class="episode-title">媽媽的生日驚喜</div>
-                <div class="episode-desc">家庭策劃與感恩表達的溫馨時刻</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode6')">
-                <div class="episode-number">6</div>
-                <div class="episode-title">哥哥的大學畢業</div>
-                <div class="episode-desc">成長里程碑與家庭支持的力量</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode7')">
-                <div class="episode-number">7</div>
-                <div class="episode-title">弟弟的校運會</div>
-                <div class="episode-title">運動精神與家人加油打氣的時刻</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode8')">
-                <div class="episode-number">8</div>
-                <div class="episode-title">家庭電影夜</div>
-                <div class="episode-desc">居家娛樂與家庭共融的溫馨時光</div>
-            </div>
-            
-            <div class="episode-card" onclick="loadStory('episode9')">
-                <div class="episode-number">9</div>
-                <div class="episode-title">年度回顧與新年願景</div>
-                <div class="episode-desc">回顧一年成長與展望未來的時刻</div>
-            </div>
+        <div class="header">
+            <h1>📖 家庭故事集</h1>
+            <p>點擊下方卡片，開始閱讀我們的家庭故事</p>
         </div>
         
-        <a href="../" class="back-link">🏠 返回主頁</a>
-    </div>
-
-    <!-- 彈出視窗 -->
-    <div id="storyModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">故事載入中...</h2>
-            <div id="storyContent" class="loading">正在載入故事內容...</div>
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>正在載入故事集...</p>
+        </div>
+        
+        <div class="episodes-grid" id="episodesGrid" style="display: none;">
+            <!-- 集數卡片將動態生成 -->
+        </div>
+        
+        <div class="footer">
+            <a href="../">🏠 返回主頁</a>
+            <a href="../dev/image-selector.html">🖼️ 圖片選擇工具</a>
         </div>
     </div>
 
     <script>
-        // 配置數據
-        let config = null;
-        
-        // 載入故事內容
-        async function loadStory(episode) {
-            const modal = document.getElementById('storyModal');
-            const title = document.getElementById('modalTitle');
-            const content = document.getElementById('storyContent');
-            
-            // 顯示載入狀態
-            title.textContent = `載入中...`;
-            content.innerHTML = '<div class="loading">正在載入故事內容...</div>';
-            modal.style.display = 'block';
-            
-            try {
-                // 首先嘗試載入配置
-                if (!config) {
-                    await loadConfiguration();
-                }
-                
-                // 從對應的story.html載入內容
-                const response = await fetch(`../${episode}/story.html`);
-                if (!response.ok) {
-                    throw new Error(`無法載入 ${episode} 的內容`);
-                }
-                
-                const htmlContent = await response.text();
-                
-                // 解析HTML並提取主要內容
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlContent, 'text/html');
-                
-                // 設定標題
-                const originalTitle = doc.querySelector('title')?.textContent || `第${episode.replace('episode', '')}集`;
-                title.textContent = originalTitle;
-                
-                // 提取主要內容區域
-                let mainContent = doc.querySelector('.container') || 
-                                  doc.querySelector('main') || 
-                                  doc.querySelector('.content') || 
-                                  doc.querySelector('body');
-                
-                let contentHTML = '';
-                
-                if (mainContent) {
-                    contentHTML = mainContent.innerHTML;
-                } else {
-                    contentHTML = '<p>此集數尚無內容</p>';
-                }
-                
-                // 如果有配置，則替換圖片為選定的圖片
-                if (config && config.episodes && config.episodes[episode]) {
-                    const selectedImages = config.episodes[episode];
-                    
-                    if (selectedImages && selectedImages.length > 0) {
-                        // 創建選定圖片的HTML
-                        let imageHTML = '<div class="image-container">';
-                        selectedImages.forEach(imgPath => {
-                            imageHTML += `<div class="image-item"><img src="${imgPath}" alt="選定圖片" onerror="this.parentElement.style.display=\'none\'"></div>`;
-                        });
-                        imageHTML += '</div>';
-                        
-                        // 替換或添加到內容中
-                        contentHTML = imageHTML + contentHTML;
-                    } else {
-                        // 如果沒有選定圖片，顯示提示
-                        contentHTML = '<div class="no-images">此集數尚未選定圖片</div>' + contentHTML;
-                    }
-                } else {
-                    // 如果沒有配置，仍然顯示原有內容
-                    contentHTML = '<div class="no-images">開發者尚未配置圖片選擇</div>' + contentHTML;
-                }
-                
-                content.innerHTML = contentHTML;
-                
-                // 確保圖片路徑正確
-                const images = content.querySelectorAll('img');
-                images.forEach(img => {
-                    let src = img.getAttribute('src');
-                    if (src && !src.startsWith('http') && !src.startsWith('/')) {
-                        if (!src.startsWith(episode)) {
-                            img.setAttribute('src', `${src}`);
-                        }
-                    }
-                    
-                    // 添加錯誤處理，以防圖片載入失敗
-                    img.onerror = function() {
-                        console.log(`圖片載入失敗: ${this.src}`);
-                        // 不顯示替代文字，而是隱藏圖片
-                        this.style.display = 'none';
-                    };
-                });
-                
-            } catch (error) {
-                console.error('載入故事時發生錯誤:', error);
-                content.innerHTML = `<p>載入故事時發生錯誤: ${error.message}</p>`;
+        // 集數資料
+        const episodes = [
+            {
+                id: 1,
+                title: '說走就走？先問媽媽！',
+                desc: '家庭日常中的溫馨互動與溝通',
+                images: 30,
+                scenes: 34
+            },
+            {
+                id: 2,
+                title: '媽祖婆，我們來了！',
+                desc: '大甲媽祖遶境的文化體驗之旅',
+                images: 30,
+                scenes: 35
+            },
+            {
+                id: 3,
+                title: '守護家人的智慧生活',
+                desc: '爸爸安裝 WiFi 智慧電源模組，讓家裡更安全',
+                images: 17,
+                scenes: 28
+            },
+            {
+                id: 4,
+                title: '兒童節的特別約定',
+                desc: '家庭露營與親子互動的美好時光',
+                images: 29,
+                scenes: 33
+            },
+            {
+                id: 5,
+                title: '媽媽的生日驚喜',
+                desc: '家庭策劃與感恩表達的溫馨時刻',
+                images: 29,
+                scenes: 33
+            },
+            {
+                id: 6,
+                title: '哥哥的大學畢業',
+                desc: '成長里程碑與家庭支持的力量',
+                images: 26,
+                scenes: 33
+            },
+            {
+                id: 7,
+                title: '弟弟的校運會',
+                desc: '運動精神與家人加油打氣的時刻',
+                images: 25,
+                scenes: 29
+            },
+            {
+                id: 8,
+                title: '家庭電影夜',
+                desc: '居家娛樂與家庭共融的溫馨時光',
+                images: 21,
+                scenes: 29
+            },
+            {
+                id: 9,
+                title: '年度回顧與新年願景',
+                desc: '回顧一年成長與展望未來的時刻',
+                images: 26,
+                scenes: 33
             }
-        }
-        
+        ];
+
+        // 配置資料
+        let config = null;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadConfiguration();
+            renderEpisodes();
+        });
+
         // 載入配置
         async function loadConfiguration() {
             try {
-                // 嘗試從本地存儲載入配置
-                const localConfig = localStorage.getItem('familyStoriesConfig');
-                if (localConfig) {
-                    config = JSON.parse(localConfig);
-                    if (config && !config.episodes && config.selectedImages) {
-                        config.episodes = config.selectedImages;
-                    }
-                    return;
-                }
-                
-                // 如果本地沒有，嘗試從服務器載入
                 const response = await fetch('config.json');
                 if (response.ok) {
                     config = await response.json();
-                    if (config && !config.episodes && config.selectedImages) {
-                        config.episodes = config.selectedImages;
-                    }
-                } else {
-                    console.log('未找到配置文件，使用默認行為');
                 }
             } catch (error) {
                 console.warn('載入配置時發生錯誤:', error);
-                // 出錯時不阻止內容載入
             }
         }
-        
-        // 關閉彈出視窗
-        function closeModal() {
-            const modal = document.getElementById('storyModal');
-            modal.style.display = 'none';
+
+        // 渲染集數卡片
+        function renderEpisodes() {
+            const grid = document.getElementById('episodesGrid');
+            const loading = document.getElementById('loading');
+            
+            grid.innerHTML = episodes.map(ep => {
+                const selectedImages = config?.selectedImages?.[`episode${ep.id}`] || [];
+                const imageCount = selectedImages.length || ep.images;
+                const firstImage = selectedImages[0] || `../episode${ep.id}/${String(ep.id).padStart(2, '0')}_scene.jpg`;
+                
+                return `
+                    <div class="episode-card" onclick="openEpisode(${ep.id})">
+                        <div class="episode-image">
+                            <img src="${firstImage}" alt="${ep.title}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'200\' height=\'200\' fill=\'%23f5f7fa\'/><text x=\'100\' y=\'100\' font-family=\'Arial\' font-size=\'40\' fill=\'%23c3cfe2\' text-anchor=\'middle\' dominant-baseline=\'middle\'>📖</text></svg>'">
+                        </div>
+                        <div class="episode-content">
+                            <div class="episode-number">${ep.id}</div>
+                            <div class="episode-title">${ep.title}</div>
+                            <div class="episode-desc">${ep.desc}</div>
+                            <div class="episode-stats">
+                                <div class="stat">
+                                    <span class="stat-icon">🖼️</span>
+                                    <span>${imageCount} 張圖片</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-icon">📝</span>
+                                    <span>${ep.scenes} 個場景</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            loading.style.display = 'none';
+            grid.style.display = 'grid';
         }
-        
-        // 點擊視窗外區域關閉
-        window.onclick = function(event) {
-            const modal = document.getElementById('storyModal');
-            if (event.target === modal) {
-                closeModal();
-            }
+
+        // 開啟集數
+        function openEpisode(episodeId) {
+            window.location.href = `story.html?episode=${episodeId}`;
         }
-        
-        // 添加 ESC 鍵關閉功能
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
-        
-        // 初始化時載入配置
-        loadConfiguration();
     </script>
 </body>
 </html>
