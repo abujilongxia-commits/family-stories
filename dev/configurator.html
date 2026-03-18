@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭故事集 - 開發者圖片配置工具</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .config-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .episode-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .episode-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .episode-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .image-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+        
+        .image-card.selected {
+            border-color: #e74c3c;
+            background: #fff5f5;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-info {
+            padding: 10px;
+            font-size: 0.85em;
+        }
+        
+        .image-name {
+            font-weight: 600;
+            color: #2c3e50;
+            word-break: break-all;
+            margin-bottom: 3px;
+        }
+        
+        .image-size {
+            color: #7f8c8d;
+            font-size: 0.8em;
+        }
+        
+        .image-checkbox {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            accent-color: #e74c3c;
+        }
+        
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+        
+        .select-all {
+            background: #3498db;
+            color: white;
+        }
+        
+        .select-all:hover {
+            background: #2980b9;
+        }
+        
+        .clear-selection {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .clear-selection:hover {
+            background: #7f8c8d;
+        }
+        
+        .export {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .export:hover {
+            background: #27ae60;
+        }
+        
+        .selected-count {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e8f4fd;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            color: #2980b9;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+        
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ 家庭故事集 - 開發者圖片配置工具</h1>
+        <div class="subtitle">為每一集選擇要在讀者版中顯示的圖片</div>
+        
+        <div class="config-panel">
+            <h2>📋 配置說明</h2>
+            <p>此工具讓您可以為每一集選擇要在讀者版網站中顯示的圖片。選擇完成後，點擊「匯出配置」按鈕將配置保存，讀者版網站將會根據此配置顯示對應的圖片。</p>
+        </div>
+        
+        <div id="episodesContainer">
+            <!-- 集數配置將動態生成 -->
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn export" onclick="exportConfiguration()">📤 匯出配置</button>
+            <button class="control-btn clear-selection" onclick="clearAllSelections()">🗑️ 清除全部選擇</button>
+        </div>
+        
+        <div id="statusMessage" class="status-message" style="display: none;"></div>
+    </div>
+
+    <script>
+        // 存儲選定圖片的配置
+        let selectedImages = {
+            episode1: [],
+            episode2: [],
+            episode3: [],
+            episode4: [],
+            episode5: [],
+            episode6: [],
+            episode7: [],
+            episode8: [],
+            episode9: []
+        };
+        
+        // 各集數的圖片資料夾路徑
+        // 注意：此工具位於 dev/，所以路徑需以 dev/ 為基準
+        const episodePaths = {
+            episode1: './episode1/',
+            episode2: './episode2/',
+            episode3: './episode3/images/',
+            episode4: './episode4/images/',
+            episode5: './episode5/images/',
+            episode6: './episode6/images/',
+            episode7: './episode7/images/',
+            episode8: './episode8/images/',
+            episode9: './episode9/images/'
+        };
+        
+        // 初始化頁面
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfiguration(); // 嘗試載入現有配置
+            renderEpisodes(); // 渲染所有集數配置面板
+        });
+
+        function saveConfiguration() {
+            try {
+                localStorage.setItem('familyStoriesImageConfig', JSON.stringify({ selectedImages }));
+            } catch (error) {
+                console.warn('保存配置時發生錯誤:', error);
+            }
+        }
+        
+        // 渲染所有集數配置面板
+        function renderEpisodes() {
+            const container = document.getElementById('episodesContainer');
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= 9; i++) {
+                const episode = `episode${i}`;
+                const episodeNum = i;
+                
+                const episodeDiv = document.createElement('div');
+                episodeDiv.className = 'episode-section';
+                episodeDiv.id = `section-${episode}`;
+                
+                episodeDiv.innerHTML = `
+                    <div class="episode-header">
+                        <div class="episode-title">第 ${episodeNum} 集：${getEpisodeTitle(episodeNum)}</div>
+                        <div class="controls">
+                            <button class="control-btn select-all" onclick="selectAll('${episode}')">全選</button>
+                            <button class="control-btn clear-selection" onclick="clearSelection('${episode}')">清除</button>
+                        </div>
+                    </div>
+                    <div class="selected-count" id="count-${episode}">
+                        已選擇 <span id="count-num-${episode}">0</span> 張圖片
+                    </div>
+                    <div class="image-grid" id="grid-${episode}">
+                        <div class="loading">正在載入 ${getEpisodeTitle(episodeNum)} 的圖片...</div>
+                    </div>
+                `;
+                
+                container.appendChild(episodeDiv);
+                
+                // 載入該集數的圖片
+                loadEpisodeImages(episode);
+            }
+        }
+        
+        // 獲取集數標題
+        function getEpisodeTitle(episodeNum) {
+            const titles = {
+                1: '說走就走？先問媽媽！',
+                2: '媽祖婆，我們來了！',
+                3: '守護家人的智慧生活',
+                4: '兒童節的特別約定',
+                5: '媽媽的生日驚喜',
+                6: '哥哥的大學畢業',
+                7: '弟弟的校運會',
+                8: '家庭電影夜',
+                9: '年度回顧與新年願景'
+            };
+            return titles[episodeNum] || `第 ${episodeNum} 集`;
+        }
+        
+        // 載入特定集數的圖片
+        async function loadEpisodeImages(episode) {
+            const grid = document.getElementById(`grid-${episode}`);
+            const imagePath = episodePaths[episode];
+            
+            try {
+                grid.innerHTML = `<div class="loading">正在載入 ${getEpisodeTitle(Number(episode.replace('episode','')))} 的圖片...</div>`;
+                // 為了讓開發工具正常運作，我們使用預設的圖片列表
+                // 在實際實現中，這裡會從伺服器獲取圖片列表
+                const imageList = await getImageList(episode);
+                
+                if (imageList.length === 0) {
+                    grid.innerHTML = '<div class="loading">找不到圖片檔案</div>';
+                    return;
+                }
+                
+                // 渲染圖片網格
+                renderImageGrid(episode, imageList);
+
+                // 若載入過舊配置，這裡可再同步一次 UI
+                updateImageSelectionDisplay(episode);
+                
+            } catch (error) {
+                console.error(`載入 ${episode} 圖片時發生錯誤:`, error);
+                grid.innerHTML = `<div class="loading">載入圖片時發生錯誤: ${error.message}</div>`;
+            }
+        }
+        
+        // 獲取圖片列表（模擬實現，實際應用中需要後端API）
+        async function getImageList(episode) {
+            // 這是一個模擬實現，實際應用中需要透過後端API獲取圖片列表
+            // 根據不同集數返回對應的圖片路徑
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+            const images = [];
+            
+            // 根據集數生成對應的圖片路徑
+            const basePath = episodePaths[episode];
+            let maxImages = 35; // 預設最多35張
+            
+            // 不同集數可能有不同的圖片數量
+            if (episode === 'episode1') maxImages = 34;
+            else if (episode === 'episode2') maxImages = 35;
+            else if (episode === 'episode3') maxImages = 28;
+            else if (episode === 'episode4') maxImages = 33;
+            else if (episode === 'episode5') maxImages = 33;
+            else if (episode === 'episode6') maxImages = 33;
+            else if (episode === 'episode7') maxImages = 29;
+            else if (episode === 'episode8') maxImages = 29;
+            else if (episode === 'episode9') maxImages = 33;
+            
+            for (let i = 1; i <= maxImages; i++) {
+                let fileName = '';
+                
+                // 根據集數生成不同的檔案名稱模式
+                if (episode === 'episode1') {
+                    const names = ['scene', 'mom', 'brother', 'tv', 'look', 'earphone', 'phone', 'speaking', 'work', 'ask', 'mazu', 'point', 'excited', 'act', 'laugh', 'auntie', 'imitate', 'four_times', 'tease', 'serious', 'recall', 'backcarry', 'surprise', 'go_again', 'find_aunt', 'think', 'smile'];
+                    const name = names[(i-1) % names.length] || `scene${i}`;
+                    fileName = `${i.toString().padStart(2, '0')}_${name}.jpg`;
+                } else if (episode === 'episode2') {
+                    const names = ['家門集合', '鎮瀾宮前', '起駕時刻', '犁頭店', '七里香', '路邊休息', '抵達沙鹿', '第一天結束', '清晨出發', '彰化火車站', '扇形車庫', '南瑤宮', '午餐', '下午遶境', '互相扶持', '傍晚回程', '第二天結束', '凌晨準備', '龍井集合', '晨光出發', '田野風光', '清水朝興宮', '輕鬆氛圍', '路邊合照', '中午結束', '下午逛清水', '最終日', '台中港出發', '最後一段', '回鎮瀾宮', '感謝', '感性', '願望', '回家', '結尾'];
+                    const name = names[(i-1) % names.length] || `場景${i}`;
+                    fileName = `${i.toString().padStart(2, '0')}_${name}.jpg`;
+                } else {
+                    // 其他集數使用通用命名模式
+                    fileName = `${i.toString().padStart(2, '0')}_scene.jpg`;
+                }
+                
+                images.push({
+                    name: fileName,
+                    path: `${basePath}${fileName}`
+                });
+            }
+            
+            return images;
+        }
+        
+        // 渲染圖片網格
+        function renderImageGrid(episode, imageList) {
+            const grid = document.getElementById(`grid-${episode}`);
+            
+            grid.innerHTML = imageList.map((img, index) => {
+                const isSelected = selectedImages[episode] && 
+                                 selectedImages[episode].includes(img.path);
+                
+                return `
+                    <div class="image-card ${isSelected ? 'selected' : ''}" data-path="${img.path}" onclick="toggleImage('${episode}', '${img.path}', ${index})">
+                        <div class="image-container">
+                            <img src="${img.path}" alt="${img.name}" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" fill=\"%23f8f9fa\"/><text x=\"50\" y=\"50\" font-family=\"Arial\" font-size=\"12\" fill=\"%2395a5a6\" text-anchor=\"middle\" dominant-baseline=\"middle\">圖片<br>載入失敗</text></svg>';">
+                        </div>
+                        <div class="image-info">
+                            <div class="image-name">${img.name}</div>
+                        </div>
+                        <input type="checkbox" class="image-checkbox" ${isSelected ? 'checked' : ''} onclick="event.stopPropagation(); toggleImage('${episode}', '${img.path}', ${index})">
+                    </div>
+                `;
+            }).join('');
+            
+            updateSelectionCount(episode);
+        }
+        
+        // 切換圖片選擇狀態
+        function toggleImage(episode, imagePath, index) {
+            if (!selectedImages[episode]) {
+                selectedImages[episode] = [];
+            }
+            
+            const card = document.querySelector(`#grid-${episode} .image-card:nth-child(${index + 1})`);
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            
+            const isSelected = selectedImages[episode].includes(imagePath);
+            
+            if (isSelected) {
+                // 取消選擇
+                selectedImages[episode] = selectedImages[episode]
+                    .filter(path => path !== imagePath);
+                card.classList.remove('selected');
+                checkbox.checked = false;
+            } else {
+                // 選擇圖片
+                selectedImages[episode].push(imagePath);
+                card.classList.add('selected');
+                checkbox.checked = true;
+            }
+            
+            updateSelectionCount(episode);
+            saveConfiguration();
+        }
+        
+        // 更新選擇計數
+        function updateSelectionCount(episode) {
+            const count = selectedImages[episode] ? selectedImages[episode].length : 0;
+            document.getElementById(`count-num-${episode}`).textContent = count;
+        }
+        
+        // 全選某集圖片
+        function selectAll(episode) {
+            // 獲取該集數的所有圖片路徑
+            const imageCards = document.querySelectorAll(`#grid-${episode} .image-card`);
+            
+            // 將所有圖片加入選擇列表
+            imageCards.forEach((card, index) => {
+                const imagePath = card.dataset.path;
+                
+                if (!selectedImages[episode]) {
+                    selectedImages[episode] = [];
+                }
+                
+                if (!selectedImages[episode].includes(imagePath)) {
+                    selectedImages[episode].push(imagePath);
+                }
+                
+                card.classList.add('selected');
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.checked = true;
+            });
+            
+            updateSelectionCount(episode);
+            saveConfiguration();
+        }
+        
+        // 清除某集選擇
+        function clearSelection(episode) {
+            // 清除該集數的所有選擇
+            selectedImages[episode] = [];
+            
+            // 更新UI
+            const imageCards = document.querySelectorAll(`#grid-${episode} .image-card`);
+            imageCards.forEach(card => {
+                card.classList.remove('selected');
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.checked = false;
+            });
+            
+            updateSelectionCount(episode);
+            saveConfiguration();
+        }
+        
+        // 匯出配置
+        function exportConfiguration() {
+            try {
+                // 匯出給 reader/ 使用：路徑需以 reader/ 為相對基準（通常是 ../episodeX/...）
+                const exportSelectedImages = {};
+                Object.entries(selectedImages).forEach(([episode, paths]) => {
+                    exportSelectedImages[episode] = (paths || []).map(p => {
+                        if (typeof p !== 'string') return p;
+                        if (p.startsWith('./')) return `../${p.slice(2)}`;
+                        return p;
+                    });
+                });
+
+                const config = {
+                    selectedImages: exportSelectedImages,
+                    exportedAt: new Date().toISOString(),
+                    totalSelected: Object.values(exportSelectedImages)
+                        .reduce((total, arr) => total + arr.length, 0)
+                };
+                
+                // 創建並下載配置文件
+                const dataStr = "data:text/json;charset=utf-8," + 
+                    encodeURIComponent(JSON.stringify(config, null, 2));
+                const downloadAnchorNode = document.createElement('a');
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", "config.json");
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+                
+                showStatus('配置已成功匯出！請將檔案放到 reader/config.json（覆蓋原本的）', 'success');
+            } catch (error) {
+                console.error('匯出配置時發生錯誤:', error);
+                showStatus(`匯出配置時發生錯誤: ${error.message}`, 'error');
+            }
+        }
+        
+        // 清除全部選擇
+        function clearAllSelections() {
+            if (confirm('確定要清除所有集數的圖片選擇嗎？此操作無法復原。')) {
+                // 清除所有集數的選擇
+                for (let i = 1; i <= 9; i++) {
+                    const episode = `episode${i}`;
+                    selectedImages[episode] = [];
+                    
+                    // 更新UI
+                    const imageCards = document.querySelectorAll(`#grid-${episode} .image-card`);
+                    imageCards.forEach(card => {
+                        card.classList.remove('selected');
+                        const checkbox = card.querySelector('input[type="checkbox"]');
+                        checkbox.checked = false;
+                    });
+                    
+                    updateSelectionCount(episode);
+                }
+                
+                saveConfiguration();
+                showStatus('已清除所有圖片選擇！', 'success');
+            }
+        }
+        
+        // 顯示狀態消息
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = `status-message status-${type}`;
+            statusEl.style.display = 'block';
+            
+            setTimeout(() => {
+                statusEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        // 載入現有配置
+        function loadConfiguration() {
+            // 嘗試從本地存儲載入配置
+            try {
+                const savedConfig = localStorage.getItem('familyStoriesImageConfig');
+                if (savedConfig) {
+                    const config = JSON.parse(savedConfig);
+                    if (config.selectedImages) {
+                        selectedImages = config.selectedImages;
+                        showStatus('已載入先前保存的配置', 'success');
+                    }
+                }
+            } catch (error) {
+                console.warn('載入配置時發生錯誤:', error);
+            }
+        }
+        
+        // 更新圖片選擇顯示狀態
+        function updateImageSelectionDisplay(episode) {
+            const imageCards = document.querySelectorAll(`#grid-${episode} .image-card`);
+            imageCards.forEach((card, index) => {
+                const imagePath = card.dataset.path;
+                
+                const isSelected = selectedImages[episode] && 
+                                 selectedImages[episode].includes(imagePath);
+                
+                if (isSelected) {
+                    card.classList.add('selected');
+                    const checkbox = card.querySelector('input[type="checkbox"]');
+                    checkbox.checked = true;
+                } else {
+                    card.classList.remove('selected');
+                    const checkbox = card.querySelector('input[type="checkbox"]');
+                    checkbox.checked = false;
+                }
+            });
+            
+            updateSelectionCount(episode);
+        }
+    </script>
+</body>
+</html>

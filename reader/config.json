@@ -1,0 +1,69 @@
+{
+  "selectedImages": {
+    "episode1": [
+      "../episode1/01_scene.jpg",
+      "../episode1/10_mom_speaking.jpg",
+      "../episode1/17_act.jpg",
+      "../episode1/22_laugh.jpg",
+      "../episode1/34_smile.jpg"
+    ],
+    "episode2": [
+      "../episode2/01_家門集合.jpg",
+      "../episode2/03_起駕時刻.jpg",
+      "../episode2/15_互相扶持.jpg",
+      "../episode2/24_路邊合照.jpg",
+      "../episode2/35_結尾.jpg"
+    ],
+    "episode3": [
+      "../episode3/images/01_週六下午看電視.jpg",
+      "../episode3/images/08_阿布吉的興趣.jpg",
+      "../episode3/images/14_完成安裝.jpg",
+      "../episode3/images/16_棉花糖操作.jpg",
+      "../episode3/images/28_結尾.jpg"
+    ],
+    "episode4": [
+      "../episode4/images/01_兒童節早起.jpg",
+      "../episode4/images/10_彰化火車站.jpg",
+      "../episode4/images/21_田野風光.jpg",
+      "../episode4/images/25_中午結束.jpg",
+      "../episode4/images/33_結語.jpg"
+    ],
+    "episode5": [
+      "../episode5/images/01_客廳討論.jpg",
+      "../episode5/images/06_媽媽的擔心.jpg",
+      "../episode5/images/10_驚喜時刻.jpg",
+      "../episode5/images/14_全家合照.jpg",
+      "../episode5/images/20_幸福結尾.jpg"
+    ],
+    "episode6": [
+      "../episode6/images/02_穿學士服.jpg",
+      "../episode6/images/06_頒發證書.jpg",
+      "../episode6/images/10_拋學位帽.jpg",
+      "../episode6/images/11_畢業合照.jpg",
+      "../episode6/images/20_畢業結語.jpg"
+    ],
+    "episode7": [
+      "../episode7/images/07_家人加油.jpg",
+      "../episode7/images/09_努力拼搏.jpg",
+      "../episode7/images/11_獲得獎牌.jpg",
+      "../episode7/images/12_全家慶祝.jpg",
+      "../episode7/images/20_回家路上.jpg"
+    ],
+    "episode8": [
+      "../episode8/images/05_全家就座.jpg",
+      "../episode8/images/07_精彩時刻.jpg",
+      "../episode8/images/09_感動時刻.jpg",
+      "../episode8/images/15_溫馨時光.jpg",
+      "../episode8/images/20_電影夜結尾.jpg"
+    ],
+    "episode9": [
+      "../episode9/images/02_整理照片.jpg",
+      "../episode9/images/06_新年願望.jpg",
+      "../episode9/images/12_祈福時刻.jpg",
+      "../episode9/images/18_全家福.jpg",
+      "../episode9/images/20_系列結尾.jpg"
+    ]
+  },
+  "exportedAt": "2026-03-18T20:25:00+08:00",
+  "totalSelected": 45
+}
