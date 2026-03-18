@@ -393,7 +393,7 @@
             
             try {
                 // 獲取集數 HTML
-                const response = await fetch(`../dev/episode${episodeId}/story.html`);
+                const response = await fetch(`../episode${episodeId}/story.html`);
                 
                 if (!response.ok) {
                     throw new Error(`無法載入第 ${episodeId} 集`);
