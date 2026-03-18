@@ -11,61 +11,59 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
         
         .container {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
         
-        /* Header */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
         }
         
         .header a {
             color: white;
             text-decoration: none;
-            font-size: 0.9em;
+            font-size: 0.85em;
             opacity: 0.9;
         }
         
         .header h1 {
-            font-size: 1.6em;
-            margin-top: 10px;
+            font-size: 1.4em;
+            margin-top: 8px;
         }
         
-        /* Story Content */
         .story {
-            padding: 20px;
+            padding: 15px;
         }
         
-        /* 每個場景 */
+        /* 場景區塊 */
         .scene {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
         }
         
         .scene:last-child {
             border-bottom: none;
         }
         
-        /* 圖片 */
+        /* 圖片在場景中 */
         .scene-img {
             width: 100%;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             cursor: pointer;
         }
         
@@ -75,18 +73,26 @@
             display: block;
         }
         
-        /* 對話區域 */
-        .dialogues {
+        /* 文字區域 */
+        .scene-text {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
+        /* 敘述文字 */
+        .narration {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        /* 對話框 */
         .dialogue {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+            background: #f5f5f5;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
         }
         
         .dialogue.speaker-father { border-left-color: #3498db; }
@@ -96,29 +102,20 @@
         
         .dialogue .name {
             font-weight: bold;
-            font-size: 0.85em;
-            margin-bottom: 4px;
+            font-size: 0.8em;
             color: #667eea;
+            margin-bottom: 3px;
         }
         
         .dialogue .text {
             color: #333;
-            font-size: 0.95em;
+            font-size: 0.9em;
             line-height: 1.5;
         }
         
-        /* 敘述 */
-        .narration {
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        
-        /* Footer */
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background: #f8f9fa;
         }
         
@@ -126,13 +123,12 @@
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
+            padding: 10px 25px;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
         
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -147,34 +143,19 @@
         }
         
         .lightbox.active { display: flex; }
-        
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 10px;
-        }
-        
+        .lightbox img { max-width: 95%; max-height: 95%; border-radius: 8px; }
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 15px;
+            right: 20px;
             color: white;
-            font-size: 40px;
+            font-size: 35px;
             cursor: pointer;
         }
         
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        /* Mobile */
         @media (max-width: 500px) {
-            body { padding: 10px; }
-            .header h1 { font-size: 1.3em; }
-            .dialogue { padding: 10px 12px; }
+            body { padding: 8px; }
+            .header h1 { font-size: 1.2em; }
         }
     </style>
 </head>
@@ -184,11 +165,9 @@
             <a href="index.html">← 返回目錄</a>
             <h1 id="title">家庭故事集</h1>
         </div>
-        
         <div class="story" id="story">
-            <div class="loading">載入中...</div>
+            <p style="text-align:center;padding:40px;color:#666;">載入中...</p>
         </div>
-        
         <div class="footer">
             <a href="index.html">🏠 返回目錄</a>
         </div>
@@ -206,40 +185,30 @@
             7: '魔術方塊高手！', 8: '小老師棉花糖！', 9: '居家大改造！'
         };
         
-        let config = {};
-        
-        // 顏色映射
-        const speakerColors = {
-            '爸爸': 'speaker-father',
-            '媽媽': 'speaker-mother', 
-            '阿布吉': 'speaker-brother',
-            '棉花糖': 'speaker-brother2',
-            '哥哥': 'speaker-brother'
+        const speakerClass = {
+            '爸爸': 'speaker-father', '媽媽': 'speaker-mother',
+            '阿布吉': 'speaker-brother', '棉花糖': 'speaker-brother2', '哥哥': 'speaker-brother'
         };
         
+        let config = {};
+        
         async function init() {
-            try { 
-                config = await (await fetch('./config.json')).json(); 
-            } catch(e) { console.log(e); }
-            
-            const params = new URLSearchParams(location.search);
-            const id = params.get('episode');
+            try { config = await (await fetch('./config.json')).json(); } catch(e) {}
+            const id = new URLSearchParams(location.search).get('episode');
             if(id) loadEpisode(parseInt(id));
         }
         
         async function loadEpisode(id) {
             try {
-                // 標題
                 document.getElementById('title').textContent = titles[id] || `第${id}集`;
                 document.title = (titles[id] || `第${id}集`) + ' - 家庭故事集';
                 
-                // 內容
                 const res = await fetch(`../episode${id}/story.html`);
                 const html = await res.text();
                 const doc = new DOMParser().parseFromString(html, 'text/html');
                 
                 const images = config.selectedImages?.[`episode${id}`] || [];
-                const content = buildStory(doc, images);
+                const content = buildScenes(doc, images);
                 document.getElementById('story').innerHTML = content;
                 
                 // 燈箱
@@ -249,63 +218,58 @@
                         document.getElementById('lightbox').classList.add('active');
                     };
                 });
-                
             } catch(e) {
-                document.getElementById('story').innerHTML = `<div class="loading">載入失敗：${e.message}</div>`;
+                document.getElementById('story').innerHTML = `<p style="text-align:center;padding:40px;">載入失敗：${e.message}</p>`;
             }
         }
         
-        function buildStory(doc, images) {
+        function buildScenes(doc, images) {
             let html = '';
             let imgIdx = 0;
             
-            // 取得所有場景
             const scenes = doc.querySelectorAll('.scene');
             
             scenes.forEach((scene, i) => {
-                // 取得圖片
-                let imgHtml = '';
-                if(imgIdx < images.length) {
-                    imgHtml = `<div class="scene-img"><img src="${images[imgIdx]}" loading="lazy" alt=""></div>`;
+                let sceneContent = '';
+                
+                // 圖片（如果還有圖）
+                if (imgIdx < images.length) {
+                    sceneContent += `<div class="scene-img"><img src="${images[imgIdx]}" loading="lazy" alt=""></div>`;
                     imgIdx++;
                 }
                 
-                // 取得對話
-                let dialoguesHtml = '';
-                const dialogues = scene.querySelectorAll('.dialogue');
-                dialogues.forEach(d => {
+                sceneContent += '<div class="scene-text">';
+                
+                // 敘述
+                scene.querySelectorAll('p').forEach(p => {
+                    if (!p.querySelector('.dialogue') && p.textContent.trim()) {
+                        sceneContent += `<p class="narration">${p.textContent.trim()}</p>`;
+                    }
+                });
+                
+                // 對話
+                scene.querySelectorAll('.dialogue').forEach(d => {
                     const name = d.querySelector('strong')?.textContent?.trim() || '';
                     const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
-                    const colorClass = speakerColors[name] || '';
-                    if(text) {
-                        dialoguesHtml += `<div class="dialogue ${colorClass}"><div class="name">${name}</div><div class="text">${text}</div></div>`;
+                    const cls = speakerClass[name] || '';
+                    if (text) {
+                        sceneContent += `<div class="dialogue ${cls}"><div class="name">${name}</div><div class="text">${text}</div></div>`;
                     }
                 });
                 
-                // 取得敘述
-                let narrationHtml = '';
-                scene.querySelectorAll('p').forEach(p => {
-                    if(!p.querySelector('.dialogue') && p.textContent.trim()) {
-                        narrationHtml += `<div class="narration">${p.textContent.trim()}</div>`;
-                    }
-                });
+                sceneContent += '</div>';
                 
-                // 有內容就顯示
-                if(imgHtml || dialoguesHtml || narrationHtml) {
-                    html += `<div class="scene">${imgHtml}<div class="dialogues">${narrationHtml}${dialoguesHtml}</div></div>`;
+                // 有內容才顯示
+                if (sceneContent.includes('narration') || sceneContent.includes('dialogue') || sceneContent.includes('scene-img')) {
+                    html += `<div class="scene">${sceneContent}</div>`;
                 }
             });
             
-            return html || '<div class="loading">沒有內容</div>';
+            return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
         }
         
-        // 燈箱關閉
-        document.querySelector('.lightbox-close').onclick = () => {
-            document.getElementById('lightbox').classList.remove('active');
-        };
-        document.getElementById('lightbox').onclick = (e) => {
-            if(e.target.id === 'lightbox') document.getElementById('lightbox').classList.remove('active');
-        };
+        document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
+        document.getElementById('lightbox').onclick = e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('active'); };
         
         init();
     </script>
