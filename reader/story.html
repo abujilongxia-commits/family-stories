@@ -334,22 +334,14 @@
                 const sceneClass = scene.className || '';
                 const sceneHTML = scene.innerHTML.trim();
                 
-                // 分隔區塊
+                // 分隔區塊 - 簡化呈現
                 if (sceneClass.includes('part-divider') || sceneClass.includes('character-intro') || sceneClass.includes('trip-info')) {
                     const title = scene.querySelector('h2, h3')?.textContent || '';
-                    const content = scene.querySelector('p')?.textContent || '';
-                    const items = scene.querySelectorAll('.item');
-                    
-                    let itemsHTML = '';
-                    if (items.length > 0) {
-                        itemsHTML = '<div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px;">';
-                        items.forEach(item => {
-                            itemsHTML += `<span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 0.85em;">${item.textContent}</span>`;
-                        });
-                        itemsHTML += '</div>';
+                    // 只顯示標題，移除「第一部分」等
+                    const simpleTitle = title.replace(/^第.+?：/, '').replace(/^第.+?\n/, '');
+                    if (simpleTitle) {
+                        result += `<div class="part-divider"><h2>${simpleTitle}</h2></div>`;
                     }
-                    
-                    result += `<div class="part-divider"><h2>${title}</h2><p>${content}</p>${itemsHTML}</div>`;
                     return;
                 }
                 
