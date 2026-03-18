@@ -42,22 +42,16 @@
             margin-top: 8px;
         }
         
-        .story {
-            padding: 15px;
-        }
+        .story { padding: 15px; }
         
-        /* 場景區塊 */
         .scene {
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
         
-        .scene:last-child {
-            border-bottom: none;
-        }
+        .scene:last-child { border-bottom: none; }
         
-        /* 圖片在場景中 */
         .scene-img {
             width: 100%;
             border-radius: 10px;
@@ -73,21 +67,10 @@
             display: block;
         }
         
-        /* 文字區域 */
-        .scene-text {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .scene-text { display: flex; flex-direction: column; gap: 8px; }
         
-        /* 敘述文字 */
-        .narration {
-            color: #555;
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
+        .narration { color: #555; font-size: 0.9em; line-height: 1.6; }
         
-        /* 對話框 */
         .dialogue {
             background: #f5f5f5;
             padding: 10px 14px;
@@ -107,17 +90,9 @@
             margin-bottom: 3px;
         }
         
-        .dialogue .text {
-            color: #333;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
+        .dialogue .text { color: #333; font-size: 0.9em; line-height: 1.5; }
         
-        .footer {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-        }
+        .footer { text-align: center; padding: 15px; background: #f8f9fa; }
         
         .footer a {
             display: inline-block;
@@ -191,6 +166,7 @@
         };
         
         let config = {};
+        let storyDoc = null;
         
         async function init() {
             try { config = await (await fetch('./config.json')).json(); } catch(e) {}
@@ -203,12 +179,16 @@
                 document.getElementById('title').textContent = titles[id] || `第${id}集`;
                 document.title = (titles[id] || `第${id}集`) + ' - 家庭故事集';
                 
+                // 讀取故事原文
                 const res = await fetch(`../episode${id}/story.html`);
                 const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, 'text/html');
+                storyDoc = new DOMParser().parseFromString(html, 'text/html');
                 
+                // 選擇的圖片
                 const images = config.selectedImages?.[`episode${id}`] || [];
-                const content = buildScenes(doc, images);
+                
+                // 根據圖片產生匹配的故事
+                const content = buildFromImages(images, id);
                 document.getElementById('story').innerHTML = content;
                 
                 // 燈箱
@@ -223,49 +203,100 @@
             }
         }
         
-        function buildScenes(doc, images) {
+        // 從圖片建立故事
+        function buildFromImages(images, episodeId) {
+            if (!storyDoc || images.length === 0) {
+                return '<p style="text-align:center;padding:40px;">沒有圖片</p>';
+            }
+            
             let html = '';
-            let imgIdx = 0;
             
-            const scenes = doc.querySelectorAll('.scene');
-            
-            scenes.forEach((scene, i) => {
-                let sceneContent = '';
-                
-                // 圖片（如果還有圖）
-                if (imgIdx < images.length) {
-                    sceneContent += `<div class="scene-img"><img src="${images[imgIdx]}" loading="lazy" alt=""></div>`;
-                    imgIdx++;
-                }
-                
-                sceneContent += '<div class="scene-text">';
+            // 取得所有對話
+            const allDialogues = [];
+            storyDoc.querySelectorAll('.scene').forEach(scene => {
+                const dialogues = scene.querySelectorAll('.dialogue');
+                dialogues.forEach(d => {
+                    const name = d.querySelector('strong')?.textContent?.trim() || '';
+                    const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
+                    if (text) allDialogues.push({ name, text });
+                });
                 
                 // 敘述
                 scene.querySelectorAll('p').forEach(p => {
                     if (!p.querySelector('.dialogue') && p.textContent.trim()) {
-                        sceneContent += `<p class="narration">${p.textContent.trim()}</p>`;
+                        allDialogues.push({ name: '', text: p.textContent.trim() });
+                    }
+                });
+            });
+            
+            // 為每張圖片找最匹配的對話
+            images.forEach((imgPath, idx) => {
+                // 從檔名取出關鍵字
+                const filename = imgPath.split('/').pop().replace('.jpg', ''); // "02_爸爸解說"
+                const keywords = filename.split('_').pop(); // "爸爸解說"
+                const numMatch = filename.match(/^(\d+)/); // "02"
+                
+                // 找相關對話
+                const matched = findMatchingDialogues(allDialogues, keywords, numMatch?.[1]);
+                
+                // 組合成場景
+                let sceneHtml = '';
+                
+                // 圖片
+                sceneHtml += `<div class="scene-img"><img src="${imgPath}" loading="lazy" alt=""></div>`;
+                sceneHtml += '<div class="scene-text">';
+                
+                // 敘述+對話
+                matched.forEach(m => {
+                    if (m.name) {
+                        const cls = speakerClass[m.name] || '';
+                        sceneHtml += `<div class="dialogue ${cls}"><div class="name">${m.name}</div><div class="text">${m.text}</div></div>`;
+                    } else {
+                        sceneHtml += `<p class="narration">${m.text}</p>`;
                     }
                 });
                 
-                // 對話
-                scene.querySelectorAll('.dialogue').forEach(d => {
-                    const name = d.querySelector('strong')?.textContent?.trim() || '';
-                    const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
-                    const cls = speakerClass[name] || '';
-                    if (text) {
-                        sceneContent += `<div class="dialogue ${cls}"><div class="name">${name}</div><div class="text">${text}</div></div>`;
-                    }
-                });
+                sceneHtml += '</div>';
                 
-                sceneContent += '</div>';
-                
-                // 有內容才顯示
-                if (sceneContent.includes('narration') || sceneContent.includes('dialogue') || sceneContent.includes('scene-img')) {
-                    html += `<div class="scene">${sceneContent}</div>`;
-                }
+                html += `<div class="scene">${sceneHtml}</div>`;
             });
             
             return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
+        }
+        
+        // 找匹配的對話
+        function findMatchingDialogues(allDialogues, keywords, sceneNum) {
+            const kw = keywords.toLowerCase();
+            const results = [];
+            
+            // 嘗試找相關的
+            const relevant = allDialogues.filter(d => {
+                if (!d.name && !d.text) return false;
+                const searchText = (d.name + d.text).toLowerCase();
+                
+                // 精確關鍵字匹配
+                if (kw.includes('爸爸') && searchText.includes('爸爸')) return true;
+                if (kw.includes('媽媽') && searchText.includes('媽媽')) return true;
+                if (kw.includes('阿布吉') && (searchText.includes('阿布吉') || searchText.includes('哥哥'))) return true;
+                if (kw.includes('棉花糖') && (searchText.includes('棉花糖') || searchText.includes('弟弟'))) return true;
+                if (kw.includes('擔心') && searchText.includes('擔心')) return true;
+                if (kw.includes('解說') && searchText.includes('說')) return true;
+                if (kw.includes('戰鬥') && searchText.includes('戰')) return true;
+                if (kw.includes('攻擊') && searchText.includes('攻')) return true;
+                if (kw.includes('反擊') && searchText.includes('反')) return true;
+                if (kw.includes('結束') && searchText.includes('結')) return true;
+                if (kw.includes('回家') && searchText.includes('回')) return true;
+                
+                return false;
+            });
+            
+            if (relevant.length > 0) {
+                // 取前面2-3個相關對話
+                return relevant.slice(0, 3);
+            }
+            
+            // 沒找到相關的，取最接近的幾個
+            return allDialogues.slice(0, 2);
         }
         
         document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
