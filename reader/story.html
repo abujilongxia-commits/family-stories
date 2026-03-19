@@ -72,7 +72,7 @@
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集 v2';
                 
-                    const res = await fetch('../episode' + id + '/story.html?t=' + Date.now());
+                    const res = await fetch('../family-stories/episode' + id + '/story.html?t=' + Date.now());
                     const html = await res.text();
                     const doc = new DOMParser().parseFromString(html, 'text/html');
                     storyScenes = parseStoryScenes(doc);
