@@ -75,7 +75,8 @@
                     html = await ep5Res.text();
                     document.getElementById('story').innerHTML = html;
                 } else {
-                    const res = await fetch('../episode' + id + '/story.html');
+                    // For episode 5, use different path
+                const res = await fetch(id == 5 ? './episode5/story.html' : '../episode' + id + '/story.html');
                     html = await res.text();
                     const doc = new DOMParser().parseFromString(html, 'text/html');
                     storyScenes = parseStoryScenes(doc);
