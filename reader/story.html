@@ -92,6 +92,7 @@
 
         function buildScene(episodeId, sceneEl) {
             var imgEl = sceneEl.querySelector('img');
+            console.log('buildScene: episodeId=', episodeId, 'imgEl=', imgEl, 'src=', imgEl ? imgEl.src : 'null');
             var imgPath = imgEl ? fixImagePath(imgEl.src, episodeId) : '';
             var html = '<div class="scene">';
             if (imgPath) {
@@ -122,8 +123,10 @@
 
         function renderEpisode(episodeId, doc) {
             var sceneEls = doc.querySelectorAll('.scene');
+            console.log('renderEpisode: episodeId=', episodeId, 'sceneEls.length=', sceneEls.length);
             var html = '';
-            sceneEls.forEach(function(scene) {
+            sceneEls.forEach(function(scene, idx) {
+                console.log('  scene', idx, ':', scene.outerHTML.substring(0, 100));
                 html += buildScene(episodeId, scene);
             });
             document.getElementById('story').innerHTML = html;
