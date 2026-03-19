@@ -108,6 +108,15 @@
         }
         
         function buildSceneHtml(imgPath, items) {
+            // Convert relative path to absolute URL
+            if (imgPath && !imgPath.startsWith('http')) {
+                const episodeBase = 'https://abujilongxia-commits.github.io/family-stories/episode';
+                const readerBase = 'https://abujilongxia-commits.github.io/family-stories/reader/episode';
+                // Extract episode id from storyScenes or use global id
+                const id = parseInt(new URLSearchParams(location.search).get('episode')) || currentEpisodeId;
+                const base = (id == 5) ? readerBase + '5' : episodeBase + id;
+                imgPath = imgPath.startsWith('/') ? imgPath : base + '/' + imgPath;
+            }
             let html = '<div class="scene">';
             if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" alt=""></div>';
             html += '<div class="scene-text">';
