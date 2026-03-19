@@ -109,7 +109,7 @@
         
         function buildSceneHtml(imgPath, items) {
             let html = '<div class="scene">';
-            if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" loading="lazy" alt=""></div>';
+            if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" alt=""></div>';
             html += '<div class="scene-text">';
             items.forEach(item => {
                 if (item.type === 'narration') html += '<p class="narration">' + item.text + '</p>';
