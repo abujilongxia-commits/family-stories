@@ -100,20 +100,9 @@
             if (!storyScenes || storyScenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
             
             let html = '';
-            const sceneImageMap = {};
-            images.forEach(imgPath => {
-                const filename = imgPath.split('/').pop().replace('.jpg', '');
-                const match = filename.match(/^(\d+)/);
-                if (match) {
-                    const sceneNum = parseInt(match[1]);
-                    sceneImageMap[sceneNum] = imgPath;
-                }
-            });
-            
-            const sortedSceneNums = Object.keys(sceneImageMap).map(Number).sort((a,b) => a - b);
-            sortedSceneNums.forEach(sceneNum => {
-                const imgPath = sceneImageMap[sceneNum];
-                const storyScene = storyScenes.find(s => s.index === sceneNum);
+            // 按順序對應圖片到故事場景
+            images.forEach((imgPath, idx) => {
+                const storyScene = storyScenes[idx];
                 html += buildSceneHtml(imgPath, storyScene ? storyScene.items : []);
             });
             
