@@ -1,155 +1,207 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第五集：棒球場攻略！ - 家庭故事</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: "Microsoft JhengHei", "PingFang TC", serif; background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); min-height: 100vh; padding: 0; line-height: 1.8; }
-.container { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
-.header { background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 50px 25px; text-align: center; }
-.header .episode-tag { display: inline-block; background: rgba(255,255,255,0.3); padding: 6px 15px; border-radius: 20px; font-size: 0.85em; margin-bottom: 12px; }
-.header h1 { font-size: 2em; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-.header .subtitle { font-size: 1em; opacity: 0.95; }
-.story-content { padding: 30px 20px; }
-.scene { margin-bottom: 30px; page-break-inside: avoid; }
-.scene-image { margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
-.scene-image .placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%); display: flex; align-items: center; justify-content: center; color: #636e72; font-size: 1em; border-radius: 12px; }
-.scene-text { padding: 0 8px; }
-.scene-text p { font-size: 1em; color: #333; margin-bottom: 10px; text-align: justify; }
-.scene-text .dialogue { background: #f8f9fa; padding: 12px 15px; border-radius: 8px; margin: 12px 0; border-left: 3px solid #d63031; }
-.scene-text .dialogue strong { color: #d63031; display: block; margin-bottom: 4px; font-size: 0.9em; }
-.scene-text .dialogue .text { color: #555; font-size: 0.95em; }
-.part-divider { background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 20px; text-align: center; margin: 25px -20px; }
-.part-divider h2 { font-size: 1.4em; margin-bottom: 6px; }
-.part-divider p { opacity: 0.9; font-size: 0.9em; }
-.character-intro { background: #f8f9fa; padding: 20px; margin: 20px 0; border-radius: 12px; }
-.character-intro h3 { color: #d63031; margin-bottom: 12px; text-align: center; }
-.character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-.character { background: white; padding: 12px; border-radius: 8px; text-align: center; border: 2px solid #e9ecef; }
-.character .emoji { font-size: 1.8em; margin-bottom: 6px; }
-.character h4 { color: #d63031; margin-bottom: 4px; font-size: 0.85em; }
-.character p { font-size: 0.75em; color: #666; line-height: 1.3; }
-.trip-info { background: #dfe6e9; padding: 15px; margin: 20px 0; border-radius: 12px; text-align: center; }
-.trip-info h3 { color: #2d3436; margin-bottom: 10px; }
-.trip-info .items { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.trip-info .item { background: white; padding: 6px 12px; border-radius: 6px; font-size: 0.8em; color: #636e72; }
-.footer { background: #f8f9fa; padding: 20px; text-align: center; margin-top: 30px; }
-.footer a { color: #d63031; text-decoration: none; font-weight: bold; }
-.back-button { display: inline-block; background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; }
-.scene-number { display: inline-block; background: #d63031; color: white; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; font-size: 0.7em; margin-right: 6px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五集：棒球場攻略！ - 家庭故事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif; background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); min-height: 100vh; padding: 0; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 60px 30px; text-align: center; }
+        .header .episode-tag { display: inline-block; background: rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 30px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+        .header h1 { font-size: 2.2em; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); line-height: 1.3; }
+        .header .subtitle { font-size: 1.1em; opacity: 0.95; max-width: 600px; margin: 0 auto; }
+        .story-content { padding: 40px 30px; }
+        .scene { margin-bottom: 50px; page-break-inside: avoid; }
+        .scene-image { margin-bottom: 25px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .scene-image img { width: 100%; height: auto; display: block; }
+        .scene-text { padding: 0 10px; }
+        .scene-text p { font-size: 1.1em; line-height: 1.8; color: #333; margin-bottom: 15px; text-align: justify; }
+        .scene-number { display: inline-block; background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85em; margin-bottom: 10px; }
+        .nav-links { text-align: center; padding: 30px; background: #f8f9fa; }
+        .nav-links a { display: inline-block; background: linear-gradient(135deg, #ff7675 0%, #d63031 100%); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; margin: 0 10px; font-weight: bold; }
+        .nav-links a:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,107,107,0.4); }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<div class="episode-tag">🎬 第五集</div>
-<h1>棒球場攻略！</h1>
-<div class="subtitle">爸爸研究洲際球場座位攻略，一家 人準備看棒球賽！（難得的家庭活動）</div>
-</div>
-
-<div class="story-content">
-<div class="trip-info">
-<h3>⚾ 本集重點</h3>
-<div class="items">
-<div class="item">洲際棒球場</div>
-<div class="item">座位攻略</div>
-<div class="item">買票技巧</div>
-<div class="item">最佳位置</div>
-</div>
-</div>
-
-<div class="character-intro">
-<h3>👨‍👩‍👦 故事角色</h3>
-<div class="character-grid">
-<div class="character"><div class="emoji">👨</div><h4>爸爸</h4><p>熱血球迷<br>研究座位攻略</p></div>
-<div class="character"><div class="emoji">👩</div><h4>媽媽凱莉</h4><p>50 多歲<br>賢慧、操心</p></div>
-<div class="character"><div class="emoji">👦</div><h4>哥哥阿布吉</h4><p>20 歲大學生<br>外冷內熱</p></div>
-<div class="character"><div class="emoji">👦</div><h4>弟弟棉花糖</h4><p>15 歲高中生<br>活力充沛</p></div>
-</div>
-</div>
-
-<div class="part-divider"><h2>第一部分：爸爸的研究</h2><p>爸爸開始研究棒球場座位攻略...</p></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景1: 客廳看電視</div></div><div class="scene-text"><p><span class="scene-number">1</span>一個週末的下午，爸爸在客廳看電視，正好在播放棒球賽事。</p><p>「這個週末有比賽！我們去看吧！」爸爸突然說。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">好耶！去看棒球！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景2: 爸爸上網做功課</div></div><div class="scene-text"><p><span class="scene-number">2</span>說做就做！爸爸立刻上網搜尋洲際球場的座位攻略。</p><p>「不行，我要先研究一下坐在哪裡最好，不然會被笑！」爸爸認真地說。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景3: 講解座位攻略</div></div><div class="scene-text"><p><span class="scene-number">3</span>爸爸把家人叫過來，開始他的「座位教學」。</p><div class="dialogue"><strong>爸爸</strong><span class="text」你們看，這個叫做「內野熱區」，視野最好，但是比較貴...</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景4: 本壘後方</div></div><div class="scene-text"><p><span class="scene-number">4</span>爸爸繼續講解。</p><div class="dialogue"><strong>爸爸</strong><span class="text」這個「本壘後方」是最貴的，但視野最好，可以看到投手投球的動作！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景5: 內野熱區</div></div><div class="scene-text"><p><span class="scene-number">5</span>爸爸指向內野熱區的圖片。</p><div class="dialogue"><strong>爸爸</strong><span class="text」內野熱區的視野很好，價錢適中，CP值最高！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景6: 外野的特色</div></div><div class="scene-text"><p><span class="scene-number">6</span>爸爸講解外野的特色。</p><div class="dialogue"><strong>爸爸</strong><span class="text」這個「外野」區最便宜，但是有時候會被全壘打打到！哈哈哈！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景7: 棉花糖的問題</div></div><div class="scene-text"><p><span class="scene-number">7</span>棉花糖舉手發問。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」蛤？會被打到？那我們不要坐那裡！</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」不會啦，機率很低！而且坐在那裡看全壘打最刺激！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景8: 阿布吉的建議</div></div><div class="scene-text"><p><span class="scene-number">8</span>阿布吉也湊過來看。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」爸，那「熱區」跟「外野」差在哪裡？</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好問題！熱區就是最受歡迎的區域，通常靠近本壘...</span></div></div></div>
-
-<div class="part-divider"><h2>第二部分：買票與出發</h2><p>一家人出發去球場！</p></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景9: 網路購票</div></div><div class="scene-text"><p><span class="scene-number">9</span>爸爸在網路上買票，選擇了「內野熱區」的座位。</p><div class="dialogue"><strong>爸爸</strong><span class="text」好了！買好了！我們坐這裡——視野最好、性價比最高！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景10: 媽媽的疑問</div></div><div class="scene-text"><p><span class="scene-number">10</span>媽媽走過來看。</p><div class="dialogue"><strong>媽媽</strong><span class="text」多少錢？不會很貴吧？</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」不貴不貴！難得帶家人去看球，這個錢值得！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景11: 出發前的準備</div></div><div class="scene-text"><p><span class="scene-number">11</span>比赛当天，一家人准备出门。</p><p>爸爸拿著小球帽和加油毛巾，兴奋得像是自己要上场一样。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景12: 爸爸的裝扮</div></div><div class="scene-text"><p><span class="scene-number">12</span>爸爸戴上球帽，穿上球衣。</p><div class="dialogue"><strong>爸爸</strong><span class="text」好了！出發！今天要对战兄弟队！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景13: 棉花糖的隊伍</div></div><div class="scene-text"><p><span class="scene-number">13</span>棉花糖拿出自己支持球隊的毛巾。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」我要帮统一狮加油！</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好！那我們分開加油！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景14: 出發</div></div><div class="scene-text"><p><span class="scene-number">14</span>一家人上車，出發去球場！</p><div class="dialogue"><strong>阿布吉</strong><span class="text」随便啦，哪个队赢都好。</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景15: 抵達球場</div></div><div class="scene-text"><p><span class="scene-number">15</span>一家人抵達洲際棒球場！巨大的球場映入眼簾。</p><p>棉花糖睜大眼睛，發出驚嘆聲。</p></div></div>
-
-<div class="part-divider"><h2>第三部分：觀賽體驗</h2><p>一家人享受棒球比賽的熱情！</p></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景16: 找到座位</div></div><div class="scene-text"><p><span class="scene-number">16</span>爸爸帶領家人找到座位坐下來。</p><p>「這個位置真的很棒！可以看到整個投手丘！」爸爸滿意地說。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景17: 媽媽的稱讚</div></div><div class="scene-text"><p><span class="scene-number">17</span>媽媽環顧四周。</p><div class="dialogue"><strong>媽媽</strong><span class="text」視野真的很好，你做功課有做！</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」那是！我研究了好幾天！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景18: 買食物</div></div><div class="scene-text"><p><span class="scene-number">18</span>比賽開始前，爸爸去買了熱狗和飲料。</p><div class="dialogue"><strong>爸爸</strong><span class="text」來！吃熱狗！看棒球就是要吃這個！</span></div><p>棉花糖一手拿著熱狗，一手拿著汽水，開心極了。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景19: 棉花糖的發現</div></div><div class="scene-text"><p><span class="scene-number">19</span>棉花糖發現旁邊有人在賣應援商品。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」爸！我可以去買那個嗎？」</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景20: 加油時間</div></div><div class="scene-text"><p><span class="scene-number">20</span>比賽進行中，全場觀眾一起加油！</p><p>爸爸跟著大家喊口號，超級投入。</p><div class="dialogue"><strong>爸爸</strong><span class="text」加油！加油！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景21: 棉花糖加油</div></div><div class="scene-text"><p><span class="scene-number">21</span>棉花糖也被感染了，一起大聲加油。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」統一獅！！加油！！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景22: 阿布吉的反應</div></div><div class="scene-text"><p><span class="scene-number">22</span>阿布吉雖然比較安靜，但也被氣氛感染。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」（這個氣氛還不錯。）</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景23: 全壘打！</div></div><div class="scene-text"><p><span class="scene-number">23</span>突然！打者打出了一支全壘打！</p><p>全場沸騰！爸爸激動得跳起來！</p><div class="dialogue"><strong>爸爸</strong><span class="text」全壘打！！！太爽了！！！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景24: 棉花糖的興奮</div></div><div class="scene-text"><p><span class="scene-number">24</span>棉花糖也超級興奮，這是他第一次在現場看到全壘打！</p><div class="dialogue"><strong>棉花糖</strong><span class="text」哥！！！你看到了嗎！！！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景25: 中場休息</div></div><div class="scene-text"><p><span class="scene-number">25</span>中場休息，一家人聊著天。</p><div class="dialogue"><strong>媽媽</strong><span class="text」這裡好熱鬧好好玩！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景26: 阿布吉的建議</div></div><div class="scene-text"><p><span class="scene-number">26</span>阿布吉提出建議。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」下次可以坐更前面一点，看得更清楚。</span></div><div class="dialogue"><strong>爸爸</strong><span class="text」好！下次我們買更貴的座位！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景27: 下半場</div></div><div class="scene-text"><p><span class="scene-number">27</span>下半場開始，氣氛依然熱烈！</p><p>兩隊比分僵持，非常刺激！</p></div></div>
-
-<div class="part-divider"><h2>第四部分：結尾</h2><p>帶著滿滿的回憶回家！</p></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景28: 比賽結束</div></div><div class="scene-text"><p><span class="scene-number">28</span>比賽結束了，一家人帶著滿足的笑容離開球場。</p><p>雖然赢了比赛很开心，但最重要的是一家人在一起的时光。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景29: 離開球場</div></div><div class="scene-text"><p><span class="scene-number">29</span>離開球場時，棉花糖一直回頭看。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」爸！下次還要再來！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景30: 爸爸的承諾</div></div><div class="scene-text"><p><span class="scene-number">30</span>爸爸答應下次再來。</p><div class="dialogue"><strong>爸爸</strong><span class="text」好！我們下次買更好的位置！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景31: 回家路上</div></div><div class="scene-text"><p><span class="scene-number">31</span>回家的路上，車裡充滿了歡笑聲。</p><p>大家都在討論今天的比賽。</p></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景32: 到家</div></div><div class="scene-text"><p><span class="scene-number">32</span>回到家，一家人坐在客廳，回憶著今天的點點滴滴。</p><div class="dialogue"><strong>媽媽</strong><span class="text」今天好開心！謝謝你安排！</span></div></div></div>
-
-<div class="scene"><div class="scene-image"><div class="placeholder">📷 場景33: 結語</div></div><div class="scene-text"><p><span class="scene-number">33</span>爸爸計畫下一次的家庭棒球日。</p><div class="dialogue"><strong>爸爸</strong><span class="text」下次我們再去研究其他球場！</span></div><p>這是一次美好的家庭回憶。</p></div></div>
-
-<div class="part-divider"><h2>🎉 完</h2><p>謝謝觀看！</p></div>
-</div>
-
-<div class="footer">
-<a href="../index.html" class="back-button">🏠 回首頁</a>
-</div>
-</div>
+    <div class="container">
+        <div class="header">
+            <span class="episode-tag">Episode 5</span>
+            <h1>棒球場攻略！</h1>
+            <p class="subtitle">一家人去台中洲際棒球場看球賽，體驗熱血沸騰的棒球氛圍！</p>
+        </div>
+        <div class="story-content">
+            <!-- 場景 1 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/01_客廳看電視.jpg" alt="客廳看電視"></div>
+                <div class="scene-text"><span class="scene-number">場景 1</span><p>一個週末的下午，爸爸坐在客廳看電視，正好在播放棒球賽事。</p></div>
+            </div>
+            <!-- 場景 2 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/02_爸爸上網做功課.jpg" alt="爸爸上網做功課"></div>
+                <div class="scene-text"><span class="scene-number">場景 2</span><p>「我們也去現場看吧！」爸爸心血來潮，立刻上網搜尋台中洲際棒球場的資訊。</p></div>
+            </div>
+            <!-- 場景 3 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/03_講解座位攻略.jpg" alt="講解座位攻略"></div>
+                <div class="scene-text"><span class="scene-number">場景 3</span><p>爸爸把家人叫過來，開始他的「座位教學」，詳細解說各個區域的特色。</p></div>
+            </div>
+            <!-- 場景 4 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/04_本壘後方.jpg" alt="本壘後方"></div>
+                <div class="scene-text"><span class="scene-number">場景 4</span><p>「這是本壘後方視野，可以看到捕手和裁判的動作。」爸爸指著電腦上的座位圖解說。</p></div>
+            </div>
+            <!-- 場景 5 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/05_內野熱區.jpg" alt="內野熱區"></div>
+                <div class="scene-text"><span class="scene-number">場景 5</span><p>「內野熱區最貴但也最刺激，可以清楚看到球員的表情！」爸爸說。</p></div>
+            </div>
+            <!-- 場景 6 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/06_外野特色.jpg" alt="外野特色"></div>
+                <div class="scene-text"><span class="scene-number">場景 6</span><p>「如果想省錢，外野也不錯，可以看到全壘打！」爸爸補充道。</p></div>
+            </div>
+            <!-- 場景 7 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/07_棉花糖問題.jpg" alt="棉花糖問題"></div>
+                <div class="scene-text"><span class="scene-number">場景 7</span><p>「爸比，哪一隊最厲害？」棉花糖舉手發問，眼睛裡充滿好奇。</p></div>
+            </div>
+            <!-- 場景 8 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/08_阿布吉建議.jpg" alt="阿布吉建議"></div>
+                <div class="scene-text"><span class="scene-number">場景 8</span><p>「我建議選兄弟象，主場氣氛最熱鬧！」阿布吉提出建議。</p></div>
+            </div>
+            <!-- 場景 9 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/09_網路購票.jpg" alt="網路購票"></div>
+                <div class="scene-text"><span class="scene-number">場景 9</span><p>說做就做！爸爸立刻上網購票，選定了內野熱區的座位。</p></div>
+            </div>
+            <!-- 場景 10 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/10_媽媽疑問.jpg" alt="媽媽疑問"></div>
+                <div class="scene-text"><span class="scene-number">場景 10</span><p>「要帶什麼東西去？」媽媽舉手發問，開始關心起出發前的準備。</p></div>
+            </div>
+            <!-- 場景 11 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/11_出發前的準備.jpg" alt="出發前的準備"></div>
+                <div class="scene-text"><span class="scene-number">場景 11</span><p>比賽當天，一家人忙著準備出門。爸爸拿著相機，媽媽檢查隨身物品。</p></div>
+            </div>
+            <!-- 場景 12 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/12_爸爸的裝扮.jpg" alt="爸爸的裝扮"></div>
+                <div class="scene-text"><span class="scene-number">場景 12</span><p>爸爸戴上帽子，穿上最帥的衣服，準備帥氣登場！</p></div>
+            </div>
+            <!-- 場景 13 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/13_棉花糖的隊伍.jpg" alt="棉花糖的隊伍"></div>
+                <div class="scene-text"><span class="scene-number">場景 13</span><p>「看我！我穿兄弟象的球衣！」棉花糖穿上心愛的球衣，興奮極了。</p></div>
+            </div>
+            <!-- 場景 14 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/14_全家出發.jpg" alt="全家出發"></div>
+                <div class="scene-text"><span class="scene-number">場景 14</span><p>一家人開心上車，出发前往台中洲際棒球場！</p></div>
+            </div>
+            <!-- 場景 15 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/15_抵達球場.jpg" alt="抵達球場"></div>
+                <div class="scene-text"><span class="scene-number">場景 15</span><p>「哇！好大的球場！」一家人抵達台中洲際棒球場，巨大的建築映入眼簾。</p></div>
+            </div>
+            <!-- 場景 16 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/16_找到座位.jpg" alt="找到座位"></div>
+                <div class="scene-text"><span class="scene-number">場景 16</span><p>爸爸帶領家人找到座位，大家坐下來，期待比赛的開始。</p></div>
+            </div>
+            <!-- 場景 17 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/17_媽媽的稱讚.jpg" alt="媽媽的稱讚"></div>
+                <div class="scene-text"><span class="scene-number">場景 17</span><p>「這裡視野真好！」媽媽豎起大拇指，稱讚爸爸選的座位。</p></div>
+            </div>
+            <!-- 場景 18 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/18_買食物.jpg" alt="買食物"></div>
+                <div class="scene-text"><span class="scene-number">場景 18</span><p>「我去買點吃的！」爸爸去買了熱狗和飲料，大家邊吃邊看。</p></div>
+            </div>
+            <!-- 場景 19 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/19_棉花糖發現.jpg" alt="棉花糖發現"></div>
+                <div class="scene-text"><span class="scene-number">場景 19</span><p>「那邊有人在練球！」棉花糖指著遠方球員練習的背影。</p></div>
+            </div>
+            <!-- 場景 20 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/20_加油時間.jpg" alt="加油時間"></div>
+                <div class="scene-text"><span class="scene-number">場景 20</span><p>比賽開始！全場觀眾一起加油歡呼，氣氛熱血沸騰！</p></div>
+            </div>
+            <!-- 場景 21 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/21_棉花糖加油.jpg" alt="棉花糖加油"></div>
+                <div class="scene-text"><span class="scene-number">場景 21</span><p>「加油！加油！」棉花糖開心地跟著全場一起歡呼。</p></div>
+            </div>
+            <!-- 場景 22 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/22_阿布吉反應.jpg" alt="阿布吉反應"></div>
+                <div class="scene-text"><span class="scene-number">場景 22</span><p>阿布吉也跟著拍手開心，享受著熱鬧的氣氛。</p></div>
+            </div>
+            <!-- 場景 23 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/23_全壘打.jpg" alt="全壘打"></div>
+                <div class="scene-text"><span class="scene-number">場景 23</span><p>「全壘打！！」突然一記全壘打！全場觀眾瘋狂歡呼！</p></div>
+            </div>
+            <!-- 場景 24 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/24_棉花糖興奮.jpg" alt="棉花糖興奮"></div>
+                <div class="scene-text"><span class="scene-number">場景 24</span><p>「太厲害了！！」棉花糖激動地跳起來，臉上滿是興奮的表情。</p></div>
+            </div>
+            <!-- 場景 25 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/25_中場休息.jpg" alt="中場休息"></div>
+                <div class="scene-text"><span class="scene-number">場景 25</span><p>中場休息時間，大家起來走動，討論著上半場的精彩畫面。</p></div>
+            </div>
+            <!-- 場景 26 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/26_阿布吉建議.jpg" alt="阿布吉建議"></div>
+                <div class="scene-text"><span class="scene-number">場景 26</span><p>「下次我們應該買外野的票，這樣可以看更久。」阿布吉說。</p></div>
+            </div>
+            <!-- 場景 27 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/27_下半場.jpg" alt="下半場"></div>
+                <div class="scene-text"><span class="scene-number">場景 27</span><p>下半場開始！球員們重新回到場上，準備繼續激烈廝殺。</p></div>
+            </div>
+            <!-- 場景 28 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/28_比賽結束.jpg" alt="比賽結束"></div>
+                <div class="scene-text"><span class="scene-number">場景 28</span><p>比賽結束！雖然有點累，但一家人帶著滿足的笑容離開球場。</p></div>
+            </div>
+            <!-- 場景 29 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/29_離開球場.jpg" alt="離開球場"></div>
+                <div class="scene-text"><span class="scene-number">場景 29</span><p>「今天太棒了！」一家人帶著美好的回憶，依依不捨地離開球場。</p></div>
+            </div>
+            <!-- 場景 30 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/30_爸爸承諾.jpg" alt="爸爸承諾"></div>
+                <div class="scene-text"><span class="scene-number">場景 30</span><p>「下次我們再來看！」爸爸答應大家，以後還要再來球場。</p></div>
+            </div>
+            <!-- 場景 31 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/31_回家路上.jpg" alt="回家路上"></div>
+                <div class="scene-text"><span class="scene-number">場景 31</span><p>開車回家的路上，大家仍然熱烈討論著今天的比賽。</p></div>
+            </div>
+            <!-- 場景 32 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/32_到家.jpg" alt="到家"></div>
+                <div class="scene-text"><span class="scene-number">場景 32</span><p>終於到家了！一家人帶著滿滿的幸福回家。</p></div>
+            </div>
+            <!-- 場景 33 -->
+            <div class="scene">
+                <div class="scene-image"><img src="../episode5/images/33_結語.jpg" alt="結語"></div>
+                <div class="scene-text"><span class="scene-number">場景 33</span><p>回到家，一家人坐在客廳，回憶著今天的點點滴滴。這是一個難忘的棒球日！</p></div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="../index.html">🏠 回首頁</a>
+            <a href="./">📁 場景列表</a>
+        </div>
+    </div>
 </body>
 </html>
