@@ -68,27 +68,23 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
-                let html = '';
-                // For episode 5, load directly from ./episode5/story.html which has embedded images
+                
+                // For episode 5 and 6, load directly with embedded images
                 if (id == 5 || id == 6) {
                     const res = await fetch('./episode' + id + '/story.html');
-                    html = await res.text();
+                    const html = await res.text();
                     document.getElementById('story').innerHTML = html;
                 } else {
-                    // For episode 5 and 6, use embedded images from ./episodeX/story.html
-                const res = await fetch((id == 5 || id == 6) ? './episode' + id + '/story.html' : '../episode' + id + '/story.html');
-                    html = await res.text();
+                    const res = await fetch('../episode' + id + '/story.html');
+                    const html = await res.text();
                     const doc = new DOMParser().parseFromString(html, 'text/html');
-                    storyScenes = parseStoryScenes(doc);
+                    const storyScenes = parseStoryScenes(doc);
                     const images = config.selectedImages?.[('episode' + id)] || [];
                     const content = buildFromImages(images);
                     document.getElementById('story').innerHTML = content;
                 }
-                document.getElementById('story').innerHTML = content;
-                document.querySelectorAll('.scene-img').forEach(div => {
-                    div.onclick = () => { document.querySelector('#lightbox img').src = div.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); };
-                });
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
+        }
         }
         
         function parseStoryScenes(doc) {
