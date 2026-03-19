@@ -76,8 +76,7 @@
                     const html = await res.text();
                     const doc = new DOMParser().parseFromString(html, 'text/html');
                     storyScenes = parseStoryScenes(doc);
-                    const images = config.selectedImages?.[('episode' + id)] || [];
-                    const content = buildFromImages(images);
+                    const content = buildFromScenes(storyScenes);
                     document.getElementById('story').innerHTML = content;
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
         }
@@ -86,28 +85,25 @@
             const scenes = [];
             doc.querySelectorAll('.scene').forEach((scene, idx) => {
                 const items = [];
+                const imgEl = scene.querySelector('img');
+                const imgPath = imgEl ? imgEl.src : '';
                 scene.querySelectorAll('p').forEach(p => { if (!p.querySelector('.dialogue') && p.textContent.trim()) items.push({ type: 'narration', text: p.textContent.trim() }); });
                 scene.querySelectorAll('.dialogue').forEach(d => {
                     const name = d.querySelector('strong')?.textContent?.trim() || '';
                     const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
                     if (text) items.push({ type: 'dialogue', name, text });
                 });
-                if (items.length > 0) scenes.push({ index: idx + 1, items });
+                if (items.length > 0 || imgPath) scenes.push({ index: idx + 1, items, imgPath });
             });
             return scenes;
         }
         
-        function buildFromImages(images) {
-            if (!images || images.length === 0) return '<p style="text-align:center;padding:40px;">沒有圖片</p>';
-            if (!storyScenes || storyScenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
-            
+        function buildFromScenes(scenes) {
+            if (!scenes || scenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
             let html = '';
-            // 按順序對應圖片到故事場景
-            images.forEach((imgPath, idx) => {
-                const storyScene = storyScenes[idx];
-                html += buildSceneHtml(imgPath, storyScene ? storyScene.items : []);
+            scenes.forEach((scene, idx) => {
+                html += buildSceneHtml(scene.imgPath || '', scene.items || []);
             });
-            
             return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
         }
         
