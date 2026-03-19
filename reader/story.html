@@ -57,8 +57,9 @@
         let config = {};
         let storyScenes = [];
         
-        async function init() {
-            try { config = await (await fetch('./config.json')).json(); } catch(e) {}
+        async function init() { 
+            console.log('init called');
+            try { config = await (await fetch('./config.json')).json(); console.log('config:', config); } catch(e) { console.log('config error:', e); }
             const id = new URLSearchParams(location.search).get('episode');
             if(id) loadEpisode(parseInt(id));
         }
