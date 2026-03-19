@@ -3,337 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第四集：春節團圓 - 家庭故事</title>
+    <title>第四集：南庄露營記 - 家庭故事</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Microsoft JhengHei", "PingFang TC", serif; background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%); min-height: 100vh; padding: 0; line-height: 1.8; }
-        .container { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
-        .header { background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%); color: white; padding: 60px 30px; text-align: center; }
-        .header .episode-tag { display: inline-block; background: rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 30px; font-size: 0.9em; margin-bottom: 15px; }
-        .header h1 { font-size: 2.2em; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .header .subtitle { font-size: 1.1em; opacity: 0.95; }
-        .story-content { padding: 40px 30px; }
-        .scene { margin-bottom: 40px; page-break-inside: avoid; }
-        .scene-image { margin-bottom: 20px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .scene-image img { width: 100%; height: auto; display: block; }
-        .scene-image .placeholder { width: 100%; height: 250px; background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%); display: flex; align-items: center; justify-content: center; color: #636e72; font-size: 1.1em; border-radius: 15px; }
-        .scene-text { padding: 0 10px; }
-        .scene-text p { font-size: 1.05em; color: #333; margin-bottom: 12px; text-align: justify; }
-        .scene-text .dialogue { background: #f8f9fa; padding: 15px 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #fd79a8; }
-        .scene-text .dialogue strong { color: #fd79a8; display: block; margin-bottom: 5px; font-size: 0.95em; }
-        .scene-text .dialogue .text { color: #555; font-size: 1em; }
-        .part-divider { background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%); color: white; padding: 25px; text-align: center; margin: 30px -30px; }
-        .part-divider h2 { font-size: 1.6em; margin-bottom: 8px; }
-        .part-divider p { opacity: 0.9; font-size: 0.95em; }
-        .character-intro { background: #f8f9fa; padding: 25px; margin: 25px 0; border-radius: 15px; }
-        .character-intro h3 { color: #fd79a8; margin-bottom: 15px; text-align: center; }
-        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-        .character { background: white; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #e9ecef; }
-        .character .emoji { font-size: 2em; margin-bottom: 8px; }
-        .character h4 { color: #fd79a8; margin-bottom: 5px; font-size: 0.9em; }
-        .character p { font-size: 0.8em; color: #666; line-height: 1.4; }
-        .trip-info { background: #dfe6e9; padding: 20px; margin: 25px 0; border-radius: 15px; text-align: center; }
-        .trip-info h3 { color: #2d3436; margin-bottom: 12px; }
-        .trip-info .items { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .trip-info .item { background: white; padding: 8px 15px; border-radius: 8px; font-size: 0.85em; color: #636e72; }
-        .footer { background: #f8f9fa; padding: 25px; text-align: center; margin-top: 35px; }
-        .footer a { color: #fd79a8; text-decoration: none; font-weight: bold; }
-        .back-button { display: inline-block; background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%); color: white; padding: 10px 25px; border-radius: 25px; text-decoration: none; margin-top: 15px; }
-        .scene-number { display: inline-block; background: #fd79a8; color: white; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 50%; font-size: 0.75em; margin-right: 8px; }
-        @media (max-width: 768px) { .header { padding: 40px 20px; } .header h1 { font-size: 1.6em; } .story-content { padding: 25px 20px; } }
-    
-        /* 漸進式圖片載入 */
-        .scene-image {
-            position: relative;
-            background: #f0f0f0;
+        body {
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        
-        .scene-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-        
-        .scene-image img[data-src] {
-            filter: blur(10px);
-            transform: scale(1.05);
-        }
-        
-        .scene-image img.loaded {
-            filter: blur(0);
-            transform: scale(1);
-        }
-        
-        .scene-image .loading-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            z-index: 1;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        .scene-image.loaded .loading-placeholder {
-            display: none;
-        }
-        
-        /* 載入進度指示器 */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(0,0,0,0.1);
-            z-index: 9999;
-        }
-        
-        .progress-bar .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #ffa500);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .progress-bar.hidden {
-            display: none;
-        }
-        
-        /* 載入狀態提示 */
-        .loading-status {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .container {
             background: white;
-            padding: 12px 20px;
-            border-radius: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            font-size: 0.9em;
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        
-        .loading-status .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f0f0f0;
-            border-top-color: #ffa500;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        h1 {
+            color: #4a5568;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
         }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        h2 {
+            color: #2d3748;
+            margin-top: 40px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
         }
-        
-        .loading-status.hidden {
-            display: none;
+        h3 {
+            color: #4a5568;
         }
-        
-        @media (max-width: 768px) {
-            .loading-status { bottom: 10px; right: 10px; padding: 10px 15px; font-size: 0.8em; }
+        .scene {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
         }
-
+        .scene-number {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .scene-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 10px 0;
+        }
+        .dialogue {
+            background: #edf2f7;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .character {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="episode-tag">🎬 第四集</div>
-            <h1>春節團圓</h1>
-            <div class="subtitle">農曆新年期間的溫馨團圓與傳統儀式...</div>
-        </div>
+        <a href="index.html" class="back-link">← 返回目錄</a>
         
-        <div class="story-content">
-            <div class="trip-info">
-                <h3>🧧 本集重點</h3>
-                <div class="items">
-                    <div class="item">農曆新年</div>
-                    <div class="item">家庭團圓</div>
-                    <div class="item">傳統文化</div>
-                    <div class="item">溫馨時光</div>
-                </div>
-            </div>
-            
-            <div class="character-intro">
-                <h3>👨‍👩‍👦 故事角色</h3>
-                <div class="character-grid">
-                    <div class="character"><div class="emoji">👨</div><h4>爸爸</h4><p>沉默可靠<br>拿相機拍照</p></div>
-                    <div class="character"><div class="emoji">👩</div><h4>媽媽凱莉</h4><p>50多歲賢慧<br>操心、帶領全家拜拜</p></div>
-                    <div class="character"><div class="emoji">👦</div><h4>哥哥阿布吉</h4><p>20歲外冷內熱<br>照顧弟弟</p></div>
-                    <div class="character"><div class="emoji">👦</div><h4>弟弟棉花糖</h4><p>15歲活力充沛<br>好奇寶寶</p></div>
-                </div>
-            </div>
-            
-            <div class="part-divider"><h2>第一部分：年前準備</h2><p>一家人開始忙碌的春節準備...</p></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景1: 大假前的準備</div></div><div class="scene-text"><p><span class="scene-number">1</span>寒假的第一天，爸爸宣布春節即將到來。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「孩子們，春節快到了！我們要開始準備了！」</span></div><p>媽媽點點頭，立刻拿出清單開始安排。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景2: 大掃除</div></div><div class="scene-text"><p><span class="scene-number">2</span>週末一早，全家開始大掃除！</p><div class="dialogue"><strong>媽媽</strong><span class="text">「一年一次的大掃除，把家裡弄乾淨，迎接新年！」</span></div><p>爸爸、阿布吉、棉花糖都拿起掃把拖把。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景3: 媽媽分配任務</div></div><div class="scene-text"><p><span class="scene-number">3</span>媽媽開始分配任務。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「阿布吉，你負責擦窗戶；棉花糖，你幫忙整理房間；爸爸，你打掃客廳；我來整理廚房！」</span></div><p>大家都點頭接受任務。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景4: 棉花糖整理房間</div></div><div class="scene-text"><p><span class="scene-number">4</span>棉花糖開始整理房間。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「哇！好多玩具！這些都可以捐出去嗎？」</span></div><div class="dialogue"><strong>媽媽</strong><span class="text">「對！新年要有新氣象，把不需要的東西整理出來！」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景5: 阿布吉擦窗戶</div></div><div class="scene-text"><p><span class="scene-number">5</span>阿布吉負責擦窗戶，非常認真。</p><div class="dialogue"><strong>阿布吉</strong><span class="text">「（這個窗戶真的很髒，要好好擦乾淨。）」</span></div><p>他把每個角落都擦得亮晶晶。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景6: 爸爸打掃客廳</div></div><div class="scene-text"><p><span class="scene-number">6</span>爸爸搬動家具，清潔每個角落。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「我們家很久沒有這麼徹底打掃了，新年新氣象！」</span></div><p>他連沙發底下都清理得一乾二淨。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景7: 媽媽整理廚房</div></div><div class="scene-text"><p><span class="scene-number">7</span>媽媽把廚房整理得整整齊齊。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「廚房是最重要的地方，新年要做很多好吃的！」</span></div><p>她開始準備春節的食材清單。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景8: 辦年貨的計畫</div></div><div class="scene-text"><p><span class="scene-number">8</span>媽媽列出辦年貨的清單。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「年糕、糖果、瓜子、花生、雞鴨魚肉...還要買新衣服！」</span></div><p>爸爸點頭，準備帶全家去市場。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景9: 棉花糖的期待</div></div><div class="scene-text"><p><span class="scene-number">9</span>棉花糖興奮地跳起來！</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「太好了！我要買很多好吃的！還有新衣服！」</span></div><p>全家人都被他的活力感染了。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景10: 阿布吉的提醒</div></div><div class="scene-text"><p><span class="scene-number">10</span>阿布吉提醒大家傳統的重要性。</p><div class="dialogue"><strong>阿布吉</strong><span class="text">「別忘了，春節不只是吃喝玩樂，還有祭祖和拜拜的傳統。」</span></div><div class="dialogue"><strong>媽媽</strong><span class="text">「對！我們要準備供品，去廟裡拜拜！」</span></div></div></div>
-            
-            <div class="part-divider"><h2>第二部分：除夕團圓</h2><p>除夕夜的溫馨團圓時光...</p></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景11: 除夕早晨</div></div><div class="scene-text"><p><span class="scene-number">11</span>除夕一早，媽媽就在廚房忙碌。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「今天要做年夜飯，大家都要幫忙！」</span></div><p>爸爸和兒子們都來到廚房。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景12: 包餃子</div></div><div class="scene-text"><p><span class="scene-number">12</span>一家人開始包餃子！</p><div class="dialogue"><strong>媽媽</strong><span class="text">「來，我教你們包餃子！這是傳統的手藝！」</span></div><p>棉花糖學得很認真，但包得歪歪扭扭。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景13: 棉花糖的餃子</div></div><div class="scene-text"><p><span class="scene-number">13</span>棉花糖的餃子看起來很有趣。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「哈哈！我的餃子像小寶寶！」</span></div><p>全家人都笑了，阿布吉偷偷幫他重新包了一個。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景14: 阿布吉的技巧</div></div><div class="scene-text"><p><span class="scene-number">14</span>阿布吉學得很快。</p><div class="dialogue"><strong>阿布吉</strong><span class="text">「我包的好看嗎？」</span></div><div class="dialogue"><strong>媽媽</strong><span class="text">「很棒！有模有樣了！」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景15: 爸爸準備供品</div></div><div class="scene-text"><p><span class="scene-number">15</span>爸爸準備祭祖的供品。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「要準備雞、魚、年糕，還有水果和茶。」</span></div><p>他把每樣東西都擺放得整整齊齊。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景16: 擺設供桌</div></div><div class="scene-text"><p><span class="scene-number">16</span>媽媽指導如何擺設供桌。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「雞要面向祖先，魚要完整，年糕要整齊。」</span></div><p>爸爸仔細地按照指示擺放。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景17: 年夜飯準備</div></div><div class="scene-text"><p><span class="scene-number">17</span>廚房裡香氣四溢，年夜飯即將完成。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「差不多了！大家準備來吃年夜飯！」</span></div><p>爸爸拿起相機，準備記錄這美好的時刻。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景18: 年夜飯上菜</div></div><div class="scene-text"><p><span class="scene-number">18</span>豐盛的年夜飯上桌了！</p><p>魚、雞、年糕、蔬菜、湯品...每道菜都有吉祥的寓意。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「來！大家一起舉杯，祝新年快樂！」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景19: 家庭聚會</div></div><div class="scene-text"><p><span class="scene-number">19</span>一家人圍坐在一起，享受團圓的溫馨。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「今年是我最開心的一年！」</span></div><div class="dialogue"><strong>阿布吉</strong><span class="text">「是啊，我們一家人在一起，就是最大的幸福。」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景20: 發紅包</div></div><div class="scene-text"><p><span class="scene-number">20</span>除夕夜最重要的時刻——發紅包！</p><div class="dialogue"><strong>爸爸</strong><span class="text">「來，這是給你們的新年祝福！」</span></div><p>阿布吉和棉花糖雙手接過紅包，開心得不得了。</p></div></div>
-            
-            <div class="part-divider"><h2>第三部分：新年拜年</h2><p>正月初一的拜年傳統...</p></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景21: 新年初一</div></div><div class="scene-text"><p><span class="scene-number">21</span>正月初一，一大早就被鞭炮聲吵醒！</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「新年快樂！新年快樂！」</span></div><p>他穿上新衣服，精神抖擻。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景22: 拜祖先</div></div><div class="scene-text"><p><span class="scene-number">22</span>全家人先拜祖先。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「請祖先保佑我們一家平安健康，新的一年順利！」</span></div><p>大家虔誠地上香祈福。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景23: 拜土地公</div></div><div class="scene-text"><p><span class="scene-number">23</span>接著去附近的廟宇拜土地公。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「土地公保佑我們住家平安，生意興隆！」</span></div><p>爸爸幫大家點香，一一祭拜。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景24: 拜媽祖</div></div><div class="scene-text"><p><span class="scene-number">24</span>媽媽帶著全家去拜媽祖。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「媽祖婆保佑我們全家平安，小孩學業進步！」</span></div><p>棉花糖特別虔誠地祈求。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景25: 親戚拜年</div></div><div class="scene-text"><p><span class="scene-number">25</span>接著去親戚家拜年。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「恭喜發財！紅包拿來！」</span></div><p>親戚們都被逗笑了，紛紛給他紅包。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景26: 阿布吉的禮貌</div></div><div class="scene-text"><p><span class="scene-number">26</span>阿布吉表現得很禮貌。</p><div class="dialogue"><strong>阿布吉</strong><span class="text">「新年快樂！祝您身體健康，萬事如意！」</span></div><p>長輩們都誇獎他懂事。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景27: 親戚聚餐</div></div><div class="scene-text"><p><span class="scene-number">27</span>親戚們準備了豐盛的午餐。</p><div class="dialogue"><strong>親戚</strong><span class="text">「來來來，多吃一點！新年要吃飽飽的！」</span></div><p>大家一邊吃一邊聊天，氣氛很溫馨。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景28: 孩子們玩耍</div></div><div class="scene-text"><p><span class="scene-number">28</span>吃完飯，孩子們在一起玩耍。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「我們來玩撲克牌吧！」</span></div><p>表兄弟姊妹們一起玩遊戲，笑聲不斷。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景29: 大人聊天</div></div><div class="scene-text"><p><span class="scene-number">29</span>大人們在一旁聊天。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「今年工作還順利嗎？小孩學業怎樣？」</span></div><p>親戚們互相關心近況。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景30: 感恩分享</div></div><div class="scene-text"><p><span class="scene-number">30</span>回家的路上，一家人分享今天的感受。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「今天過得真充實，感受到家族的溫暖。」</span></div><div class="dialogue"><strong>爸爸</strong><span class="text">「是啊，傳統就是要一代一代傳下去。」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景31: 棉花糖的收穫</div></div><div class="scene-text"><p><span class="scene-number">31</span>棉花糖數著今天的收穫。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「我今天收到了好多紅包！還有好多好吃的！」</span></div><div class="dialogue"><strong>媽媽</strong><span class="text">「不只是紅包，更重要的是感受到家人的愛。」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景32: 阿布吉的感想</div></div><div class="scene-text"><p><span class="scene-number">32</span>阿布吉也有感而發。</p><div class="dialogue"><strong>阿布吉</strong><span class="text">「雖然現代生活很忙碌，但春節讓我們停下腳步，珍惜家人。」</span></div><p>爸爸媽媽都很欣慰。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景33: 新年願望</div></div><div class="scene-text"><p><span class="scene-number">33</span>晚上，一家人坐在客廳許新年願望。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「我希望全家健康平安，感情越來越好。」</span></div><div class="dialogue"><strong>媽媽</strong><span class="text">「我希望孩子們學業進步，我們家和樂融融。」</span></div></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景34: 棉花糖的願望</div></div><div class="scene-text"><p><span class="scene-number">34</span>棉花糖第一個說出願望。</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「我希望全家人都開開心心，永遠在一起！」</span></div><p>他說完就抱住爸爸媽媽。</p></div></div>
-            
-            <div class="scene"><div class="scene-image"><div class="placeholder">📷 場景35: 結語</div></div><div class="scene-text"><p><span class="scene-number">35</span>這是一個溫馨的春節，家人們的心更緊緊相依。</p><p>傳統的文化在這溫暖的家庭中延續，每一份愛都珍貴無比。</p></div></div>
-            
-            <div class="part-divider"><h2>🎉 完</h2><p>謝謝觀看！</p></div>
-        </div>
+        <h1>🏕️ 第四集：南庄露營記</h1>
         
+        <div style="text-align: center; margin: 20px 0;">
+            <span class="highlight">兒童節連假</span>
+            <span class="highlight">南庄露營</span>
+            <span class="highlight">家庭回憶</span>
+        </div>
+
+        <h2>👨👩👦 故事角色</h2>
+        <div class="scene">
+            <p><span class="emoji">👨</span> <strong>爸爸</strong> - 沉默可靠，拿相機拍照，全家出遊發起人</p>
+            <p><span class="emoji">👩</span> <strong>媽媽凱莉</strong> - 50多歲賢慧，照顧全家，確保大家安全</p>
+            <p><span class="emoji">👦</span> <strong>哥哥 Andy (阿布吉)</strong> - 14歲國中生，照顧弟弟，活力滿滿</p>
+            <p><span class="emoji">👦</span> <strong>弟弟 Mike (棉花糖)</strong> - 10歲國小生，最年幼，黏著哥哥</p>
+        </div>
+
+        <h2>📝 故事內容</h2>
+
+        <h3>第一部分：出發前的準備</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景1: 兒童節早起</div>
+            <p>兒童節的一大早，陽光從窗簾縫隙照進來，Mike 比誰都還要早起！</p>
+            <div class="dialogue"><span class="character">Mike</span>「今天是兒童節！我們要去露營囉！」他蹦蹦跳跳地跑到爸媽房間。</div>
+            <div class="dialogue"><span class="character">爸爸</span>「呵呵，Mike 這麼早起，我們可是要開很久的車呢！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景2: 早餐時間</div>
+            <p>媽媽準備了豐盛的早餐。</p>
+            <div class="dialogue"><span class="character">媽媽</span>「大家快來吃早餐！吃飽才有力氣搭帳篷喔！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「哇，有我最喜歡的蛋餅！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「爸媽辛苦了，我們快點吃出發吧！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景3: 出發前的準備</div>
+            <p>全家動員，把露營用品搬上車。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「帳篷、睡袋、防潮墊...還有烤肉食材，都帶了嗎？」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「早就準備好了！連驅蚊液都帶了兩罐！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我的玩具水槍也要帶！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「你那是去玩水的嗎？」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景4: 爸爸檢查車輛</div>
+            <p>爸爸仔細檢查車子狀況。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「輪胎、機油、水箱...一切正常！這次我們去南庄露營區，聽說風景很美。」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「開山路要小心一點喔。」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「放心，我已經查好路線了！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景5: 上車出發</div>
+            <p>全家上車，踏上旅程！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「出發囉！目的地——南庄露營區！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「YA！露營囉！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「爸，你開錯方向了吧？」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「臭小子，敢質疑爸的導航！」</div>
+        </div>
+
+        <h3>第二部分：旅途中的點點滴滴</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景6: 高速公路上</div>
+            <p>全家在高速公路上，欣賞沿途風光。</p>
+            <div class="dialogue"><span class="character">媽媽</span>「你們看，外面的風景好美喔！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「妈，前面那座山好高。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我們要去的那座山也有這麼高嗎？」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「到了你們就知道，保證讓你們驚豔！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景7: 服務區休息</div>
+            <p>經過一段車程，全家在服務區休息。</p>
+            <div class="dialogue"><span class="character">媽媽</span>「大家下來上廁所、活動一下。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我要去買零食！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「你也太會吃了吧，等等就到了別買太多。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「哥，我想吃冰淇淋~」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景8: 進入山區</div>
+            <p>下了高速公路，開始進入山區道路。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「前面開始就是山路了，大家坐好！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「這裡的空氣真好，都是樹的味道。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸，路變小了，慢點開。」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「知道啦，你爸開車技術很好的！」</div>
+        </div>
+
+        <h3>第三部分：抵達與搭帳篷</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景9: 抵達露營區</div>
+            <p>終於抵達南庄露營區！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「我們到囉！大家看，是不是很美？」</div>
+            <div class="dialogue"><span class="character">Mike</span>「哇！好大的草地！還有好多樹！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「空氣真好，我們快點搭帳篷吧！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景10: 搭帳篷</div>
+            <p>全家開始搭帳篷，這是技術活！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「首先，把支架穿過這個洞...」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸，這個怎麼弄？」</div>
+            <div class="dialogue"><span class="character">Andy</span>「哥，我來幫你，你先把這邊固定住。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也要幫忙！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景11: Mike 的幫忙</div>
+            <p>年紀最小的 Mike 也想幫忙。</p>
+            <div class="dialogue"><span class="character">Mike</span>「爸比，我幫你拿釘子！」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「好，Mike 最乖了！幫我把那個營釘拿過來。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「這個嗎？」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「對，就是這個！Mike 是爸爸的小幫手！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景12: 帳篷完成</div>
+            <p>經過全家努力，帳篷終於搭好了！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「太好了！我們的帳篷超帥的！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「終於可以休息一下了。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我們今晚就睡在這裡嗎？太酷了！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「今晚可以看星星了！」</div>
+        </div>
+
+        <h3>第四部分：露營的美好時光</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景13: 清晨的杉林</div>
+            <p>第二天清晨，陽光穿透杉林，美不勝收！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「大家快起來！清晨的杉林超美的！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸比，我還想睡...」</div>
+            <div class="dialogue"><span class="character">Andy</span>「Mike 別睡了！空氣超級清新！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「你們看，那個光線太夢幻了！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景14: 早餐時光</div>
+            <p>全家在露營區享受早餐。</p>
+            <div class="dialogue"><span class="character">媽媽</span>「吃早餐囉！土司配果醬，還有熱豆漿！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「媽煮的東西最好吃！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「我們今天要去哪裡玩？」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「先吃完再說，營區裡面有很多可以探索的地方！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景15: 探索營區</div>
+            <p>吃完早餐，全家出發探索營區。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「聽說這裡有一個很漂亮的吊橋。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我要去看吊橋！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也想知道吊橋長什麼樣子。」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「大家小心一點，山路有點滑。」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景16: 吊橋合影</div>
+            <p>全家在吊橋上合影留念。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「來，大家看這裡！321」</div>
+            <div class="dialogue"><span class="character">Andy</span>「爸，你把我拍帥一點！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我要比 Ya！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我是最可愛的！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「你們每一個都可愛！全家福最珍貴了！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景17: 觀景台</div>
+            <p>全家爬上觀景台，俯瞰整個山谷。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「你們看，這就是南庄的美景！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「好美喔，整片都是綠色的。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「那邊那座山看起來好近，好像伸手就可以摸到！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「大自然太神奇了！」</div>
+        </div>
+
+        <h3>第五部分：戲水與烤肉</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景18: 午餐時間</div>
+            <p>中午大家在營區吃午餐。</p>
+            <div class="dialogue"><span class="character">媽媽</span>「中午吃簡單一點，下午還要去戲水區。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我可以吃泡麵嗎？」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「可以是可以，但你要先吃完這個便當。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也要吃泡麵！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景19: 午休時間</div>
+            <p>午餐後，大家稍微休息一下。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「你們要不要睡一下？下午才有體力玩水。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我不累，我想去探險！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「我陪你去，Mike 你要睡嗎？」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我要跟哥哥們在一起！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景20: 戲水區</div>
+            <p>下午，全家來到戲水區！</p>
+            <div class="dialogue"><span class="character">Mike</span>「水！我來了！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「Mike 你小心一點，不要滑倒了！」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「這裡的水好清涼喔！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「大家不要玩太久，小心著涼！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景21: 打水仗</div>
+            <p>開始打水仗了！這是孩子們最期待的！</p>
+            <div class="dialogue"><span class="character">Mike</span>「接招！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「啊！我被攻擊了！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「Mike 我來幫你！」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「你們這些小子，看我的厲害！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「哈哈，你們全身都濕透了！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景22: 烤肉時間</div>
+            <p>傍晚時分，開始烤肉囉！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「肉烤好了，大家快來吃！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「好香喔！我都要流口水了！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「烤肉的時候要小心，不要被火燙到了。」</div>
+            <div class="dialogue"><span class="character">Andy</span>「爸，我來幫你翻肉！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我要吃烤棉花糖！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景23: 晚餐</div>
+            <p>全家圍坐一起吃晚餐。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「今天的露營好玩嗎？」</div>
+            <div class="dialogue"><span class="character">Mike</span>「超級好玩！我最喜歡打水仗了！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也喜歡！還有烤棉花糖！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「你們開心媽媽就開心了。」</div>
+            <div class="dialogue"><span class="character">Andy</span>「謝謝爸媽帶我們來！」</div>
+        </div>
+
+        <h3>第六部分：星空與離別</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景24: 夜晚的星空</div>
+            <p>夜晚降臨，滿天星空！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「你們看，星星好漂亮！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「好多星星喔，一閃一閃的！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸，那個是不是北斗七星？」</div>
+            <div class="dialogue"><span class="character">Andy</span>「在那裡！我指給你們看！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「城市裡看不到這麼多星星呢。」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景25: 睡前聊天</div>
+            <p>睡前，全家在帳篷裡聊天。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「今天大家玩得開心嗎？」</div>
+            <div class="dialogue"><span class="character">Mike</span>「開心！我明天還想再來！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我們下次還可以再來露營嗎？」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「當然可以，只要你們乖。」</div>
+            <div class="dialogue"><span class="character">Andy</span>「謝謝爸媽，今天是我最開心的一天！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景26: 最後的早晨</div>
+            <p>最後一天早晨，大家依依不捨。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「起床囉，今天要回家了。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「不要啦，我還想玩！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「Mike，我們下次還可以再來啊。」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「對啊，我們把這裡的美好回憶記在心裡。」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景27: 收拾行李</div>
+            <p>全家開始收拾行李。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「帳篷要收起來，睡袋要摺好。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸，我來幫你收！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「我把垃圾撿乾淨，不能破壞環境。」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也要幫忙！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「你們都長大了！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景28: 最後合影</div>
+            <p>在離開前，全家再次合影。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「來，我們在這裡拍一張！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「大家笑一個！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「耶！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「YA！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「這是我最棒的回憶！」</div>
+        </div>
+
+        <h3>第七部分：回家的路上</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景29: 離開營區</div>
+            <p>帶著滿滿的回憶，全家踏上歸途。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「大家坐好，我們回家囉！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「爸比，我下次還要來露營！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我也是！這裡太好玩了！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「你們今天表現得很好，媽媽很開心。」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景30: 回家路上</div>
+            <p>回家的路上，孩子們累得睡著了。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「他們都睡著了，今天玩得很累。」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「讓他們睡一下，到了我叫他們。」</div>
+            <div class="dialogue"><span class="character">爸爸</span>「這次露營很成功，下次我們再來！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「好啊，你可以規劃更多行程。」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景31: 到家</div>
+            <p>終於到家了！</p>
+            <div class="dialogue"><span class="character">爸爸</span>「我們回來囉！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「回家了好累喔，但是好好玩！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「媽，我肚子餓了。」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「回家吃點清淡的，今天大家都辛苦了！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「謝謝爸媽帶我们去露營！」</div>
+        </div>
+
+        <h3>結語</h3>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景32: Mike 的願望</div>
+            <p>Mike 最愛這個家！</p>
+            <div class="dialogue"><span class="character">Mike</span>「我好幸福喔！有爸爸、媽媽、哥哥們陪我露營！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「Mike 以後我們常帶你去玩！」</div>
+            <div class="dialogue"><span class="character">Andy</span>「對，我們是一家人！」</div>
+        </div>
+
+        <div class="scene">
+            <div class="scene-number">📷 場景33: 結語</div>
+            <p>這是一次難忘的南庄露營之旅。</p>
+            <div class="dialogue"><span class="character">爸爸</span>「謝謝大家的配合，這是我最開心的兒童節！」</div>
+            <div class="dialogue"><span class="character">媽媽</span>「看見你們這麼開心，一切都值得了。」</div>
+            <div class="dialogue"><span class="character">Andy</span>「爸媽，謝謝你們！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我們是一家人才對！」</div>
+            <div class="dialogue"><span class="character">Mike</span>「我愛你們！」</div>
+            <p>這次露營不僅讓全家遠離城市喧囂，更讓家人的感情更加緊密。大自然的美好、親子間的互動，都是最珍貴的回憶。</p>
+        </div>
+
         <div class="footer">
-            <a href="../index.html" class="back-button">🏠 回首頁</a>
+            <h2>🎉 完</h2>
+            <p>謝謝觀看！</p>
         </div>
     </div>
-
-    <!-- 載入進度條 -->
-    <div class="progress-bar" id="progressBar">
-        <div class="progress" id="progress"></div>
-    </div>
-    
-    <!-- 載入狀態提示 -->
-    <div class="loading-status" id="loadingStatus">
-        <div class="spinner"></div>
-        <span id="loadingText">載入中 0/0</span>
-    </div>
-    
-    <script>
-        // 漸進式圖片載入
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img[data-src]');
-            const total = images.length;
-            let loaded = 0;
-            
-            const progressBar = document.getElementById('progressBar');
-            const progress = document.getElementById('progress');
-            const loadingStatus = document.getElementById('loadingStatus');
-            const loadingText = document.getElementById('loadingText');
-            
-            function updateProgress() {
-                loaded++;
-                const percent = (loaded / total) * 100;
-                progress.style.width = percent + '%';
-                loadingText.textContent = '載入中 ' + loaded + '/' + total;
-                
-                if (loaded === total) {
-                    setTimeout(() => {
-                        progressBar.classList.add('hidden');
-                        loadingStatus.classList.add('hidden');
-                    }, 500);
-                }
-            }
-            
-            // 使用 Intersection Observer 實現懶載入
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const highResSrc = img.getAttribute('data-src');
-                        
-                        const tempImg = new Image();
-                        tempImg.onload = function() {
-                            img.src = highResSrc;
-                            img.classList.add('loaded');
-                            img.parentElement.classList.add('loaded');
-                            updateProgress();
-                            observer.unobserve(img);
-                        };
-                        tempImg.onerror = function() {
-                            img.classList.add('loaded');
-                            img.parentElement.classList.add('loaded');
-                            updateProgress();
-                            observer.unobserve(img);
-                        };
-                        tempImg.src = highResSrc;
-                    }
-                });
-            }, {
-                rootMargin: '100px 0px',
-                threshold: 0.01
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-            
-            if (total === 0) {
-                progressBar.classList.add('hidden');
-                loadingStatus.classList.add('hidden');
-            }
-        });
-    </script>
-
 </body>
 </html>
