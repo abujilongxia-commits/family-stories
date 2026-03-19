@@ -75,9 +75,10 @@
                 const html = await res.text();
                 const doc = new DOMParser().parseFromString(html, 'text/html');
                 storyScenes = parseStoryScenes(doc);
-                const content = buildFromScenes(storyScenes);
+                const episodeId = parseInt(new URLSearchParams(location.search).get('episode')) || 6;
+                const content = buildFromScenes(storyScenes, episodeId);
                 document.getElementById('story').innerHTML = content;
-                preloadImages(storyScenes.filter(s => s.imgPath).map(s => s.imgPath));
+                preloadImages(storyScenes.filter(s => s.imgPath).map(s => s.imgPath), parseInt(new URLSearchParams(location.search).get('episode')) || 6);
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
         }
         
@@ -98,16 +99,16 @@
             return scenes;
         }
         
-        function buildFromScenes(scenes) {
+        function buildFromScenes(scenes, episodeId) {
             if (!scenes || scenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
             let html = '';
             scenes.forEach((scene, idx) => {
-                html += buildSceneHtml(scene.imgPath || '', scene.items || []);
+                html += buildSceneHtml(scene.imgPath || '', scene.items || [], episodeId);
             });
             return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
         }
         
-        function buildSceneHtml(imgPath, items) {
+        function buildSceneHtml(imgPath, items, id) {
             // Convert relative path to absolute URL
             if (imgPath) {
                 let absUrl = imgPath;
@@ -116,6 +117,7 @@
                     const episodeBase = 'https://abujilongxia-commits.github.io/family-stories/episode';
                     const readerBase = 'https://abujilongxia-commits.github.io/family-stories/reader/episode';
                     const base = (id == 5) ? readerBase + '5/' : episodeBase + id + '/';
+                    const relImgPath = imgPath;
                     // Remove leading slash if present
                     const cleanPath = imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
                     absUrl = base + cleanPath;
