@@ -78,6 +78,8 @@
                     storyScenes = parseStoryScenes(doc);
                     const content = buildFromScenes(storyScenes);
                     document.getElementById('story').innerHTML = content;
+            const imgPaths = storyScenes.filter(s => s.imgPath).map(s => s.imgPath);
+            preloadImages(imgPaths);
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
         }
         
@@ -122,6 +124,23 @@
             return html;
         }
         
+                function preloadImages(imgPaths) {
+            let loaded = 0;
+            const maxConcurrent = 6;
+            const queue = [...imgPaths];
+            function tryNext() {
+                while (queue.length > 0 && loaded < maxConcurrent) {
+                    const src = queue.shift();
+                    const img = new Image();
+                    img.onload = () => { loaded--; tryNext(); };
+                    img.onerror = () => { loaded--; tryNext(); };
+                    loaded++;
+                    img.src = src;
+                }
+            }
+            tryNext();
+        }
+
         document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
         document.getElementById('lightbox').onclick = e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('active'); };
         init();
