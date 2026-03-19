@@ -41,14 +41,10 @@
     </div>
     <main id="story"></main>
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-close">×</button>
         <img src="" alt="">
     </div>
     <script>
-        // State
-        var storyScenes = [];
-
-        // Titles
         var titles = {
             1: '說走就走？先問媽媽！',
             2: '媽祖婆，我們來了！',
@@ -61,125 +57,17 @@
             9: '第九集'
         };
 
-        // Parse story HTML - extract scenes with images
-        function parseStoryScenes(doc, episodeId) {
-            var scenes = [];
-            var sceneEls = doc.querySelectorAll('.scene');
-            sceneEls.forEach(function(scene, idx) {
-                var items = [];
-                var imgEl = scene.querySelector('img');
-                var imgPath = imgEl ? imgEl.src : '';
-                // Convert relative path to absolute URL
-                if (imgPath && imgPath.indexOf('http') !== 0) {
-                    var base;
-                    if (episodeId === 5) {
-                        base = 'https://abujilongxia-commits.github.io/family-stories/reader/episode5/';
-                    } else {
-                        base = 'https://abujilongxia-commits.github.io/family-stories/episode' + episodeId + '/';
-                    }
-                    imgPath = base + imgPath.replace(/^\//, '');
-                }
-                var pEls = scene.querySelectorAll('p');
-                pEls.forEach(function(p) {
-                    var isDialogue = p.querySelector('.dialogue') !== null;
-                    var text = p.textContent.trim();
-                    if (!isDialogue && text) {
-                        items.push({ type: 'narration', text: text });
-                    }
-                });
-                var dialogueEls = scene.querySelectorAll('.dialogue');
-                dialogueEls.forEach(function(d) {
-                    var nameEl = d.querySelector('strong');
-                    var textEl = d.querySelector('.text');
-                    var name = nameEl ? nameEl.textContent.trim() : '';
-                    var text = textEl ? textEl.textContent.trim() : d.textContent.trim();
-                    if (text) {
-                        items.push({ type: 'dialogue', name: name, text: text });
-                    }
-                });
-                if (items.length > 0 || imgPath) {
-                    scenes.push({ index: idx + 1, items: items, imgPath: imgPath });
-                }
-            });
-            return scenes;
+        var episodeData = {};
+
+        function getEpisodeId() {
+            var params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('episode')) || 1;
         }
 
-        // Build scene HTML
-        function buildSceneHtml(imgPath, items) {
-            var html = '<div class="scene">';
-            if (imgPath) {
-                html += '<div class="scene-img"><img src="' + imgPath + '" alt="" loading="lazy"></div>';
-            }
-            html += '<div class="scene-text">';
-            items.forEach(function(item) {
-                if (item.type === 'narration') {
-                    html += '<p class="narration">' + item.text + '</p>';
-                } else if (item.type === 'dialogue') {
-                    html += '<div class="dialogue"><div class="name">' + item.name + '</div><div class="text">' + item.text + '</div></div>';
-                }
-            });
-            html += '</div></div>';
-            return html;
-        }
-
-        // Build all content
-        function buildFromScenes(scenes) {
-            if (!scenes || scenes.length === 0) return '<p style="text-align:center;padding:40px;">無內容</p>';
-            var html = '';
-            scenes.forEach(function(scene) {
-                html += buildSceneHtml(scene.imgPath || '', scene.items || []);
-            });
-            return html;
-        }
-
-        // Preload images
-        function preloadImages(imgPaths) {
-            if (!imgPaths || imgPaths.length === 0) return;
-            var loaded = 0;
-            var maxConcurrent = 6;
-            var queue = imgPaths.slice();
-            function tryNext() {
-                while (queue.length > 0 && loaded < maxConcurrent) {
-                    var src = queue.shift();
-                    var img = new Image();
-                    img.onload = function() { loaded--; tryNext(); };
-                    img.onerror = function() { loaded--; tryNext(); };
-                    loaded++;
-                    img.src = src;
-                }
-            }
-            tryNext();
-        }
-
-        // Load episode
-        async function loadEpisode(id) {
-            try {
-                document.getElementById('title').textContent = titles[id] || '第' + id + '集';
-                document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
-                var storyPath;
-                if (id === 5) {
-                    storyPath = 'https://abujilongxia-commits.github.io/family-stories/reader/episode5/story.html?t=' + Date.now();
-                } else {
-                    storyPath = 'https://abujilongxia-commits.github.io/family-stories/episode' + id + '/story.html?t=' + Date.now();
-                }
-                var res = await fetch(storyPath, { cache: 'no-store' });
-                var html = await res.text();
-                var parser = new DOMParser();
-                var doc = parser.parseFromString(html, 'text/html');
-                storyScenes = parseStoryScenes(doc, id);
-                document.getElementById('story').innerHTML = buildFromScenes(storyScenes);
-                var imgPaths = storyScenes.filter(function(s) { return s.imgPath; }).map(function(s) { return s.imgPath; });
-                preloadImages(imgPaths);
-            } catch(e) {
-                document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;color:#ff6b6b;">載入失敗：' + e.message + '</p>';
-            }
-        }
-
-        // Build navigation
         function buildNav() {
             var episodes = [1,2,3,4,5,6,7,8,9];
             var html = '';
-            var currentId = parseInt(new URLSearchParams(location.search).get('episode')) || 1;
+            var currentId = getEpisodeId();
             episodes.forEach(function(n) {
                 var active = n === currentId ? 'active' : '';
                 html += '<a href="story.html?episode=' + n + '" class="nav-btn ' + active + '">' + n + '</a>';
@@ -187,18 +75,104 @@
             document.getElementById('nav').innerHTML = html;
         }
 
-        // Init
-        async function init() {
-            buildNav();
-            var id = parseInt(new URLSearchParams(location.search).get('episode')) || 1;
-            await loadEpisode(id);
+        function fixImagePath(src, episodeId) {
+            if (!src || src.indexOf('http') === 0) return src;
+            var base;
+            if (episodeId === 5) {
+                base = 'https://abujilongxia-commits.github.io/family-stories/reader/episode5/';
+            } else {
+                base = 'https://abujilongxia-commits.github.io/family-stories/episode' + episodeId + '/';
+            }
+            return base + src.replace(/^\//, '');
+        }
+
+        function buildScene(episodeId, sceneEl) {
+            var imgEl = sceneEl.querySelector('img');
+            var imgPath = imgEl ? fixImagePath(imgEl.src, episodeId) : '';
+            var html = '<div class="scene">';
+            if (imgPath) {
+                html += '<div class="scene-img"><img src="' + imgPath + '" alt="" loading="lazy"></div>';
+            }
+            html += '<div class="scene-text">';
+            var pEls = sceneEl.querySelectorAll('p');
+            pEls.forEach(function(p) {
+                var isDialogue = p.querySelector('.dialogue') !== null;
+                var text = p.textContent.trim();
+                if (!isDialogue && text) {
+                    html += '<p>' + text + '</p>';
+                }
+            });
+            var dialogueEls = sceneEl.querySelectorAll('.dialogue');
+            dialogueEls.forEach(function(d) {
+                var nameEl = d.querySelector('strong');
+                var textEl = d.querySelector('.text');
+                var name = nameEl ? nameEl.textContent.trim() : '';
+                var text = textEl ? textEl.textContent.trim() : d.textContent.trim();
+                if (text) {
+                    html += '<div class="dialogue"><div class="name">' + name + '</div><div class="text">' + text + '</div></div>';
+                }
+            });
+            html += '</div></div>';
+            return html;
+        }
+
+        function renderEpisode(episodeId, doc) {
+            var sceneEls = doc.querySelectorAll('.scene');
+            var html = '';
+            sceneEls.forEach(function(scene) {
+                html += buildScene(episodeId, scene);
+            });
+            document.getElementById('story').innerHTML = html;
+            // Trigger lazy load by scrolling
+            var imgs = document.querySelectorAll('.scene-img img');
+            var loaded = 0;
+            var maxConcurrent = 8;
+            var queue = Array.prototype.slice.call(imgs);
+            function tryNext() {
+                while (queue.length > 0 && loaded < maxConcurrent) {
+                    var img = queue.shift();
+                    if (!img.complete || img.naturalWidth === 0) {
+                        loaded++;
+                        img.onload = function() { loaded--; tryNext(); };
+                        img.onerror = function() { loaded--; tryNext(); };
+                    }
+                }
+            }
+            tryNext();
+        }
+
+        function loadEpisode(episodeId) {
+            document.getElementById('title').textContent = titles[episodeId] || '第' + episodeId + '集';
+            document.title = (titles[episodeId] || '第' + episodeId + '集') + ' - 家庭故事集';
+            var url;
+            if (episodeId === 5) {
+                url = 'https://abujilongxia-commits.github.io/family-stories/reader/episode5/story.html';
+            } else {
+                url = 'https://abujilongxia-commits.github.io/family-stories/episode' + episodeId + '/story.html';
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url + '?t=' + Date.now(), true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(xhr.responseText, 'text/html');
+                    renderEpisode(episodeId, doc);
+                } else {
+                    document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;color:#ff6b6b;">載入失敗：' + xhr.status + '</p>';
+                }
+            };
+            xhr.onerror = function() {
+                document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;color:#ff6b6b;">網路錯誤</p>';
+            };
+            xhr.send();
         }
 
         document.querySelector('.lightbox-close').onclick = function() {
             document.getElementById('lightbox').classList.remove('active');
         };
 
-        init();
+        buildNav();
+        loadEpisode(getEpisodeId());
     </script>
 </body>
 </html>
