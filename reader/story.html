@@ -69,14 +69,13 @@
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
                 let html = '';
-                // For episode 5, use embedded images
+                // For episode 5, load directly from ./episode5/story.html which has embedded images
                 if (id == 5) {
                     const ep5Res = await fetch('./episode5/story.html');
                     html = await ep5Res.text();
                     document.getElementById('story').innerHTML = html;
                 } else {
-                    // For episode 5, use different path
-                const res = await fetch(id == 5 ? './episode5/story.html' : '../episode' + id + '/story.html');
+                    const res = await fetch('../episode' + id + '/story.html');
                     html = await res.text();
                     const doc = new DOMParser().parseFromString(html, 'text/html');
                     storyScenes = parseStoryScenes(doc);
