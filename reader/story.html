@@ -71,7 +71,7 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集 v2';
-                const res = await fetch('https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/' + (id == 5 ? 'reader/episode' : 'episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
+                const res = await fetch((id == 5 ? '../reader/episode' : '../episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
                 const html = await res.text();
                 const doc = new DOMParser().parseFromString(html, 'text/html');
                 storyScenes = parseStoryScenes(doc);
@@ -109,13 +109,18 @@
         
         function buildSceneHtml(imgPath, items) {
             // Convert relative path to absolute URL
-            if (imgPath && !imgPath.startsWith('http')) {
-                const episodeBase = 'https://abujilongxia-commits.github.io/family-stories/episode';
-                const readerBase = 'https://abujilongxia-commits.github.io/family-stories/reader/episode';
-                // Extract episode id from storyScenes or use global id
-                const id = parseInt(new URLSearchParams(location.search).get('episode')) || 6;
-                const base = (id == 5) ? readerBase + '5' : episodeBase + id + '/';
-                imgPath = imgPath.startsWith('/') ? imgPath : base + '/' + imgPath;
+            if (imgPath) {
+                let absUrl = imgPath;
+                // Convert relative path to absolute URL
+                if (!imgPath.startsWith('http')) {
+                    const episodeBase = 'https://abujilongxia-commits.github.io/family-stories/episode';
+                    const readerBase = 'https://abujilongxia-commits.github.io/family-stories/reader/episode';
+                    const base = (id == 5) ? readerBase + '5/' : episodeBase + id + '/';
+                    // Remove leading slash if present
+                    const cleanPath = imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
+                    absUrl = base + cleanPath;
+                }
+                imgPath = absUrl;
             }
             let html = '<div class="scene">';
             if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" alt=""></div>';
