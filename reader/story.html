@@ -52,103 +52,85 @@
         <img src="" alt="">
     </div>
     <script>
-        const titles = { 1: '說走就走？先問媽媽！', 2: '媽祖婆，我們來了！', 3: '守護家人的智慧生活', 4: '南庄露營記', 5: '棒球場攻略！', 6: '水彈槍大戰！', 7: '魔術方塊高手！', 8: '小老師棉花糖！', 9: '居家大改造！' };
-        const speakerClass = { '爸爸': 'speaker-father', '媽媽': 'speaker-mother', '阿布吉': 'speaker-brother', 'Andy': 'speaker-brother', 'Mike': 'speaker-brother2', '棉花糖': 'speaker-brother2', '哥哥': 'speaker-brother' };
-        let config = {};
+        // State
+        let config = null;
         let storyScenes = [];
-        
-        async function init() { 
-            console.log('init called');
-            try { 
-                config = await (await fetch('./config.json')).json(); 
-                console.log('config:', config); 
-                const id = new URLSearchParams(location.search).get('episode');
-                if(id) loadEpisode(parseInt(id));
-            } catch(e) { console.log('config error:', e); }
-        }
-        
-        async function loadEpisode(id) {
-            try {
-                document.getElementById('title').textContent = titles[id] || '第' + id + '集';
-                document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集 v2';
-                const res = await fetch((id == 5 ? '../reader/episode' : '../episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
-                const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                storyScenes = parseStoryScenes(doc);
-                const episodeId = parseInt(new URLSearchParams(location.search).get('episode')) || 6;
-                const content = buildFromScenes(storyScenes, episodeId);
-                document.getElementById('story').innerHTML = content;
-                preloadImages(storyScenes.filter(s => s.imgPath).map(s => s.imgPath), parseInt(new URLSearchParams(location.search).get('episode')) || 6);
-            } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
-        }
-        
+        let currentEpisode = null;
+
+        // Titles
+        const titles = {
+            1: '說走就走？先問媽媽！',
+            2: '媽祖婆，我們來了！',
+            3: '守護家人的智慧生活',
+            4: '阿布吉與棉花糖的生日派對',
+            5: '說走就走？先問媽媽！',
+            6: '水彈槍大戰！',
+            7: '第七集',
+            8: '第八集',
+            9: '第九集'
+        };
+
+        // Parse story HTML and extract scenes with images
         function parseStoryScenes(doc) {
             const scenes = [];
             doc.querySelectorAll('.scene').forEach((scene, idx) => {
                 const items = [];
                 const imgEl = scene.querySelector('img');
-                const imgPath = imgEl ? imgEl.src : '';
-                scene.querySelectorAll('p').forEach(p => { if (!p.querySelector('.dialogue') && p.textContent.trim()) items.push({ type: 'narration', text: p.textContent.trim() }); });
+                let imgPath = imgEl ? imgEl.src : '';
+                // Convert relative path to absolute URL
+                if (imgPath && !imgPath.startsWith('http')) {
+                    const episodeId = parseInt(new URLSearchParams(location.search).get('episode')) || 6;
+                    const base = 'https://abujilongxia-commits.github.io/family-stories/episode' + episodeId + '/';
+                    imgPath = base + imgPath.replace(/^\//, '');
+                }
+                scene.querySelectorAll('p').forEach(p => {
+                    if (!p.querySelector('.dialogue') && p.textContent.trim()) {
+                        items.push({ type: 'narration', text: p.textContent.trim() });
+                    }
+                });
                 scene.querySelectorAll('.dialogue').forEach(d => {
                     const name = d.querySelector('strong')?.textContent?.trim() || '';
                     const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
                     if (text) items.push({ type: 'dialogue', name, text });
                 });
-                if (items.length > 0 || imgPath) scenes.push({ index: idx + 1, items, imgPath });
+                if (items.length > 0 || imgPath) {
+                    scenes.push({ index: idx + 1, items, imgPath });
+                }
             });
             return scenes;
         }
-        
-        function buildFromScenes(scenes, episodeId) {
-            if (!scenes || scenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
-            let html = '';
-            scenes.forEach((scene, idx) => {
-                html += buildSceneHtml(scene.imgPath || '', scene.items || [], episodeId);
-            });
-            return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
-        }
-        
-        function buildSceneHtml(imgPath, items, id) {
-            // Convert relative path to absolute URL
-            if (imgPath) {
-                let absUrl = imgPath;
-                // Convert relative path to absolute URL
-                if (!imgPath.startsWith('http')) {
-                    const episodeBase = 'https://abujilongxia-commits.github.io/family-stories/episode';
-                    const readerBase = 'https://abujilongxia-commits.github.io/family-stories/reader/episode';
-                    const base = (id == 5) ? readerBase + '5/' : episodeBase + id + '/';
-                    const relImgPath = imgPath;
-                    // Remove leading slash if present
-                    const cleanPath = imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
-                    absUrl = base + cleanPath;
-                }
-                imgPath = absUrl;
-            }
+
+        // Build scene HTML
+        function buildSceneHtml(imgPath, items) {
             let html = '<div class="scene">';
-            if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" alt=""></div>';
+            if (imgPath) {
+                html += '<div class="scene-img"><img src="' + imgPath + '" alt=""></div>';
+            }
             html += '<div class="scene-text">';
             items.forEach(item => {
-                if (item.type === 'narration') html += '<p class="narration">' + item.text + '</p>';
-                else if (item.type === 'dialogue') {
-                    const cls = speakerClass[item.name] || '';
-                    html += '<div class="dialogue ' + cls + '"><div class="name">' + item.name + '</div><div class="text">' + item.text + '</div></div>';
+                if (item.type === 'narration') {
+                    html += '<p class="narration">' + item.text + '</p>';
+                } else if (item.type === 'dialogue') {
+                    html += '<div class="dialogue"><div class="name">' + item.name + '</div><div class="text">' + item.text + '</div></div>';
                 }
             });
             html += '</div></div>';
             return html;
-        };
-                    img.onerror = () => { loaded--; tryNext(); };
-                    loaded++;
-                    img.src = src;
-                }
-            }
-            tryNext();
-        }
-            }
-            tryNext();
         }
 
+        // Build all content from scenes
+        function buildFromScenes(scenes) {
+            if (!scenes || scenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
+            let html = '';
+            scenes.forEach(scene => {
+                html += buildSceneHtml(scene.imgPath || '', scene.items || []);
+            });
+            return html;
+        }
+
+        // Preload images with concurrency control
         function preloadImages(imgPaths) {
+            if (!imgPaths || imgPaths.length === 0) return;
             let loaded = 0;
             const maxConcurrent = 6;
             const queue = [...imgPaths];
@@ -165,9 +147,51 @@
             tryNext();
         }
 
-        document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
-        document.getElementById('lightbox').onclick = e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('active'); };
-        init();
+        // Load episode
+        async function loadEpisode(id) {
+            try {
+                currentEpisode = id;
+                document.getElementById('title').textContent = titles[id] || '第' + id + '集';
+                document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
+                // Fetch story HTML - episode5 is nested under reader/
+                const storyPath = (id == 5)
+                    ? '../reader/episode' + id + '/story.html?t=' + Date.now()
+                    : '../episode' + id + '/story.html?t=' + Date.now();
+                const res = await fetch(storyPath, { cache: 'no-store' });
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                storyScenes = parseStoryScenes(doc);
+                const content = buildFromScenes(storyScenes);
+                document.getElementById('story').innerHTML = content;
+                const imgPaths = storyScenes.filter(s => s.imgPath).map(s => s.imgPath);
+                preloadImages(imgPaths);
+            } catch(e) {
+                document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>';
+            }
+        }
+
+        // Build navigation
+        function buildNav() {
+            const episodes = [1,2,3,4,5,6,7,8,9];
+            let html = '';
+            episodes.forEach(n => {
+                const active = n == parseInt(new URLSearchParams(location.search).get('episode')) ? 'active' : '';
+                html += '<a href="story.html?episode=' + n + '" class="nav-btn ' + active + '">' + n + '</a>';
+            });
+            document.getElementById('nav').innerHTML = html;
+        }
+
+        // Init
+        async function init() {
+            buildNav();
+            const id = parseInt(new URLSearchParams(location.search).get('episode')) || 1;
+            await loadEpisode(id);
+        }
+
+        document.querySelector('.lightbox-close').onclick = () => {
+            document.getElementById('lightbox').classList.remove('active');
+        };
+
     </script>
 </body>
 </html>
