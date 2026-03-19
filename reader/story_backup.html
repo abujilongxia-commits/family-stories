@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭故事集</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 15px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px 20px; text-align: center; }
+        .header a { color: white; text-decoration: none; font-size: 0.85em; opacity: 0.9; }
+        .header h1 { font-size: 1.4em; margin-top: 8px; }
+        .story { padding: 15px; }
+        .scene { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .scene:last-child { border-bottom: none; }
+        .scene-img { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); cursor: pointer; }
+        .scene-img img { width: 100%; height: auto; display: block; }
+        .scene-text { display: flex; flex-direction: column; gap: 8px; }
+        .narration { color: #555; font-size: 0.9em; line-height: 1.6; }
+        .dialogue { background: #f5f5f5; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #667eea; }
+        .dialogue.speaker-father { border-left-color: #3498db; }
+        .dialogue.speaker-mother { border-left-color: #e74c3c; }
+        .dialogue.speaker-brother { border-left-color: #9b59b6; }
+        .dialogue.speaker-brother2 { border-left-color: #f39c12; }
+        .dialogue .name { font-weight: bold; font-size: 0.8em; color: #667eea; margin-bottom: 3px; }
+        .dialogue .text { color: #333; font-size: 0.9em; line-height: 1.5; }
+        .footer { text-align: center; padding: 15px; background: #f8f9fa; }
+        .footer a { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 25px; border-radius: 20px; text-decoration: none; font-size: 0.9em; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 95%; max-height: 95%; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 15px; right: 20px; color: white; font-size: 35px; cursor: pointer; }
+        @media (max-width: 500px) { body { padding: 8px; } .header h1 { font-size: 1.2em; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html">← 返回目錄</a>
+            <h1 id="title">家庭故事集</h1>
+        </div>
+        <div class="story" id="story">
+            <p style="text-align:center;padding:40px;color:#666;">載入中...</p>
+        </div>
+        <div class="footer">
+            <a href="index.html">🏠 返回目錄</a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="">
+    </div>
+    <script>
+        const titles = { 1: '說走就走？先問媽媽！', 2: '媽祖婆，我們來了！', 3: '守護家人的智慧生活', 4: '南庄露營記', 5: '棒球場攻略！', 6: '水彈槍大戰！', 7: '魔術方塊高手！', 8: '小老師棉花糖！', 9: '居家大改造！' };
+        const speakerClass = { '爸爸': 'speaker-father', '媽媽': 'speaker-mother', '阿布吉': 'speaker-brother', 'Andy': 'speaker-brother', 'Mike': 'speaker-brother2', '棉花糖': 'speaker-brother2', '哥哥': 'speaker-brother' };
+        let config = {};
+        let storyScenes = [];
+        
+        async function init() { 
+            console.log('init called');
+            try { config = await (await fetch('./config.json')).json(); console.log('config:', config); } catch(e) { console.log('config error:', e); }
+            const id = new URLSearchParams(location.search).get('episode');
+            if(id) loadEpisode(parseInt(id));
+        }
+        
+        async function loadEpisode(id) {
+            try {
+                document.getElementById('title').textContent = titles[id] || '第' + id + '集';
+                document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
+                const res = await fetch('../episode' + id + '/story.html');
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                storyScenes = parseStoryScenes(doc);
+                const images = config.selectedImages?.[('episode' + id)] || [];
+                const content = buildFromImages(images);
+                document.getElementById('story').innerHTML = content;
+                document.querySelectorAll('.scene-img').forEach(div => {
+                    div.onclick = () => { document.querySelector('#lightbox img').src = div.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); };
+                });
+            } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
+        }
+        
+        function parseStoryScenes(doc) {
+            const scenes = [];
+            doc.querySelectorAll('.scene').forEach((scene, idx) => {
+                const items = [];
+                scene.querySelectorAll('p').forEach(p => { if (!p.querySelector('.dialogue') && p.textContent.trim()) items.push({ type: 'narration', text: p.textContent.trim() }); });
+                scene.querySelectorAll('.dialogue').forEach(d => {
+                    const name = d.querySelector('strong')?.textContent?.trim() || '';
+                    const text = d.querySelector('.text')?.textContent?.trim() || d.textContent?.trim() || '';
+                    if (text) items.push({ type: 'dialogue', name, text });
+                });
+                if (items.length > 0) scenes.push({ index: idx + 1, items });
+            });
+            return scenes;
+        }
+        
+        function buildFromImages(images) {
+            if (!images || images.length === 0) return '<p style="text-align:center;padding:40px;">沒有圖片</p>';
+            if (!storyScenes || storyScenes.length === 0) return '<p style="text-align:center;padding:40px;">無法讀取故事</p>';
+            
+            let html = '';
+            // 按順序對應圖片到故事場景
+            images.forEach((imgPath, idx) => {
+                const storyScene = storyScenes[idx];
+                html += buildSceneHtml(imgPath, storyScene ? storyScene.items : []);
+            });
+            
+            return html || '<p style="text-align:center;padding:40px;">沒有內容</p>';
+        }
+        
+        function buildSceneHtml(imgPath, items) {
+            let html = '<div class="scene">';
+            if (imgPath) html += '<div class="scene-img"><img src="' + imgPath + '" loading="lazy" alt=""></div>';
+            html += '<div class="scene-text">';
+            items.forEach(item => {
+                if (item.type === 'narration') html += '<p class="narration">' + item.text + '</p>';
+                else if (item.type === 'dialogue') {
+                    const cls = speakerClass[item.name] || '';
+                    html += '<div class="dialogue ' + cls + '"><div class="name">' + item.name + '</div><div class="text">' + item.text + '</div></div>';
+                }
+            });
+            html += '</div></div>';
+            return html;
+        }
+        
+        document.querySelector('.lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
+        document.getElementById('lightbox').onclick = e => { if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('active'); };
+        init();
+    </script>
+</body>
+</html>
