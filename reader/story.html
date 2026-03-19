@@ -59,9 +59,12 @@
         
         async function init() { 
             console.log('init called');
-            try { config = await (await fetch('./config.json')).json(); console.log('config:', config); } catch(e) { console.log('config error:', e); }
-            const id = new URLSearchParams(location.search).get('episode');
-            if(id) loadEpisode(parseInt(id));
+            try { 
+                config = await (await fetch('./config.json')).json(); 
+                console.log('config:', config); 
+                const id = new URLSearchParams(location.search).get('episode');
+                if(id) loadEpisode(parseInt(id));
+            } catch(e) { console.log('config error:', e); }
         }
         
         async function loadEpisode(id) {
