@@ -14,8 +14,8 @@
         .story { padding: 15px; }
         .scene { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
         .scene:last-child { border-bottom: none; }
-        .scene-img, .scene-image { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); cursor: pointer; }
-        .scene-img img, .scene-image img { width: 100%; height: auto; display: block; }
+        .scene-img { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); cursor: pointer; }
+        .scene-img img { width: 100%; height: auto; display: block; }
         .scene-text { display: flex; flex-direction: column; gap: 8px; }
         .narration { color: #555; font-size: 0.9em; line-height: 1.6; }
         .dialogue { background: #f5f5f5; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #667eea; }
@@ -68,23 +68,17 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
-                
-                // For episode 5 and 6, load directly with embedded images
-                if (id == 5 || id == 6) {
-                    const res = await fetch('./episode' + id + '/story.html');
-                    const html = await res.text();
-                    document.getElementById('story').innerHTML = html;
-                } else {
-                    const res = await fetch('../episode' + id + '/story.html');
-                    const html = await res.text();
-                    const doc = new DOMParser().parseFromString(html, 'text/html');
-                    const storyScenes = parseStoryScenes(doc);
-                    const images = config.selectedImages?.[('episode' + id)] || [];
-                    const content = buildFromImages(images);
-                    document.getElementById('story').innerHTML = content;
-                }
+                const res = await fetch('../episode' + id + '/story.html');
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                storyScenes = parseStoryScenes(doc);
+                const images = config.selectedImages?.[('episode' + id)] || [];
+                const content = buildFromImages(images);
+                document.getElementById('story').innerHTML = content;
+                document.querySelectorAll('.scene-img').forEach(div => {
+                    div.onclick = () => { document.querySelector('#lightbox img').src = div.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); };
+                });
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
-        }
         }
         
         function parseStoryScenes(doc) {

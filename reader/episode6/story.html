@@ -1,592 +1,92 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第六集：水彈槍大戰！ - 家庭故事</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: "Microsoft JhengHei", "PingFang TC", "Noto Serif TC", serif;
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            min-height: 100vh;
-            padding: 0;
-            line-height: 1.8;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            box-shadow: 0 0 60px rgba(0,0,0,0.3);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            color: white;
-            padding: 60px 30px;
-            text-align: center;
-        }
-        
-        .header .episode-tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.3);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            line-height: 1.3;
-        }
-        
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .story-content {
-            padding: 40px 30px;
-        }
-        
-        .scene {
-            margin-bottom: 50px;
-            page-break-inside: avoid;
-        }
-        
-        .scene-image {
-            margin-bottom: 25px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        
-        .scene-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .scene-image .placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #636e72;
-            font-size: 1.2em;
-            border-radius: 15px;
-        }
-        
-        .scene-text {
-            padding: 0 10px;
-        }
-        
-        .scene-text p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .scene-text .dialogue {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #e84393;
-            font-style: italic;
-        }
-        
-        .scene-text .dialogue strong {
-            color: #e84393;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .scene-text .dialogue .text {
-            color: #555;
-            font-size: 1.05em;
-        }
-        
-        .part-divider {
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            margin: 40px -30px;
-        }
-        
-        .part-divider h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-        
-        .part-divider p {
-            opacity: 0.9;
-            font-size: 1em;
-        }
-        
-        .character-intro {
-            background: #f8f9fa;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 15px;
-        }
-        
-        .character-intro h3 {
-            color: #e84393;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .character-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
-        
-        .character {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-        }
-        
-        .character .emoji {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .character h4 {
-            color: #e84393;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .character p {
-            font-size: 0.85em;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .trip-info {
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .trip-info h3 {
-            color: #2d3436;
-            margin-bottom: 15px;
-        }
-        
-        .trip-info .items {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .trip-info .item {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.9em;
-            color: #636e72;
-        }
-        
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .footer a {
-            color: #e84393;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .back-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .back-button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .scene-number {
-            display: inline-block;
-            background: #e84393;
-            color: white;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 0.8em;
-            margin-right: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.6em;
-            }
-            
-            .story-content {
-                padding: 25px 20px;
-            }
-            
-            .part-divider {
-                margin: 30px -20px;
-                padding: 25px 20px;
-            }
-            
-            .part-divider h2 {
-                font-size: 1.4em;
-            }
-        }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第六集：水彈槍大戰！ - 家庭故事</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft JhengHei", "PingFang TC", serif; background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); min-height: 100vh; padding: 0; line-height: 1.7; }
+.container { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 50px rgba(0,0,0,0.3); }
+.header { background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); color: white; padding: 45px 20px; text-align: center; }
+.header h1 { font-size: 1.8em; margin-bottom: 10px; }
+.story-content { padding: 25px 15px; }
+.scene { margin-bottom: 25px; }
+.scene-image { margin-bottom: 12px; border-radius: 10px; overflow: hidden; }
+.scene-image .placeholder { width: 100%; height: 180px; background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%); display: flex; align-items: center; justify-content: center; color: #636e72; font-size: 0.95em; border-radius: 10px; }
+.scene-text p { font-size: 0.95em; color: #333; margin-bottom: 8px; }
+.scene-text .dialogue { background: #f8f9fa; padding: 10px 12px; border-radius: 6px; margin: 10px 0; border-left: 3px solid #e84393; }
+.scene-text .dialogue strong { color: #e84393; display: block; margin-bottom: 3px; font-size: 0.85em; }
+.scene-text .dialogue .text { color: #555; font-size: 0.9em; }
+.part-divider { background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); color: white; padding: 18px; text-align: center; margin: 20px -15px; }
+.part-divider h2 { font-size: 1.3em; margin-bottom: 5px; }
+.character-intro { background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 10px; }
+.character-intro h3 { color: #e84393; margin-bottom: 10px; text-align: center; }
+.character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+.character { background: white; padding: 10px; border-radius: 8px; text-align: center; border: 2px solid #e9ecef; }
+.character .emoji { font-size: 1.6em; margin-bottom: 4px; }
+.character h4 { color: #e84393; margin-bottom: 3px; font-size: 0.8em; }
+.character p { font-size: 0.7em; color: #666; line-height: 1.2; }
+.footer { background: #f8f9fa; padding: 15px; text-align: center; margin-top: 25px; }
+.back-button { display: inline-block; background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); color: white; padding: 8px 18px; border-radius: 18px; text-decoration: none; }
+.scene-number { display: inline-block; background: #e84393; color: white; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 50%; font-size: 0.65em; margin-right: 5px; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="episode-tag">🎬 第六集</div>
-            <h1>水彈槍大戰！</h1>
-            <div class="subtitle">假日一家人去玩水彈槍！角色扮演、團隊對戰！</div>
-        </div>
-        
-        <div class="story-content">
-            <!-- 行程資訊 -->
-            <div class="trip-info">
-                <h3>🔫 本集重點</h3>
-                <div class="items">
-                    <div class="item">水彈槍</div>
-                    <div class="item">角色扮演</div>
-                    <div class="item">團隊對戰</div>
-                    <div class="item">父子默契</div>
-                    <div class="item">刺激有趣</div>
-                </div>
-            </div>
-            
-            <!-- 角色介紹 -->
-            <div class="character-intro">
-                <h3>👨‍👩‍👦 故事角色</h3>
-                <div class="character-grid">
-                    <div class="character">
-                        <div class="emoji">👨</div>
-                        <h4>爸爸</h4>
-                        <p>帥氣出擊<br>指揮官</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👩</div>
-                        <h4>媽媽凱莉</h4>
-                        <p>50 多歲<br>賢慧、操心</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👦</div>
-                        <h4>哥哥阿布吉</h4>
-                        <p>20 歲大學生<br>帥氣出擊</p>
-                    </div>
-                    <div class="character">
-                        <div class="emoji">👦</div>
-                        <h4>弟弟棉花糖</h4>
-                        <p>15 歲高中生<br>活力滿滿</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 第一部分 -->
-            <div class="part-divider">
-                <h2>第一部分：出發與抵達</h2>
-                <p>一家人來到水彈槍運動場！</p>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景1: 客廳討論</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">1</span>週日早上，一家人坐在客廳。</p>
-                    <p>爸爸突然拿出手机，兴奋地说：</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text">「今天天氣很好！我們去玩水彈槍吧！」</span>
-                    </div>
-                    <p>棉花糖眼睛立刻亮了起來！</p>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景2: 棉花糖的超級興奮</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">2</span>棉花糖跳了起來！</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text">「真的嗎！？太棒了！！！我要當特種兵！！！」</span>
-                    </div>
-                    <p>阿布吉雖然表情淡淡的，但嘴角也露出微笑。</p>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景3: 出發前的準備</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">3</span>一家人出發！爸爸開車，媽媽坐在副駕駛，兩個兒子坐在後面。</p>
-                    <p>車上大家都在討論等一下要怎麼玩。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」我們分兩隊！爸爸和棉花糖一隊，阿布吉和媽媽一隊！</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text」好，那我當隊長。</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景4: 抵達運動場</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">4</span>抵達水彈槍運動場！巨大的場地，裡面已經有很多人在玩了。</p>
-                    <p>棉花糖迫不及待地想要衝进去！</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text」爸！好了沒！？我要去拿槍了！！</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 第二部分 -->
-            <div class="part-divider">
-                <h2>第二部分：準備與分隊</h2>
-                <p>武裝自己，準備上戰場！</p>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景5: 挑選裝備</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">5</span>大家開始挑選自己的「武器」。</p>
-                    <p>棉花糖選了一把看起來最帥氣的步槍，爸爸選了一把機關槍造型的手槍。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」這個不錯！等一下你們小心點！</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景6: 穿戴護具</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">6</span>每個人都穿戴好護目鏡和背心。</p>
-                    <p>媽媽有點緊張。</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text」這個會不會打到很痛啊？</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」不會啦！水彈而已，不會痛！</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景7: 戰術簡報</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">7</span>正式開始前，爸爸把大家集合，進行「戰術簡報」。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」聽好！棉花糖你負責衝鋒，我在後面掩護你！媽媽和阿布吉，你們從側翼包抄！</span>
-                    </div>
-                    <p>阿布吉點點頭，媽媽也做好了準備。</p>
-                </div>
-            </div>
-            
-            <!-- 第三部分 -->
-            <div class="part-divider">
-                <h2>第三部分：戰鬥開始！</h2>
-                <p>緊張刺激的對戰！</p>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景8: 第一發子彈</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">8</span>「砰！」信號聲響起，戰鬥開始！</p>
-                    <p>棉花糖第一個衝出去！</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text」冲啊！！！</span>
-                    </div>
-                    <p>爸爸在後面掩護，父子配合得天衣無縫！</p>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景9: 阿布吉的帥氣</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">9</span>阿布吉展現帥氣的槍法！</p>
-                    <p>他躲在障礙物後面，精準地射擊！</p>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text」（默默開槍）</span>
-                    </div>
-                    <p>棉花糖被「擊中」了！</p>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text」哥！！你好準！！</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景10: 媽媽的參戰</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">10</span>媽媽也加入戰鬥！</p>
-                    <p>雖然一開始有點害怕，但漸漸地也玩開了！</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text」我打到！我打到人了！！</span>
-                    </div>
-                    <p>爸爸和棉花糖被媽媽「擊中」了！</p>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景11: 激烈交火</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">11</span>戰鬥越來越激烈！</p>
-                    <p>到處都是水彈飛舞的聲音和大家的笑聲！</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」棉花糖！左邊！左邊有人！！</span>
-                    </div>
-                    <p>棉花糖轉身，一陣掃射！</p>
-                </div>
-            </div>
-            
-            <!-- 第四部分 -->
-            <div class="part-divider">
-                <h2>第四部分：結束與收穫</h2>
-                <p>帶著滿滿的回憶回家！</p>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景12: 戰鬥結束</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">12</span>時間到！戰鬥結束！</p>
-                    <p>大家都玩得滿頭大汗，但臉上都是笑容！</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」今天大家都表現得很好！</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text」太好玩了！！！下次還要來！！</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景13: 休息區</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">13</span>一家人坐在休息區喝水。</p>
-                    <p>媽媽擦著汗，但表情很開心。</p>
-                    <div class="dialogue">
-                        <strong>媽媽</strong>
-                        <span class="text」本來以為會很無聊，沒想到這麼好玩！</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>阿布吉</strong>
-                        <span class="text」下次可以組隊更多人來玩。</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scene">
-                <div class="scene-image">
-                    <div class="placeholder">📷 場景14: 結語</div>
-                </div>
-                <div class="scene-text">
-                    <p><span class="scene-number">14</span>回到家，一家人坐在客廳，回憶著今天的點點滴滴。</p>
-                    <div class="dialogue">
-                        <strong>爸爸</strong>
-                        <span class="text」今天大家都很厲害！尤其是媽媽，第一次玩就上手！</span>
-                    </div>
-                    <div class="dialogue">
-                        <strong>棉花糖</strong>
-                        <span class="text」我下次要打敗哥哥！！</span>
-                    </div>
-                    <p>這是一次刺激又有趣的家庭回憶！</p>
-                </div>
-            </div>
-            
-            <!-- 結語 -->
-            <div class="part-divider">
-                <h2>🎉 完</h2>
-                <p>謝謝觀看！</p>
-            </div>
-            
-        </div>
-        
-        <div class="footer">
-            <a href="../index.html" class="back-button">🏠 回首頁</a>
-        </div>
-    </div>
+<div class="container">
+<div class="header"><h1>🎬 第六集</h1><h1>水彈槍大戰！</h1><p>假日一家人去玩水彈槍！（延續露營的熱血活力）</p></div>
+<div class="story-content">
+<div class="character-intro"><h3>👨‍👩‍👦 故事角色</h3><div class="character-grid">
+<div class="character"><div class="emoji">👨</div><h4>爸爸</h4><p>帥氣出擊<br>指揮官</p></div>
+<div class="character"><div class="emoji">👩</div><h4>媽媽</h4><p>賢慧、操心</p></div>
+<div class="character"><div class="emoji">👦</div><h4>阿布吉</h4><p>帥氣出擊</p></div>
+<div class="character"><div class="emoji">👦</div><h4>棉花糖</h4><p>活力滿滿</p></div>
+"></div>
+
+<div class="part-divider"><h2>第一部分：提議與出發</h2><p>爸爸提議去玩水彈槍！</p></div>
+
+<div class="scene"><div class="scene-image"><img src="images/01_客廳討論.jpg" alt="場景1: 客廳討論"></div><div class="scene-text"><p><span class="scene-number">1</span>週日早上，一家人坐在客廳。爸爸突然說：</p><div class="dialogue"><strong>爸爸</strong><span class="text">「今天天氣很好！我們去玩水彈槍吧！」</span></div><p>棉花糖眼睛立刻亮了起來！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/02_棉花糖的超級興奮.jpg" alt="場景2: 棉花糖的超級興奮"></div><div class="scene-text"><p><span class="scene-number">2</span>棉花糖跳了起來！</p><div class="dialogue"><strong>棉花糖</strong><span class="text">「真的嗎！？太棒了！！！我要當特種兵！！！」</span></div><p>阿布吉雖然表情淡淡，但嘴角也露出微笑。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/03_媽媽的疑問.jpg" alt="場景3: 媽媽的疑問"></div><div class="scene-text"><p><span class="scene-number">3</span>媽媽有點擔心。</p><div class="dialogue"><strong>媽媽</strong><span class="text">「這個會不會打到很痛啊？」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/04_爸爸的解釋.jpg" alt="場景4: 爸爸的解釋"></div><div class="scene-text"><p><span class="scene-number">4</span>爸爸笑著解釋。</p><div class="dialogue"><strong>爸爸</strong><span class="text">「不會啦！水彈而已，不會痛！很好玩的！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/05_分隊討論.jpg" alt="場景5: 分隊討論"></div><div class="scene-text"><p><span class="scene-number">5</span>爸爸開始分隊。</p><div class="dialogue"><strong>爸爸</strong><span class="text」我們分兩隊！爸爸和棉花糖一隊，阿布吉和媽媽一隊！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/06_阿布吉的回應.jpg" alt="場景6: 阿布吉的回應"></div><div class="scene-text"><p><span class="scene-number">6</span>阿布吉點點頭。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」好，那我當隊長。</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/07_出發前的準備.jpg" alt="場景7: 出發前的準備"></div><div class="scene-text"><p><span class="scene-number">7</span>一家人出發！爸爸開車，媽媽坐副駕駛，兩個兒子坐後面。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/08_車上討論.jpg" alt="場景8: 車上討論"></div><div class="scene-text"><p><span class="scene-number">8</span>車上大家都在討論等一下要怎麼玩。</p><div class="dialogue"><strong>爸爸</strong><span class="text」棉花糖，等一下你負責衝鋒！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/09_抵達運動場.jpg" alt="場景9: 抵達運動場"></div><div class="scene-text"><p><span class="scene-number">9</span>抵達水彈槍運動場！巨大的場地，裡面已經有很多人在玩了。</p>"></div>
+
+<div class="part-divider"><h2>第二部分：準備與戰鬥</h2><p>武裝自己，準備上戰場！</p></div>
+
+<div class="scene"><div class="scene-image"><img src="images/10_挑選裝備.jpg" alt="場景10: 挑選裝備"></div><div class="scene-text"><p><span class="scene-number">10</span>大家開始挑選自己的「武器」。棉花糖選了一把看起來最帥氣的步槍。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/11_爸爸的武器.jpg" alt="場景11: 爸爸的武器"></div><div class="scene-text"><p><span class="scene-number">11</span>爸爸選了一把機關槍造型的手槍。</p><div class="dialogue"><strong>爸爸</strong><span class="text」這個不錯！等一下你們小心點！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/12_穿戴護具.jpg" alt="場景12: 穿戴護具"></div><div class="scene-text"><p><span class="scene-number">12</span>每個人都穿戴好護目鏡和背心。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/13_戰術簡報.jpg" alt="場景13: 戰術簡報"></div><div class="scene-text"><p><span class="scene-number">13</span>正式開始前，爸爸把大家集合，進行「戰術簡報」。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/14_棉花糖的戰鬥位置.jpg" alt="場景14: 棉花糖的戰鬥位置"></div><div class="scene-text"><p><span class="scene-number">14</span>棉花糖拿著槍，擺出帥氣的姿勢。</p><div class="dialogue"><strong>棉花糖</strong><span class="text」我準備好了！！！</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/15_戰鬥開始.jpg" alt="場景15: 戰鬥開始！"></div><div class="scene-text"><p><span class="scene-number">15</span>「砰！」信號聲響起，戰鬥開始！</p><p>棉花糖第一個衝出去！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/16_棉花糖衝鋒.jpg" alt="場景16: 棉花糖衝鋒"></div><div class="scene-text"><p><span class="scene-number">16</span>棉花糖一馬當先！</p><div class="dialogue"><strong>棉花糖</strong><span class="text」冲啊！！！</span></div><p>爸爸在後面掩護，父子配合得天衣無縫！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/17_阿布吉的帥氣.jpg" alt="場景17: 阿布吉的帥氣"></div><div class="scene-text"><p><span class="scene-number">17</span>阿布吉展現帥氣的槍法！他躲在障礙物後面，精準地射擊！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/18_棉花糖被擊中.jpg" alt="場景18: 棉花糖被擊中"></div><div class="scene-text"><p><span class="scene-number">18</span>棉花糖被「擊中」了！</p><div class="dialogue"><strong>棉花糖</strong><span class="text」哥！！你好準！！</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/19_媽媽的參戰.jpg" alt="場景19: 媽媽的參戰"></div><div class="scene-text"><p><span class="scene-number">19</span>媽媽也加入戰鬥！雖然一開始有點害怕，但漸漸地也玩開了！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/20_媽媽的攻擊.jpg" alt="場景20: 媽媽的攻擊"></div><div class="scene-text"><p><span class="scene-number">20</span>媽媽成功「擊中」了爸爸！</p><div class="dialogue"><strong>媽媽</strong><span class="text」我打到！我打到人了！！</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/21_激烈交火.jpg" alt="場景21: 激烈交火"></div><div class="scene-text"><p><span class="scene-number">21</span>戰鬥越來越激烈！到處都是水彈飛舞的聲音和大家的笑聲！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/22_爸爸的指揮.jpg" alt="場景22: 爸爸的指揮"></div><div class="scene-text"><p><span class="scene-number">22</span>爸爸開始指揮。</p><div class="dialogue"><strong>爸爸</strong><span class="text」棉花糖！左邊！左邊有人！！</span></div><p>棉花糖轉身，一陣掃射！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/23_阿布吉的攻擊.jpg" alt="場景23: 阿布吉的攻擊"></div><div class="scene-text"><p><span class="scene-number">23</span>阿布吉精準地射擊，又「擊中」了棉花糖！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/24_棉花糖的反擊.jpg" alt="場景24: 棉花糖的反擊"></div><div class="scene-text"><p><span class="scene-number">24</span>棉花糖開始反擊！</p><div class="dialogue"><strong>棉花糖</strong><span class="text」接招！！</span>">"></div>
+
+<div class="part-divider"><h2>第三部分：結束與收穫</h2><p>帶著滿滿的回憶回家！</p></div>
+
+<div class="scene"><div class="scene-image"><img src="images/25_戰鬥結束.jpg" alt="場景25: 戰鬥結束"></div><div class="scene-text"><p><span class="scene-number">25</span>時間到！戰鬥結束！大家都玩得滿頭大汗，但臉上都是笑容！</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/26_爸爸的總結.jpg" alt="場景26: 爸爸的總結"></div><div class="scene-text"><p><span class="scene-number">26</span>爸爸大聲宣布。</p><div class="dialogue"><strong>爸爸</strong><span class="text」今天大家都表現得很好！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/27_棉花糖的感想.jpg" alt="場景27: 棉花糖的感想"></div><div class="scene-text"><p><span class="scene-number">27</span>棉花糖大喊！</p><div class="dialogue"><strong>棉花糖</strong><span class="text」太好玩了！！！下次還要來！！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/28_休息區.jpg" alt="場景28: 休息區"></div><div class="scene-text"><p><span class="scene-number">28</span>一家人坐在休息區喝水。媽媽擦著汗，但表情很開心。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/29_媽媽的感想.jpg" alt="場景29: 媽媽的感想"></div><div class="scene-text"><p><span class="scene-number">29</span>媽媽笑著說。</p><div class="dialogue"><strong>媽媽</strong><span class="text」本來以為會很無聊，沒想到這麼好玩！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/30_阿布吉的提議.jpg" alt="場景30: 阿布吉的提議"></div><div class="scene-text"><p><span class="scene-number">30</span>阿布吉提出建議。</p><div class="dialogue"><strong>阿布吉</strong><span class="text」下次可以組隊更多人來玩。」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/31_爸爸的承諾.jpg" alt="場景31: 爸爸的承諾"></div><div class="scene-text"><p><span class="scene-number">31</span>爸爸答應下次再來。</p><div class="dialogue"><strong>爸爸</strong><span class="text」好！下次我們再來決鬥！」</span>">"></div>
+<div class="scene"><div class="scene-image"><img src="images/32_回家路上.jpg" alt="場景32: 回家路上"></div><div class="scene-text"><p><span class="scene-number">32</span>回家的路上，車裡充滿了歡笑聲。</p>"></div>
+<div class="scene"><div class="scene-image"><img src="images/33_結語.jpg" alt="場景33: 結語"></div><div class="scene-text"><p><span class="scene-number">33</span>回到家，一家人坐在客廳，回憶著今天的點點滴滴。</p><div class="dialogue"><strong>爸爸</strong><span class="text」今天大家都很厲害！尤其是媽媽，第一次玩就上手！」</span>">"></div>
+
+<div class="part-divider"><h2>🎉 完</h2><p>謝謝觀看！</p></div>
+</div>
+<div class="footer"><a href="../index.html" class="back-button">🏠 回首頁</a></div>
+</div>
 </body>
 </html>
