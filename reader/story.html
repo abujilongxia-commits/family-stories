@@ -60,7 +60,7 @@
         async function init() { 
             console.log('init called');
             try { 
-                config = await (await fetch('./config.json')).json(); 
+                config = await (await fetch('/family-stories/reader/config.json')).json(); 
                 console.log('config:', config); 
                 const id = new URLSearchParams(location.search).get('episode');
                 if(id) loadEpisode(parseInt(id));
@@ -74,7 +74,7 @@
                 
                 // For episode 5 and 6, load directly with embedded images
                 if (id == 5 || id == 6) {
-                    const res = await fetch('./episode' + id + '/story.html');
+                    const res = await fetch('/family-stories/reader/episode' + id + '/story.html');
                     const html = await res.text();
                     document.getElementById('story').innerHTML = html;
                 } else {
