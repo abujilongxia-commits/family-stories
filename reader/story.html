@@ -71,7 +71,7 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集 v2';
-                const res = await fetch((id == 5 ? '../reader/episode' : '../episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
+                const res = await fetch('https://raw.githubusercontent.com/abujilongxia-commits/family-stories/main/' + (id == 5 ? 'reader/episode' : 'episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
                 const html = await res.text();
                 const doc = new DOMParser().parseFromString(html, 'text/html');
                 storyScenes = parseStoryScenes(doc);
