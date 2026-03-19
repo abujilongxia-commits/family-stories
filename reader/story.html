@@ -71,15 +71,13 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集 v2';
-                
-                    const res = await fetch((id == 5 ? '../reader/episode' : '../episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
-                    const html = await res.text();
-                    const doc = new DOMParser().parseFromString(html, 'text/html');
-                    storyScenes = parseStoryScenes(doc);
-                    const content = buildFromScenes(storyScenes);
-                    document.getElementById('story').innerHTML = content;
-            const imgPaths = storyScenes.filter(s => s.imgPath).map(s => s.imgPath);
-            preloadImages(imgPaths);
+                const res = await fetch((id == 5 ? '../reader/episode' : '../episode') + id + '/story.html?t=' + Date.now(), { cache: 'no-store' });
+                const html = await res.text();
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                storyScenes = parseStoryScenes(doc);
+                const content = buildFromScenes(storyScenes);
+                document.getElementById('story').innerHTML = content;
+                preloadImages(storyScenes.filter(s => s.imgPath).map(s => s.imgPath));
             } catch(e) { document.getElementById('story').innerHTML = '<p style="text-align:center;padding:40px;">載入失敗：' + e.message + '</p>'; }
         }
         
@@ -122,9 +120,19 @@
             });
             html += '</div></div>';
             return html;
+        };
+                    img.onerror = () => { loaded--; tryNext(); };
+                    loaded++;
+                    img.src = src;
+                }
+            }
+            tryNext();
         }
-        
-                function preloadImages(imgPaths) {
+            }
+            tryNext();
+        }
+
+        function preloadImages(imgPaths) {
             let loaded = 0;
             const maxConcurrent = 6;
             const queue = [...imgPaths];
