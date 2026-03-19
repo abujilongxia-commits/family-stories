@@ -68,12 +68,21 @@
             try {
                 document.getElementById('title').textContent = titles[id] || '第' + id + '集';
                 document.title = (titles[id] || '第' + id + '集') + ' - 家庭故事集';
-                const res = await fetch('../episode' + id + '/story.html');
-                const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                storyScenes = parseStoryScenes(doc);
-                const images = config.selectedImages?.[('episode' + id)] || [];
-                const content = buildFromImages(images);
+                let html = '';
+                // For episode 5, use embedded images
+                if (id == 5) {
+                    const ep5Res = await fetch('./episode5/story.html');
+                    html = await ep5Res.text();
+                    document.getElementById('story').innerHTML = html;
+                } else {
+                    const res = await fetch('../episode' + id + '/story.html');
+                    html = await res.text();
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+                    storyScenes = parseStoryScenes(doc);
+                    const images = config.selectedImages?.[('episode' + id)] || [];
+                    const content = buildFromImages(images);
+                    document.getElementById('story').innerHTML = content;
+                }
                 document.getElementById('story').innerHTML = content;
                 document.querySelectorAll('.scene-img').forEach(div => {
                     div.onclick = () => { document.querySelector('#lightbox img').src = div.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); };
