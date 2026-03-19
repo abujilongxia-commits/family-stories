@@ -78,9 +78,10 @@
         function fixImagePath(src, episodeId) {
             if (!src || src.indexOf('http') === 0) return src;
             var base = 'https://abujilongxia-commits.github.io/family-stories/reader/episode' + episodeId + '/';
-            // For episodes 3-9, images are in images/ subfolder
-            if (episodeId >= 3 && src.indexOf('images/') !== 0) {
+            // For episodes 3-9, images are in images/ subfolder, so add images/ to base and remove from src
+            if (episodeId >= 3) {
                 base += 'images/';
+                src = src.replace(/^images\//, '');
             }
             return base + src.replace(/^\//, '');
         }
