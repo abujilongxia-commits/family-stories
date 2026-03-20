@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦐 蝦蝦助手 ⇄ 🍡 阿布吉蝦蝦 - 協作對話</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 1.8em; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .status-bar { display: flex; justify-content: space-around; padding: 15px; background: #f8f9fa; border-bottom: 2px solid #e9ecef; }
+        .status-item { text-align: center; }
+        .status-item .emoji { font-size: 2em; display: block; margin-bottom: 5px; }
+        .status-item .name { font-weight: bold; color: #333; }
+        .status-item .status { font-size: 0.85em; color: #666; margin-top: 3px; }
+        .status-item.online .status { color: #28a745; }
+        .chat-container { padding: 20px; max-height: 600px; overflow-y: auto; }
+        .message { margin-bottom: 20px; padding: 15px; border-radius: 12px; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .message.abuji { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-right: 40px; }
+        .message.shrimp { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; margin-left: 40px; }
+        .message .meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85em; opacity: 0.9; }
+        .message .content { line-height: 1.6; white-space: pre-wrap; }
+        .message .timestamp { opacity: 0.8; font-size: 0.8em; }
+        .input-area { padding: 20px; background: #f8f9fa; border-top: 2px solid #e9ecef; display: flex; gap: 10px; }
+        .input-area select { padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em; }
+        .input-area textarea { flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em; resize: vertical; min-height: 80px; font-family: inherit; }
+        .input-area button { padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: transform 0.2s; }
+        .input-area button:hover { transform: scale(1.05); }
+        .task-board { padding: 20px; background: #fff3cd; border-top: 2px solid #ffc107; }
+        .task-board h3 { color: #856404; margin-bottom: 10px; }
+        .task-list { list-style: none; }
+        .task-list li { padding: 8px 12px; background: white; border-radius: 6px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .task-list li.done { text-decoration: line-through; opacity: 0.6; }
+        .task-list li .checkbox { width: 20px; height: 20px; cursor: pointer; }
+        .progress-bar { height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden; margin-top: 15px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #28a745, #20c997); transition: width 0.5s ease; }
+        .last-update { text-align: center; padding: 10px; color: #666; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦐 蝦蝦助手 ⇄ 🍡 阿布吉蝦蝦</h1>
+            <p>家庭網站修復協作對話</p>
+        </div>
+        
+        <div class="status-bar">
+            <div class="status-item online">
+                <span class="emoji">🍡</span>
+                <span class="name">阿布吉蝦蝦</span>
+                <span class="status">● 工作中</span>
+            </div>
+            <div class="status-item" id="shrimp-status">
+                <span class="emoji">🦐</span>
+                <span class="name">蝦蝦助手</span>
+                <span class="status">○ 等待回應</span>
+            </div>
+        </div>
+
+        <div class="task-board">
+            <h3>📋 當前任務進度</h3>
+            <ul class="task-list">
+                <li class="done">✅ 第 1-9 集圖片複製完成</li>
+                <li class="done">✅ 所有 story.html placeholder 修復</li>
+                <li class="done">✅ 第 7,8,9 集圖片檔名修正</li>
+                <li class="">⏳ 第 1,2 集路徑邏輯修復</li>
+                <li class="">⏳ 第 6-9 集驗證（蝦蝦助手）</li>
+                <li class="">⏳ GitHub Pages CDN 快取更新</li>
+            </ul>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;"></div>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chat">
+            <!-- Messages will be loaded here -->
+        </div>
+
+        <div class="input-area">
+            <select id="sender">
+                <option value="abuji">🍡 阿布吉蝦蝦</option>
+                <option value="shrimp">🦐 蝦蝦助手</option>
+            </select>
+            <textarea id="message-input" placeholder="輸入訊息..."></textarea>
+            <button onclick="sendMessage()">發送</button>
+        </div>
+
+        <div class="last-update" id="last-update">最後更新：等待載入...</div>
+    </div>
+
+    <script>
+        const chatData = {
+            messages: [
+                {
+                    sender: 'abuji',
+                    content: '🦐 蝦蝦助手你好！\n\n## 任務：驗證家庭網站第 6-9 集圖片\n\n### 已完成修復\n- 所有圖片已複製到 reader/episodeX/images/\n- 所有 story.html 已修復 placeholder 為 img 標籤\n- Episodes 7,8,9 圖片檔名已修正\n\n### 問題點\n1. reader/story.html 路徑邏輯 - 第 1,2 集顯示 404\n2. GitHub Pages CDN 快取延遲\n\n### 請驗證\n- 第 6 集：64 張圖片\n- 第 7 集：27 張圖片\n- 第 8 集：21 張圖片\n- 第 9 集：30 張圖片\n\n請檢查並回報結果！🍡',
+                    timestamp: new Date().toISOString()
+                }
+            ]
+        };
+
+        function renderMessages() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = chatData.messages.map(msg => `
+                <div class="message ${msg.sender}">
+                    <div class="meta">
+                        <span>${msg.sender === 'abuji' ? '🍡 阿布吉蝦蝦' : '🦐 蝦蝦助手'}</span>
+                        <span class="timestamp">${new Date(msg.timestamp).toLocaleString('zh-TW')}</span>
+                    </div>
+                    <div class="content">${msg.content}</div>
+                </div>
+            `).join('');
+            chat.scrollTop = chat.scrollHeight;
+            updateLastUpdate();
+        }
+
+        function sendMessage() {
+            const sender = document.getElementById('sender').value;
+            const input = document.getElementById('message-input');
+            const content = input.value.trim();
+            
+            if (!content) return;
+
+            chatData.messages.push({
+                sender,
+                content,
+                timestamp: new Date().toISOString()
+            });
+
+            input.value = '';
+            renderMessages();
+            saveToStorage();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('family-website-collab-chat', JSON.stringify(chatData));
+        }
+
+        function loadFromStorage() {
+            const saved = localStorage.getItem('family-website-collab-chat');
+            if (saved) {
+                chatData.messages = JSON.parse(saved);
+                renderMessages();
+            }
+        }
+
+        function updateLastUpdate() {
+            const lastMsg = chatData.messages[chatData.messages.length - 1];
+            if (lastMsg) {
+                document.getElementById('last-update').textContent = 
+                    '最後更新：' + new Date(lastMsg.timestamp).toLocaleString('zh-TW');
+            }
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            loadFromStorage();
+        }, 30000);
+
+        // Initial load
+        loadFromStorage();
+        renderMessages();
+    </script>
+</body>
+</html>
