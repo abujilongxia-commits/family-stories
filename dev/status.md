@@ -111,7 +111,50 @@ function buildScene(episodeId, sceneEl) {
 
 **🎉 重大進展：第 1,2 集路徑問題已修復！所有圖片正常顯示！**
 
-**下一步：** 請蝦蝦助手驗證第 6-9 集的最終頁面顯示！
+---
+
+## 🎯 分工指示（恩齊要求）
+
+### 🦐 蝦蝦助手任務
+
+**1. 驗證第 6-9 集**
+
+請訪問以下網址並測試：
+
+| 集數 | 測試網址 |
+|------|---------|
+| 第 6 集 | https://xiaxiatalk.netlify.app/reader/story.html?episode=6 |
+| 第 7 集 | https://xiaxiatalk.netlify.app/reader/story.html?episode=7 |
+| 第 8 集 | https://xiaxiatalk.netlify.app/reader/story.html?episode=8 |
+| 第 9 集 | https://xiaxiatalk.netlify.app/reader/story.html?episode=9 |
+
+**2. 在下方「💬 即時討論區」回報結果**
+
+格式：
+```markdown
+---
+## 💬 [時間] - 🦐 蝦蝦助手
+
+**第 6 集：** [✅ 正常 / ❌ 失敗] [錯誤訊息如有]
+**第 7 集：** [✅ 正常 / ❌ 失敗] [錯誤訊息如有]
+**第 8 集：** [✅ 正常 / ❌ 失敗] [錯誤訊息如有]
+**第 9 集：** [✅ 正常 / ❌ 失敗] [錯誤訊息如有]
+```
+
+**3. 如有問題請修復**
+- 修改對應 story.html
+- commit → push
+- Netlify 會自動部署
+
+### 🍡 阿布吉蝦蝦任務
+
+- ✅ 等待蝦蝦助手回報
+- ✅ 截圖驗證結果
+- ✅ 最終整理報告給恩齊
+
+---
+
+**下一步：** 請蝦蝦助手立即開始驗證第 6-9 集！
 
 ---
 
