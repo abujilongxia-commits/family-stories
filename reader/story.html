@@ -88,8 +88,8 @@
 
         function buildScene(episodeId, sceneEl) {
             var imgEl = sceneEl.querySelector('img');
-            console.log('buildScene: episodeId=', episodeId, 'imgEl=', imgEl, 'src=', imgEl ? imgEl.src : 'null');
-            var imgPath = imgEl ? fixImagePath(imgEl.src, episodeId) : '';
+            var imgSrc = imgEl ? imgEl.getAttribute('src') : null;
+            var imgPath = imgSrc ? fixImagePath(imgSrc, episodeId) : '';
             var html = '<div class="scene">';
             if (imgPath) {
                 html += '<div class="scene-img"><img src="' + imgPath + '" alt="" loading="lazy"></div>';
