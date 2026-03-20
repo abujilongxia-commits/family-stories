@@ -77,7 +77,7 @@
 
         function fixImagePath(src, episodeId) {
             if (!src || src.indexOf('http') === 0) return src;
-            var base = 'https://abujilongxia-commits.github.io/family-stories/reader/episode' + episodeId + '/';
+            var base = 'https://xiaxiatalk.netlify.app/reader/episode' + episodeId + '/';
             // For episodes 3-9, images are in images/ subfolder
             if (episodeId >= 3 && src.indexOf('images/') === 0) {
                 src = src.replace(/^images\//, '');
@@ -147,7 +147,7 @@
         function loadEpisode(episodeId) {
             document.getElementById('title').textContent = titles[episodeId] || '第' + episodeId + '集';
             document.title = (titles[episodeId] || '第' + episodeId + '集') + ' - 家庭故事集';
-            var url = 'https://abujilongxia-commits.github.io/family-stories/reader/episode' + episodeId + '/story.html';
+            var url = 'https://xiaxiatalk.netlify.app/reader/episode' + episodeId + '/story.html';
             var xhr = new XMLHttpRequest();
             xhr.open('GET', url + '?t=' + Date.now(), true);
             xhr.onload = function() {
